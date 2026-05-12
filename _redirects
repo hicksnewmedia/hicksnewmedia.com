@@ -1,3 +1,4 @@
 https://mediakit.hicksnewmedia.com/*  /mediakit/:splat  200!
 https://links.hicksnewmedia.com/*     /links/:splat     200!
-https://merch.hicksnewmedia.com/*     /merch/:splat     200!
+https://merch.hicksnewmedia.com/products/*  /merch/product.html  200!
+https://merch.hicksnewmedia.com/*           /merch/:splat        200!

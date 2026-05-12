@@ -394,15 +394,17 @@
       function renderCard(p, checkoutDomain) {
         var name = escapeHtml(p.name || p.title || 'Untitled');
         var slug = p.slug || p.handle || '';
-        var domain = checkoutDomain || 'hnmmerch.store';
-        var href = 'https://' + domain + '/products/' + encodeURIComponent(slug);
+        // Link to our own product detail page on the merch subdomain.
+        // The detail page handles fetching the full product and sending
+        // the customer to Fourthwall checkout when they click Buy.
+        var href = '/products/' + encodeURIComponent(slug);
         var imgUrl = pickImageUrl(p);
         var imgHtml = imgUrl ? '<img src="' + escapeAttr(imgUrl) + '" alt="' + name + '" loading="lazy" />' : '';
         var price = pickPrice(p);
         var tag = p.type || (p.tags && p.tags[0]);
         var tagHtml = tag ? '<div class="card-tag">' + escapeHtml(String(tag)) + '</div>' : '';
 
-        return ['<a class="card" href="', escapeAttr(href), '" target="_blank" rel="noopener">',
+        return ['<a class="card" href="', escapeAttr(href), '">',
           '<div class="card-image">', tagHtml, imgHtml, '</div>',
           '<div class="card-body">',
             '<div class="card-name">', name, '</div>',

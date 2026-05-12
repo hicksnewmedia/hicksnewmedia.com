@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loading… · HicksNewMedia Merch</title>
+  <meta name="description" content="HicksNewMedia Merch product details." />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/hnm-favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/hnm-favicon-512.png" />
+  <link rel="apple-touch-icon" href="/assets/hnm-favicon-512.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://storefront-api.fourthwall.com" />
+  <link rel="preconnect" href="https://cdn.fourthwall.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Geist:wght@300..700&family=National+Park:wght@400;700&family=Red+Hat+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <script>
+    window.HNM_MERCH_CONFIG = {
+      FOURTHWALL_TOKEN: "ptkn_249e4df2-8b4e-46fe-80d7-043d83da3104",
+      CHECKOUT_DOMAIN:  "hnmmerch.store"
+    };
+  </script>
+
+  <style>
+    :root {
+      --ink: #0a0a0a; --ink-2: #131313; --ink-3: #1a1a1a; --ink-4: #232323;
+      --paper: #f5f1eb; --paper-2: #e8e2d6; --paper-3: #c8c2b4;
+      --signal: #f48022; --signal-deep: #d96a14;
+      --muted: #8a857c;
+      --rule: rgba(245, 241, 235, 0.10);
+      --rule-strong: rgba(245, 241, 235, 0.22);
+      --font-brand: "National Park", "Geist", -apple-system, sans-serif;
+      --font-body: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: "Red Hat Mono", ui-monospace, monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--ink); color: var(--paper);
+      font-size: 17px; line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; height: auto; }
+    button, select { font-family: inherit; cursor: pointer; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+    .signal { color: var(--signal); }
+
+    /* Nav */
+    .nav { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(16px); background: rgba(10,10,10,0.85); border-bottom: 1px solid var(--rule); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 32px; max-width: 1400px; margin: 0 auto; gap: 20px; }
+    .nav-logo { font-family: var(--font-brand); font-weight: 700; font-size: 1.35rem; letter-spacing: -0.01em; display: flex; align-items: center; gap: 12px; color: var(--paper); }
+    .nav-logo-mark { font-size: 1.5rem; }
+    .nav-divider { width: 2px; height: 26px; background: var(--signal); }
+    .nav-wm-text { display: none; }
+    @media (min-width: 720px) { .nav-wm-text { display: inline; } }
+    .nav-cta { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 12px 20px; background: transparent; color: var(--paper); border: 1px solid var(--rule-strong); border-radius: 2px; transition: all 0.2s; }
+    .nav-cta:hover { border-color: var(--signal); color: var(--signal); }
+
+    /* Breadcrumb */
+    .breadcrumb { padding: 32px 0 0; }
+    .breadcrumb a {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--paper-3);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: color 0.18s, transform 0.18s;
+    }
+    .breadcrumb a:hover { color: var(--signal); transform: translateX(-3px); }
+
+    /* Product detail layout */
+    .product {
+      padding: 40px 0 80px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    @media (min-width: 880px) {
+      .product { grid-template-columns: 1.1fr 1fr; gap: 64px; }
+    }
+
+    /* Image gallery */
+    .gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .gallery-main {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: var(--ink-2);
+      border: 1px solid var(--rule);
+      overflow: hidden;
+      position: relative;
+    }
+    .gallery-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.18s;
+    }
+    .gallery-thumbs {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+      gap: 8px;
+      max-width: 100%;
+    }
+    .thumb {
+      aspect-ratio: 1 / 1;
+      background: var(--ink-2);
+      border: 1px solid var(--rule);
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.18s;
+    }
+    .thumb:hover { border-color: var(--paper-3); }
+    .thumb.active { border-color: var(--signal); }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Info panel */
+    .info { display: flex; flex-direction: column; }
+    .kicker {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--signal);
+      margin-bottom: 16px;
+    }
+    .product-name {
+      font-family: var(--font-brand);
+      font-weight: 700;
+      font-size: clamp(32px, 4.5vw, 48px);
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .product-price {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--signal);
+      margin-bottom: 32px;
+      letter-spacing: 0.02em;
+    }
+
+    /* Variant pickers */
+    .variant-block { margin-bottom: 24px; }
+    .variant-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--paper-3);
+      margin-bottom: 10px;
+      display: block;
+    }
+    .variant-options {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .variant-opt {
+      padding: 12px 18px;
+      background: var(--ink-2);
+      border: 1px solid var(--rule);
+      color: var(--paper);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      transition: all 0.18s;
+    }
+    .variant-opt:hover {
+      border-color: var(--signal);
+    }
+    .variant-opt.active {
+      background: var(--signal);
+      border-color: var(--signal);
+      color: var(--ink);
+    }
+    .variant-opt:disabled, .variant-opt.unavailable {
+      opacity: 0.35;
+      text-decoration: line-through;
+      cursor: not-allowed;
+    }
+
+    /* Buy button */
+    .buy {
+      margin-top: 16px;
+      width: 100%;
+      padding: 20px 32px;
+      background: var(--signal);
+      color: var(--ink);
+      border: none;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.18s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .buy:hover:not(:disabled) { background: var(--signal-deep); transform: translateY(-2px); }
+    .buy:disabled { opacity: 0.5; cursor: not-allowed; }
+    .buy-note {
+      margin-top: 14px;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* Description */
+    .description {
+      margin-top: 36px;
+      padding-top: 32px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--font-body);
+      color: var(--paper-2);
+      line-height: 1.7;
+    }
+    .description-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--paper-3);
+      margin-bottom: 16px;
+    }
+    .description p { margin-bottom: 14px; }
+    .description ul, .description ol { padding-left: 22px; margin-bottom: 14px; }
+    .description li { margin-bottom: 6px; }
+    .description strong { color: var(--paper); }
+
+    /* Skeleton */
+    @keyframes pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.85; } }
+    .skeleton-block { background: var(--ink-3); animation: pulse 1.6s ease-in-out infinite; border-radius: 2px; }
+    .skel-image { width: 100%; aspect-ratio: 1 / 1; }
+    .skel-line { height: 16px; margin-bottom: 12px; }
+    .skel-line.lg { height: 36px; width: 70%; }
+    .skel-line.med { width: 50%; }
+    .skel-line.short { width: 30%; }
+
+    /* Error state */
+    .error-state {
+      padding: 100px 32px;
+      text-align: center;
+      border: 1px dashed var(--rule-strong);
+      background: var(--ink-2);
+      margin: 60px 0;
+    }
+    .error-title {
+      font-family: var(--font-brand);
+      font-weight: 700;
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+    }
+    .error-body {
+      color: var(--paper-3);
+      margin-bottom: 28px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .error-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      background: var(--signal);
+      color: var(--ink);
+      border-radius: 2px;
+    }
+    .error-cta:hover { background: var(--signal-deep); }
+
+    /* Footer */
+    footer { padding: 56px 0 40px; background: var(--ink); border-top: 1px solid var(--rule); }
+    .footer-inner { display: flex; flex-direction: column; gap: 24px; align-items: center; text-align: center; }
+    .footer-wm { font-family: var(--font-brand); font-weight: 700; font-size: 1.5rem; }
+    .footer-tag { font-family: var(--font-brand); color: var(--paper-3); font-size: 1.05rem; }
+    .footer-meta { font-family: var(--font-mono); font-size: 0.74rem; color: var(--muted); letter-spacing: 0.1em; }
+    .footer-meta a { color: var(--signal); }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="https://hicksnewmedia.com" class="nav-logo">
+        <span class="nav-logo-mark">HNM<span class="signal">.</span></span>
+        <span class="nav-divider"></span>
+        <span class="nav-wm-text">Hicks<span class="signal">New</span>Media<span class="signal">.</span></span>
+      </a>
+      <a href="/" class="nav-cta">← All merch</a>
+    </div>
+  </nav>
+
+  <main class="container">
+    <div class="breadcrumb">
+      <a href="/">← Back to merch</a>
+    </div>
+
+    <div class="product" id="product">
+      <!-- Skeleton loading state -->
+      <div class="gallery">
+        <div class="skeleton-block skel-image"></div>
+        <div class="gallery-thumbs">
+          <div class="skeleton-block thumb"></div>
+          <div class="skeleton-block thumb"></div>
+          <div class="skeleton-block thumb"></div>
+          <div class="skeleton-block thumb"></div>
+        </div>
+      </div>
+      <div class="info">
+        <div class="skeleton-block skel-line short"></div>
+        <div class="skeleton-block skel-line lg" style="margin-top: 18px;"></div>
+        <div class="skeleton-block skel-line med" style="margin-top: 24px;"></div>
+        <div class="skeleton-block skel-line" style="margin-top: 40px;"></div>
+        <div class="skeleton-block skel-line"></div>
+        <div class="skeleton-block skel-line med"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-wm">Hicks<span class="signal">New</span>Media<span class="signal">.</span></div>
+        <div class="footer-tag">An independent media agency.</div>
+        <div class="footer-meta">EST. 2010 · ROCKLIN, CA · POWERED BY <a href="https://hnmmerch.store" target="_blank" rel="noopener">FOURTHWALL</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var cfg = window.HNM_MERCH_CONFIG || {};
+      var container = document.getElementById('product');
+
+      // Parse slug from URL: /products/{slug} or /products/{slug}/anything
+      var slug = (function () {
+        var match = window.location.pathname.match(/\/products\/([^\/\?#]+)/);
+        return match ? decodeURIComponent(match[1]) : null;
+      })();
+
+      if (!slug) {
+        renderError('No product specified', 'The URL is missing a product slug. Head back to the merch page and pick something.');
+        return;
+      }
+
+      if (!cfg.FOURTHWALL_TOKEN || cfg.FOURTHWALL_TOKEN.indexOf('YOUR_' + 'FOURTHWALL_TOKEN') !== -1) {
+        renderError('Storefront not configured', 'Visit hnmmerch.store for now.');
+        return;
+      }
+
+      loadProduct(slug);
+
+      // ─── Load + render ──────────────────────────────────
+      async function loadProduct(slug) {
+        try {
+          var url = 'https://storefront-api.fourthwall.com/v1/products/' + encodeURIComponent(slug)
+            + '?storefront_token=' + encodeURIComponent(cfg.FOURTHWALL_TOKEN);
+          var res = await fetch(url);
+          if (!res.ok) {
+            if (res.status === 404) {
+              renderError('Product not found', 'This product might have been removed or renamed. Check the full store.');
+            } else {
+              throw new Error('HTTP ' + res.status);
+            }
+            return;
+          }
+          var product = await res.json();
+          console.log('[product] schema:', product);
+          renderProduct(product);
+        } catch (err) {
+          console.warn('[product] fetch failed:', err);
+          renderError('Couldn\'t load this product', 'There was a problem reaching the storefront. Try the main store directly.');
+        }
+      }
+
+      function renderProduct(p) {
+        var name = p.name || p.title || 'Untitled';
+        document.title = name + ' · HicksNewMedia Merch';
+
+        var variants = p.variants || p.variantList || [];
+        var images = collectImages(p);
+        var description = p.description || p.body || p.bodyHtml || '';
+
+        // Group variants by attribute (e.g., Size, Color) so we can render
+        // a separate picker per attribute. Fall back to a single dropdown.
+        var attrGroups = groupVariantsByAttribute(variants);
+
+        var state = {
+          variants: variants,
+          selected: variants[0] || null,
+          activeImage: 0,
+          attrSelection: {}
+        };
+
+        // Initialize attribute selection from the first variant
+        if (state.selected && Array.isArray(state.selected.attributes)) {
+          state.selected.attributes.forEach(function (a) {
+            state.attrSelection[a.name || a.key] = a.value;
+          });
+        }
+
+        container.innerHTML = ''
+          + '<div class="gallery">'
+            + '<div class="gallery-main" id="main-img"></div>'
+            + '<div class="gallery-thumbs" id="thumbs"></div>'
+          + '</div>'
+          + '<div class="info">'
+            + '<div class="kicker">— HNM Merch</div>'
+            + '<h1 class="product-name">' + escapeHtml(name) + '</h1>'
+            + '<div class="product-price" id="price"></div>'
+            + '<div id="variant-pickers"></div>'
+            + '<button class="buy" id="buy-btn">'
+              + '<span id="buy-label">Buy Now</span>'
+              + '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'
+            + '</button>'
+            + '<div class="buy-note">Secure checkout on hnmmerch.store · Powered by Fourthwall</div>'
+            + (description
+              ? '<div class="description">'
+                + '<div class="description-label">Details</div>'
+                + cleanDescription(description)
+                + '</div>'
+              : '')
+          + '</div>';
+
+        renderGallery(images, state);
+        renderVariantPickers(attrGroups, state);
+        updatePrice(state);
+        wireBuyButton(p, state);
+      }
+
+      // ─── Gallery ────────────────────────────────────────
+      function collectImages(p) {
+        var imgs = [];
+        if (p.images && p.images.length) {
+          p.images.forEach(function (i) {
+            if (typeof i === 'string') imgs.push({ url: i });
+            else if (i && (i.url || i.src)) imgs.push({ url: i.url || i.src, alt: i.alt });
+          });
+        }
+        if (imgs.length === 0 && p.image && (p.image.url || p.image.src)) {
+          imgs.push({ url: p.image.url || p.image.src });
+        }
+        return imgs;
+      }
+
+      function renderGallery(images, state) {
+        var main = document.getElementById('main-img');
+        var thumbs = document.getElementById('thumbs');
+        if (images.length === 0) {
+          main.style.display = 'none';
+          thumbs.style.display = 'none';
+          return;
+        }
+        renderMainImage(images, state);
+        if (images.length > 1) {
+          thumbs.innerHTML = images.map(function (img, i) {
+            return '<div class="thumb' + (i === state.activeImage ? ' active' : '') + '" data-idx="' + i + '">'
+              + '<img src="' + escapeAttr(img.url) + '" alt="" loading="lazy" />'
+            + '</div>';
+          }).join('');
+          thumbs.addEventListener('click', function (e) {
+            var thumb = e.target.closest('.thumb');
+            if (!thumb) return;
+            state.activeImage = parseInt(thumb.getAttribute('data-idx'), 10);
+            renderMainImage(images, state);
+            Array.prototype.forEach.call(thumbs.querySelectorAll('.thumb'), function (t, i) {
+              t.classList.toggle('active', i === state.activeImage);
+            });
+          });
+        } else {
+          thumbs.style.display = 'none';
+        }
+      }
+
+      function renderMainImage(images, state) {
+        var img = images[state.activeImage];
+        document.getElementById('main-img').innerHTML = '<img src="' + escapeAttr(img.url) + '" alt="" />';
+      }
+
+      // ─── Variants ───────────────────────────────────────
+      function groupVariantsByAttribute(variants) {
+        // Returns: { "Size": ["S","M","L"], "Color": ["Black","White"] }
+        var groups = {};
+        variants.forEach(function (v) {
+          var attrs = normalizeAttributes(v);
+          attrs.forEach(function (a) {
+            if (!groups[a.name]) groups[a.name] = [];
+            if (groups[a.name].indexOf(a.value) === -1) groups[a.name].push(a.value);
+          });
+        });
+        return groups;
+      }
+
+      function normalizeAttributes(variant) {
+        // Handles multiple possible Fourthwall variant attribute shapes
+        var out = [];
+        if (Array.isArray(variant.attributes)) {
+          variant.attributes.forEach(function (a) {
+            out.push({ name: a.name || a.key, value: a.value });
+          });
+        } else if (variant.attributes && typeof variant.attributes === 'object') {
+          Object.keys(variant.attributes).forEach(function (k) {
+            out.push({ name: k, value: variant.attributes[k] });
+          });
+        }
+        // Fallback: variant.name like "Medium / Black"
+        if (out.length === 0 && variant.name) {
+          out.push({ name: 'Variant', value: variant.name });
+        }
+        return out;
+      }
+
+      function renderVariantPickers(attrGroups, state) {
+        var pickersEl = document.getElementById('variant-pickers');
+        var attrNames = Object.keys(attrGroups);
+        if (attrNames.length === 0) {
+          pickersEl.style.display = 'none';
+          return;
+        }
+
+        pickersEl.innerHTML = attrNames.map(function (attrName) {
+          return '<div class="variant-block">'
+            + '<span class="variant-label">' + escapeHtml(attrName) + '</span>'
+            + '<div class="variant-options" data-attr="' + escapeAttr(attrName) + '">'
+              + attrGroups[attrName].map(function (val) {
+                  var active = state.attrSelection[attrName] === val ? ' active' : '';
+                  return '<button class="variant-opt' + active + '" data-val="' + escapeAttr(val) + '">' + escapeHtml(val) + '</button>';
+                }).join('')
+            + '</div>'
+          + '</div>';
+        }).join('');
+
+        pickersEl.addEventListener('click', function (e) {
+          var opt = e.target.closest('.variant-opt');
+          if (!opt) return;
+          var attrName = opt.parentElement.getAttribute('data-attr');
+          var val = opt.getAttribute('data-val');
+          state.attrSelection[attrName] = val;
+
+          // Update active state in this attribute's group
+          Array.prototype.forEach.call(opt.parentElement.querySelectorAll('.variant-opt'), function (o) {
+            o.classList.toggle('active', o.getAttribute('data-val') === val);
+          });
+
+          // Find the matching variant
+          state.selected = findMatchingVariant(state.variants, state.attrSelection);
+          updatePrice(state);
+        });
+      }
+
+      function findMatchingVariant(variants, selection) {
+        return variants.find(function (v) {
+          var attrs = normalizeAttributes(v);
+          return Object.keys(selection).every(function (key) {
+            return attrs.some(function (a) { return a.name === key && a.value === selection[key]; });
+          });
+        }) || variants[0];
+      }
+
+      function updatePrice(state) {
+        var priceEl = document.getElementById('price');
+        var buyBtn = document.getElementById('buy-btn');
+        if (!state.selected) {
+          priceEl.textContent = '';
+          if (buyBtn) buyBtn.disabled = true;
+          return;
+        }
+        priceEl.textContent = formatVariantPrice(state.selected);
+        if (buyBtn) buyBtn.disabled = false;
+      }
+
+      function formatVariantPrice(v) {
+        var fmt = function (val, ccy) {
+          if (typeof val !== 'number') val = parseFloat(val);
+          if (isNaN(val)) return '';
+          var sym = ccy === 'USD' ? '$' : (ccy === 'EUR' ? '€' : (ccy === 'GBP' ? '£' : ''));
+          return sym ? sym + val.toFixed(2) : val.toFixed(2) + ' ' + (ccy || '');
+        };
+        if (v.unitPrice && v.unitPrice.value !== undefined) return fmt(v.unitPrice.value, v.unitPrice.currency);
+        if (v.price && v.price.value !== undefined) return fmt(v.price.value, v.price.currency);
+        if (typeof v.price === 'number') return fmt(v.price, v.currency || 'USD');
+        return '';
+      }
+
+      // ─── Buy button ─────────────────────────────────────
+      function wireBuyButton(product, state) {
+        var btn = document.getElementById('buy-btn');
+        var label = document.getElementById('buy-label');
+        var domain = cfg.CHECKOUT_DOMAIN || 'hnmmerch.store';
+        var slug = product.slug || product.handle || '';
+
+        btn.addEventListener('click', async function () {
+          if (!state.selected) return;
+          btn.disabled = true;
+          label.textContent = 'Opening checkout…';
+
+          // Try the Fourthwall cart API: create cart with this variant,
+          // then send the customer straight to checkout with item loaded.
+          try {
+            var variantId = state.selected.id || state.selected.variantId;
+            if (!variantId) throw new Error('No variant id');
+
+            var res = await fetch('https://storefront-api.fourthwall.com/v1/carts'
+              + '?storefront_token=' + encodeURIComponent(cfg.FOURTHWALL_TOKEN), {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ items: [{ variantId: variantId, quantity: 1 }] })
+            });
+
+            if (res.ok) {
+              var cart = await res.json();
+              var cartId = cart.id || cart.cartId;
+              // Fourthwall hosted checkout accepts cart hand-off via the cart id.
+              // If this URL pattern doesn't work, the fallback below kicks in.
+              window.location.href = 'https://' + domain + '/checkout?cartCurrency=USD&cartId=' + encodeURIComponent(cartId);
+              return;
+            }
+          } catch (err) {
+            console.warn('[buy] cart api fell through, using product link:', err);
+          }
+
+          // Fallback: open the Fourthwall product page in a new tab.
+          // Customer picks variant again there, but it always works.
+          window.open('https://' + domain + '/products/' + encodeURIComponent(slug), '_blank', 'noopener');
+          btn.disabled = false;
+          label.textContent = 'Buy Now';
+        });
+      }
+
+      // ─── Description sanitization ───────────────────────
+      function cleanDescription(html) {
+        // Strip script/style tags but keep basic HTML formatting
+        var clean = String(html)
+          .replace(/<script[\s\S]*?<\/script>/gi, '')
+          .replace(/<style[\s\S]*?<\/style>/gi, '')
+          .replace(/\son\w+\s*=\s*"[^"]*"/gi, '')
+          .replace(/\son\w+\s*=\s*'[^']*'/gi, '');
+        // If it has no HTML, wrap it
+        if (clean.indexOf('<') === -1) {
+          return '<p>' + escapeHtml(clean).replace(/\n+/g, '</p><p>') + '</p>';
+        }
+        return clean;
+      }
+
+      // ─── Error state ────────────────────────────────────
+      function renderError(title, body) {
+        container.innerHTML = '<div class="error-state" style="grid-column: 1 / -1;">'
+          + '<div class="error-title">' + escapeHtml(title) + '</div>'
+          + '<div class="error-body">' + escapeHtml(body) + '</div>'
+          + '<a class="error-cta" href="/">Browse all merch →</a>'
+          + '</div>';
+      }
+
+      // ─── Helpers ────────────────────────────────────────
+      function escapeHtml(str) {
+        return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+      }
+      function escapeAttr(str) { return escapeHtml(str); }
+    })();
+  </script>
+
+</body>
+</html>
