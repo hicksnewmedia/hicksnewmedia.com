@@ -521,25 +521,46 @@
       function normalizeAttributes(variant) {
         // Handles multiple possible Fourthwall variant attribute shapes
         var out = [];
+
+        var processOne = function (name, val) {
+          if (!name) return;
+          // Skip Fourthwall's "Description" attribute — it's a combined
+          // human-readable label like "Black, One size" that duplicates
+          // info from the separate Color/Size attributes.
+          if (String(name).toLowerCase() === 'description') return;
+
+          // Extract the string value. Fourthwall sometimes nests structured
+          // data here (e.g. { name: "Black", swatch: "#000000" }).
+          if (val && typeof val === 'object') {
+            val = val.name || val.value || val.label || val.title;
+          }
+          if (val == null || val === '') return;
+          out.push({ name: String(name), value: String(val) });
+        };
+
         if (Array.isArray(variant.attributes)) {
           variant.attributes.forEach(function (a) {
-            out.push({ name: a.name || a.key, value: a.value });
+            processOne(a.name || a.key, a.value);
           });
         } else if (variant.attributes && typeof variant.attributes === 'object') {
           Object.keys(variant.attributes).forEach(function (k) {
-            out.push({ name: k, value: variant.attributes[k] });
+            processOne(k, variant.attributes[k]);
           });
         }
         // Fallback: variant.name like "Medium / Black"
         if (out.length === 0 && variant.name) {
-          out.push({ name: 'Variant', value: variant.name });
+          out.push({ name: 'Option', value: String(variant.name) });
         }
         return out;
       }
 
       function renderVariantPickers(attrGroups, state) {
         var pickersEl = document.getElementById('variant-pickers');
-        var attrNames = Object.keys(attrGroups);
+        // Only show pickers for attributes with more than one option.
+        // No point in a "Size" picker when there's only "One size".
+        var attrNames = Object.keys(attrGroups).filter(function (name) {
+          return attrGroups[name].length > 1;
+        });
         if (attrNames.length === 0) {
           pickersEl.style.display = 'none';
           return;
