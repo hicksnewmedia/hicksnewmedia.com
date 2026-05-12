@@ -1,0 +1,10 @@
+# Supabase project configuration for hicksnewmedia.com
+# Reference: https://supabase.com/docs/guides/cli/config
+
+project_id = "hicksnewmedia"
+
+[functions.update-videos]
+# verify_jwt = false so the function can be called by pg_cron/pg_net
+# without needing a Supabase auth token. Security is provided by the
+# CRON_SECRET header check inside the function itself.
+verify_jwt = false

@@ -1,0 +1,54 @@
+# Netlify configuration for hicksnewmedia.com
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+#
+# Three subdomains served from one Netlify site:
+#   hicksnewmedia.com           → /index.html          (main site)
+#   mediakit.hicksnewmedia.com  → /mediakit/index.html (browser media kit)
+#   links.hicksnewmedia.com     → /links/index.html    (link hub)
+#
+# Subdomain pages reference shared assets at /assets/*, which serve
+# from the same site root for every subdomain.
+
+[build]
+  publish = "."
+
+# ────────── Subdomain routing ──────────
+# Only rewrite the root path "/" for each subdomain. All other paths
+# (like /assets/foo.png) serve naturally, so the shared /assets/
+# folder works across every subdomain without duplication.
+
+[[redirects]]
+  from = "/"
+  to = "/mediakit/index.html"
+  status = 200
+  force = true
+  conditions = {Host = ["mediakit.hicksnewmedia.com"]}
+
+[[redirects]]
+  from = "/"
+  to = "/links/index.html"
+  status = 200
+  force = true
+  conditions = {Host = ["links.hicksnewmedia.com"]}
+
+# ────────── Security headers (apply to all subdomains) ──────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options          = "SAMEORIGIN"
+    X-Content-Type-Options   = "nosniff"
+    Referrer-Policy          = "strict-origin-when-cross-origin"
+    Permissions-Policy       = "geolocation=(), microphone=(), camera=()"
+
+# ────────── Caching ──────────
+# Long cache for static assets (logos, favicons, PDF) — stable URLs
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Short cache for HTML so updates show up quickly
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

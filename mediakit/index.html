@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Media Kit · HicksNewMedia</title>
+  <meta name="description" content="HicksNewMedia 2026 Media Kit — independent media agency. Audience, partnership tiers, recent work. Founded by James Hicks, 30+ years in enterprise IT." />
+  <meta property="og:title" content="HicksNewMedia · 2026 Media Kit" />
+  <meta property="og:description" content="An independent media agency. Multi-property network reaching IT decision-makers and technical creators. No Hype. Just the Facts." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mediakit.hicksnewmedia.com/" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/hnm-favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/hnm-favicon-512.png" />
+  <link rel="apple-touch-icon" href="/assets/hnm-favicon-512.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Geist:wght@300..700&family=National+Park:wght@400;700&family=Red+Hat+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --ink: #0a0a0a;
+      --ink-2: #131313;
+      --ink-3: #1a1a1a;
+      --ink-4: #232323;
+      --paper: #f5f1eb;
+      --paper-2: #e8e2d6;
+      --paper-3: #c8c2b4;
+      --signal: #f48022;
+      --signal-deep: #d96a14;
+      --signal-soft: rgba(244, 128, 34, 0.12);
+      --ocean: #20557b;
+      --muted: #8a857c;
+      --muted-2: #5a5650;
+      --rule: rgba(245, 241, 235, 0.10);
+      --rule-strong: rgba(245, 241, 235, 0.22);
+      --font-brand: "National Park", "Geist", -apple-system, sans-serif;
+      --font-display: "Fraunces", "Times New Roman", serif;
+      --font-body: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: "Red Hat Mono", ui-monospace, monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--ink);
+      color: var(--paper);
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; height: auto; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* ────────── Type ────────── */
+    .kicker {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--signal);
+    }
+    .display-xl { font-family: var(--font-brand); font-weight: 700; font-size: clamp(48px, 8vw, 96px); letter-spacing: -0.02em; line-height: 1.02; }
+    .display-lg { font-family: var(--font-brand); font-weight: 700; font-size: clamp(36px, 5vw, 56px); letter-spacing: -0.02em; line-height: 1.05; }
+    .display-md { font-family: var(--font-brand); font-weight: 700; font-size: clamp(28px, 3.5vw, 40px); letter-spacing: -0.01em; line-height: 1.1; }
+    .signal { color: var(--signal); }
+
+    /* ────────── Nav ────────── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(10, 10, 10, 0.85);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 32px;
+      max-width: 1400px;
+      margin: 0 auto;
+      gap: 20px;
+    }
+    .nav-logo {
+      font-family: var(--font-brand);
+      font-weight: 700;
+      font-size: 1.35rem;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--paper);
+    }
+    .nav-logo-mark {
+      font-family: var(--font-brand);
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .nav-divider {
+      width: 2px;
+      height: 26px;
+      background: var(--signal);
+    }
+    .nav-wm-text { display: none; }
+    @media (min-width: 720px) {
+      .nav-wm-text { display: inline; }
+    }
+    .nav-cta {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 12px 20px;
+      background: var(--signal);
+      color: var(--ink);
+      border-radius: 2px;
+      transition: background 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-cta:hover { background: var(--signal-deep); }
+
+    /* ────────── Hero ────────── */
+    .hero {
+      position: relative;
+      padding: 120px 0 80px;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 85% 15%, rgba(244, 128, 34, 0.13), transparent 60%);
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; z-index: 1; }
+    .hero .kicker { margin-bottom: 32px; }
+    .hero-mark {
+      font-family: var(--font-brand);
+      font-weight: 700;
+      font-size: clamp(56px, 12vw, 140px);
+      letter-spacing: -0.02em;
+      line-height: 0.95;
+      margin-bottom: 24px;
+    }
+    .hero-sub {
+      font-family: var(--font-brand);
+      font-weight: 400;
+      font-size: clamp(20px, 2.4vw, 30px);
+      color: var(--paper-3);
+      margin-bottom: 48px;
+    }
+    .hero-tag {
+      font-family: var(--font-brand);
+      font-weight: 700;
+      font-size: clamp(36px, 5vw, 60px);
+      line-height: 1.05;
+      margin-bottom: 56px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 64px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 18px 28px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: var(--signal);
+      color: var(--ink);
+    }
+    .btn-primary:hover { background: var(--signal-deep); transform: translateY(-2px); }
+    .btn-ghost {
+      background: transparent;
+      color: var(--paper);
+      border: 1px solid var(--rule-strong);
+    }
+    .btn-ghost:hover { background: var(--ink-3); border-color: var(--signal); color: var(--signal); }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      padding-top: 48px;
+      border-top: 1px solid var(--rule);
+    }
+    .hero-meta-item .label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--signal);
+      margin-bottom: 8px;
+    }
+    .hero-meta-item .value {
+      font-family: var(--font-brand);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--paper);
+    }
+
+    /* ────────── Sections ────────── */
+    section { padding: 100px 0; }
+    section + section { border-top: 1px solid var(--rule); }
+    .section-head { margin-bottom: 64px; }
+    .section-head .kicker { margin-bottom: 16px; }
+    .section-intro {
+      font-family: var(--font-brand);
+      font-weight: 400;
+      font-size: 1.25rem;
+      color: var(--paper-3);
+      margin-top: 16px;
+      max-width: 720px;
+    }
+
+    /* ────────── At a Glance Stats ────────── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+    .stat {
+      padding: 36px 28px;
+      background: var(--ink-2);
+      border-left: 3px solid var(--signal);
+    }
+    .stat .num {
+      font-family: var(--font-brand);
+      font-weight: 700;
+      font-size: clamp(40px, 5vw, 64px);
+      color: var(--signal);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .stat .label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--paper-3);
+    }
+
+    /* ────────── About ────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    @media (min-width: 880px) {
+      .about-grid { grid-template-columns: 1.4fr 1fr; gap: 64px; }
+    }
+    .about-body p {
+      font-size: 1.1rem;
+      color: var(--paper-2);
+      margin-bottom: 24px;
+    }
+    .about-photo {
+      position: relative;
+    }
+    .about-photo img {
+      width: 100%;
+      max-width: 460px;
+      border-radius: 2px;
+    }
+    .about-photo::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 80px;
+      height: 4px;
+      background: var(--signal);
+    }
+    .about-photo::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 80px;
+      height: 4px;
+      background: var(--signal);
+    }
+    .about-facts {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px 24px;
+    }
+    .about-facts dt {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--signal);
+      padding-top: 4px;
+    }
+    .about-facts dd {
+      font-family: var(--font-brand);
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--paper);
+    }
+
+    /* ────────── Network ────────── */
+    .network-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .property {
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 24px;
+      align-items: start;
+      padding: 32px;
+      background: var(--ink-2);
+      border-left: 3px solid var(--signal);
+      transition: background 0.2s;
+    }
+    .property:hover { background: var(--ink-3); }
+    .property-num {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--signal);
+    }
+    .property-name {
+      font-family: var(--font-brand);
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 6px;
+    }
+    .property-kind {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--paper-3);
+      margin-bottom: 14px;
+    }
+    .property-body {
+      color: var(--paper-2);
+      margin-bottom: 12px;
+    }
+    .property-meta {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ────────── Audience ────────── */
+    .audience-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .audience-card {
+      padding: 32px;
+      background: var(--ink-2);
+      border-top: 4px solid var(--signal);
+    }
+    .audience-card .num {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--signal);
+      margin-bottom: 12px;
+    }
+    .audience-card h3 {
+      font-family: var(--font-brand);
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+    .audience-card p {
+      color: var(--paper-3);
+      margin-bottom: 16px;
+    }
+    .audience-card .tags {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--paper-2);
+      letter-spacing: 0.04em;
+    }
+
+    /* ────────── Partnership Tiers ────────── */
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .tier {
+      position: relative;
+      padding: 36px 28px;
+      background: var(--ink-2);
+      border-top: 3px solid var(--rule-strong);
+    }
+    .tier.featured {
+      background: linear-gradient(180deg, rgba(244, 128, 34, 0.18), rgba(244, 128, 34, 0.04));
+      border-top-color: var(--signal);
+      border-top-width: 6px;
+    }
+    .tier-num {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--signal);
+      margin-bottom: 8px;
+    }
+    .tier-badge {
+      position: absolute;
+      top: 28px;
+      right: 28px;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--signal);
+      text-transform: uppercase;
+    }
+    .tier-name {
+      font-family: var(--font-brand);
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+    }
+    .tier-price {
+      font-family: var(--font-brand);
+      font-weight: 700;
+      font-size: clamp(28px, 3vw, 36px);
+      color: var(--paper);
+      margin-bottom: 8px;
+    }
+    .tier.featured .tier-price { color: var(--signal); }
+    .tier-per {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--paper-3);
+      margin-bottom: 24px;
+    }
+    .tier-desc {
+      color: var(--paper-2);
+      font-size: 0.95rem;
+    }
+
+    /* ────────── Featured Work ────────── */
+    .work-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .work {
+      padding: 32px;
+      background: var(--ink-2);
+      border-left: 3px solid var(--signal);
+    }
+    .work-title {
+      font-family: var(--font-brand);
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+    .work-kind {
+      font-family: var(--font-brand);
+      color: var(--signal);
+      margin-bottom: 16px;
+    }
+    .work-desc { color: var(--paper-2); margin-bottom: 18px; }
+    .work-meta {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    /* ────────── Testimonials ────────── */
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    @media (min-width: 880px) {
+      .testimonial-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .testimonial {
+      padding: 36px 32px;
+      background: var(--ink-2);
+      position: relative;
+    }
+    .testimonial::before {
+      content: "“";
+      position: absolute;
+      top: 16px;
+      left: 28px;
+      font-family: var(--font-brand);
+      font-size: 80px;
+      color: var(--signal);
+      line-height: 1;
+    }
+    .testimonial-quote {
+      padding-top: 60px;
+      font-family: var(--font-brand);
+      font-weight: 400;
+      font-size: 1.05rem;
+      color: var(--paper);
+      margin-bottom: 28px;
+    }
+    .testimonial-rule {
+      width: 48px;
+      height: 2px;
+      background: var(--signal);
+      margin-bottom: 14px;
+    }
+    .testimonial-author {
+      font-family: var(--font-brand);
+      font-weight: 700;
+      font-size: 1.15rem;
+    }
+    .testimonial-role {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--signal);
+      margin-top: 4px;
+    }
+
+    /* ────────── Contact CTA ────────── */
+    .contact-cta {
+      padding: 100px 0;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(244, 128, 34, 0.15), transparent 60%),
+        var(--ink-2);
+      border-top: 1px solid var(--rule);
+    }
+    .contact-cta .kicker { margin-bottom: 24px; }
+    .contact-cta h2 {
+      font-family: var(--font-brand);
+      font-weight: 700;
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: 1.05;
+      margin-bottom: 28px;
+    }
+    .contact-cta p {
+      font-family: var(--font-brand);
+      font-weight: 400;
+      font-size: 1.2rem;
+      color: var(--paper-3);
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+    .contact-email {
+      margin-top: 32px;
+      font-family: var(--font-mono);
+      color: var(--paper-3);
+    }
+    .contact-email a { color: var(--signal); }
+
+    /* ────────── Footer ────────── */
+    footer {
+      padding: 56px 0 40px;
+      background: var(--ink);
+      border-top: 1px solid var(--rule);
+    }
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      align-items: center;
+      text-align: center;
+    }
+    .footer-wm {
+      font-family: var(--font-brand);
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+    .footer-tag {
+      font-family: var(--font-brand);
+      color: var(--paper-3);
+      font-size: 1.05rem;
+    }
+    .footer-meta {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════════════════════
+       NAV
+       ════════════════════════════════════════════════════════════ -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="https://hicksnewmedia.com" class="nav-logo">
+        <span class="nav-logo-mark">HNM<span class="signal">.</span></span>
+        <span class="nav-divider"></span>
+        <span class="nav-wm-text">Hicks<span class="signal">New</span>Media<span class="signal">.</span></span>
+      </a>
+      <a href="/assets/james-hicks-media-kit.pdf" class="nav-cta" download>
+        Download PDF
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ════════════════════════════════════════════════════════════
+       HERO
+       ════════════════════════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="kicker">— Media Kit · 2026 Edition</div>
+      <div class="hero-mark">Hicks<span class="signal">New</span>Media<span class="signal">.</span></div>
+      <div class="hero-sub">An independent media agency.</div>
+
+      <div class="hero-tag">
+        <span class="signal">No Hype.</span> Just the Facts.
+      </div>
+
+      <div class="hero-actions">
+        <a href="/assets/james-hicks-media-kit.pdf" class="btn btn-primary" download>
+          Download the full PDF
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+          </svg>
+        </a>
+        <a href="https://booking.hicksnewmedia.com" class="btn btn-ghost">
+          Book a partnership call →
+        </a>
+      </div>
+
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <div class="label">Founded</div>
+          <div class="value">2010</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="label">Founder</div>
+          <div class="value">James Hicks</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="label">Based</div>
+          <div class="value">Rocklin, CA</div>
+        </div>
+        <div class="hero-meta-item">
+          <div class="label">Properties</div>
+          <div class="value">5-property network</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       AT A GLANCE
+       ════════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">— Reach at a glance</div>
+        <h2 class="display-lg">By the numbers.</h2>
+        <p class="section-intro">Direct reach across video, newsletter, and community. Real engagement, not vanity metrics.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat">
+          <div class="num">25.7K</div>
+          <div class="label">YouTube subscribers</div>
+        </div>
+        <div class="stat">
+          <div class="num">732K</div>
+          <div class="label">Total channel views</div>
+        </div>
+        <div class="stat">
+          <div class="num">8.2%</div>
+          <div class="label">Average engagement</div>
+        </div>
+        <div class="stat">
+          <div class="num">40+</div>
+          <div class="label">Average viewer age</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       ABOUT
+       ════════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">— Founder · Editorial voice</div>
+        <h2 class="display-lg">James Hicks.</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-body">
+          <p>30+ years in enterprise IT. Founded HicksNewMedia in 2010 to make technology make sense for the people who actually decide what gets built. Since then, the agency has grown into a multi-property network covering long-form video, editorial publishing, premium community, and brand strategy.</p>
+          <p>Editorial philosophy: <strong style="color: var(--signal);">No Hype. Just the Facts.</strong> The work treats audiences as adults — IT decision-makers, technical leaders, and creators who can tell the difference between substance and marketing.</p>
+          <p>Today HicksNewMedia produces flagship content under the @JamesHicks brand, runs Digital Collective (newsletter + premium community), publishes tek FORUM and Team No Sleep, and partners with brands that want to reach the people who matter most: the ones who sign the purchase orders.</p>
+        </div>
+        <div>
+          <div class="about-photo">
+            <img src="/assets/james-hicks-headshot.jpg" alt="James Hicks" onerror="this.style.display='none'" />
+          </div>
+          <dl class="about-facts">
+            <dt>Established</dt><dd>2010</dd>
+            <dt>Based in</dt><dd>Rocklin, CA</dd>
+            <dt>IT Tenure</dt><dd>30+ years</dd>
+            <dt>CES Coverage</dt><dd>15 years</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       NETWORK
+       ════════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">— Five properties · One agency</div>
+        <h2 class="display-lg">The network.</h2>
+        <p class="section-intro">Each property serves a distinct audience under the HicksNewMedia banner. Partnerships can run across all of them.</p>
+      </div>
+      <div class="network-list">
+        <div class="property">
+          <div class="property-num">01</div>
+          <div>
+            <div class="property-name">@JamesHicks</div>
+            <div class="property-kind">YouTube Flagship</div>
+            <p class="property-body">Long-form video on enterprise IT, modernization, AI integration, and creator-economy strategy.</p>
+            <div class="property-meta">25.7K subscribers · 732K total views · ~12 videos per quarter</div>
+          </div>
+        </div>
+        <div class="property">
+          <div class="property-num">02</div>
+          <div>
+            <div class="property-name">Digital Collective</div>
+            <div class="property-kind">Newsletter + Community</div>
+            <p class="property-body">Weekly intelligence brief for IT leaders and premium paid community for serious operators.</p>
+            <div class="property-meta">digitalcollective.media · digitalcollective.network</div>
+          </div>
+        </div>
+        <div class="property">
+          <div class="property-num">03</div>
+          <div>
+            <div class="property-name">tek FORUM</div>
+            <div class="property-kind">Live Show</div>
+            <p class="property-body">Live-streamed panel show with rotating expert guests on technology, business, and the creator economy.</p>
+            <div class="property-meta">Weekly · 60-min runtime · Multi-platform simulcast</div>
+          </div>
+        </div>
+        <div class="property">
+          <div class="property-num">04</div>
+          <div>
+            <div class="property-name">Team No Sleep</div>
+            <div class="property-kind">Sports Commentary</div>
+            <p class="property-body">Sports + culture vertical co-hosted with Montell Allen. Sharp, considered, opinionated.</p>
+            <div class="property-meta">Audio + video · Weekly · 32-min average</div>
+          </div>
+        </div>
+        <div class="property">
+          <div class="property-num">05</div>
+          <div>
+            <div class="property-name">HNM Merch</div>
+            <div class="property-kind">Brand Products</div>
+            <p class="property-body">Streetwear-adjacent apparel and gear celebrating the editorial voice.</p>
+            <div class="property-meta">merch.hicksnewmedia.com · Drop schedule</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       AUDIENCE
+       ════════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">— Who reads · Who watches · Who buys</div>
+        <h2 class="display-lg">The audience.</h2>
+        <p class="section-intro">Decision-makers, builders, and serious learners in the enterprise technology space.</p>
+      </div>
+      <div class="audience-cards">
+        <div class="audience-card">
+          <div class="num">01</div>
+          <h3>IT Decision-Makers</h3>
+          <p>CIOs, IT directors, infrastructure leads. Evaluating cloud, AI, modernization, and platform decisions.</p>
+          <div class="tags">Cloud migration · AI integration · Vendor evaluation</div>
+        </div>
+        <div class="audience-card">
+          <div class="num">02</div>
+          <h3>Technical Creators</h3>
+          <p>Builders, engineers, and operators who run real systems. Looking for substance over hype.</p>
+          <div class="tags">Homelab · Self-hosting · Production tooling</div>
+        </div>
+        <div class="audience-card">
+          <div class="num">03</div>
+          <h3>Creator Economy Ops</h3>
+          <p>YouTubers, newsletter operators, community builders treating creation as a business.</p>
+          <div class="tags">Monetization · Audience growth · Premium offers</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       PARTNERSHIP TIERS
+       ════════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">— Rate card · 2026 edition</div>
+        <h2 class="display-lg">Partnership tiers.</h2>
+        <p class="section-intro">Four ways to work together — from single-video integrations to fully integrated content programs.</p>
+      </div>
+      <div class="tiers-grid">
+        <div class="tier">
+          <div class="tier-num">01</div>
+          <div class="tier-name">Standalone</div>
+          <div class="tier-price">$750–$1.5K</div>
+          <div class="tier-per">Per engagement</div>
+          <p class="tier-desc">60-second sponsor read inside a long-form video. Single mention, single video.</p>
+        </div>
+        <div class="tier">
+          <div class="tier-num">02</div>
+          <div class="tier-name">Dedicated Feature</div>
+          <div class="tier-price">$2K–$4K</div>
+          <div class="tier-per">Per engagement</div>
+          <p class="tier-desc">Full integration into one episode — pre-roll, mid-roll, and end-card mention.</p>
+        </div>
+        <div class="tier featured">
+          <div class="tier-badge">★ Most chosen</div>
+          <div class="tier-num">03</div>
+          <div class="tier-name">The Bundle</div>
+          <div class="tier-price">$3.5K–$7.5K</div>
+          <div class="tier-per">Per engagement</div>
+          <p class="tier-desc">Featured across video + newsletter + Digital Collective community. The flagship offering.</p>
+        </div>
+        <div class="tier">
+          <div class="tier-num">04</div>
+          <div class="tier-name">Enterprise Program</div>
+          <div class="tier-price">$5K–$15K+</div>
+          <div class="tier-per">Per engagement</div>
+          <p class="tier-desc">Multi-week integrated content program with custom production and editorial collaboration.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       FEATURED WORK
+       ════════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">— Brand partners · Recent work</div>
+        <h2 class="display-lg">Featured work.</h2>
+        <p class="section-intro">Selected partnerships across enterprise IT, hardware, and creator-economy infrastructure.</p>
+      </div>
+      <div class="work-grid">
+        <div class="work">
+          <div class="work-title">NUTANIX × HicksNewMedia</div>
+          <div class="work-kind">Enterprise Cloud</div>
+          <p class="work-desc">6-week integrated program covering hybrid cloud, AI integration, and modernization.</p>
+          <div class="work-meta">12 PIECES · 4 FORMATS · 247K REACH</div>
+        </div>
+        <div class="work">
+          <div class="work-title">INTEL × HicksNewMedia</div>
+          <div class="work-kind">Silicon & Strategy</div>
+          <p class="work-desc">Annual partnership for CES coverage, processor launch content, and enterprise IT briefings.</p>
+          <div class="work-meta">15× CES YEARS · ONGOING</div>
+        </div>
+        <div class="work">
+          <div class="work-title">SHURE × HicksNewMedia</div>
+          <div class="work-kind">Audio & Production</div>
+          <p class="work-desc">Long-running creator partnership on broadcast audio, multicam production, and studio gear.</p>
+          <div class="work-meta">CREATOR GEAR · PRODUCTION</div>
+        </div>
+        <div class="work">
+          <div class="work-title">PAGELY × HicksNewMedia</div>
+          <div class="work-kind">Enterprise Hosting</div>
+          <p class="work-desc">Technical deep-dives on managed WordPress, scaling, and creator-economy infrastructure.</p>
+          <div class="work-meta">TECHNICAL CONTENT · EDITORIAL</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       TESTIMONIALS
+       ════════════════════════════════════════════════════════════ -->
+  <section>
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">— What partners say</div>
+        <h2 class="display-lg">Trusted by builders.</h2>
+      </div>
+      <div class="testimonial-grid">
+        <div class="testimonial">
+          <p class="testimonial-quote">James brings rare depth in both enterprise IT and content creation. Twelve years partnering on CES coverage has produced work I trust to put in front of executives.</p>
+          <div class="testimonial-rule"></div>
+          <div class="testimonial-author">Clifton Roberts</div>
+          <div class="testimonial-role">Intel Corporation</div>
+        </div>
+        <div class="testimonial">
+          <p class="testimonial-quote">There are few people I trust more to translate complex infrastructure topics into something a real audience cares about. Hicks does that consistently.</p>
+          <div class="testimonial-rule"></div>
+          <div class="testimonial-author">Joshua Strebel</div>
+          <div class="testimonial-role">Pagely (Founder)</div>
+        </div>
+        <div class="testimonial">
+          <p class="testimonial-quote">James understands creator-economy production at a level most agencies miss. He treats audio and broadcast craft as seriously as the technology underneath.</p>
+          <div class="testimonial-rule"></div>
+          <div class="testimonial-author">Mario Ponce</div>
+          <div class="testimonial-role">Shure Incorporated</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       CONTACT CTA
+       ════════════════════════════════════════════════════════════ -->
+  <section class="contact-cta">
+    <div class="container">
+      <div class="kicker">— Let's build</div>
+      <h2>Work with us.</h2>
+      <p>Partnerships, custom programs, speaking engagements, and editorial collaboration.</p>
+      <div class="contact-actions">
+        <a href="https://booking.hicksnewmedia.com" class="btn btn-primary">
+          Book a partnership call →
+        </a>
+        <a href="/assets/james-hicks-media-kit.pdf" class="btn btn-ghost" download>
+          Download the PDF
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+          </svg>
+        </a>
+      </div>
+      <div class="contact-email">
+        General inquiries: <a href="mailto:james@hicksnewmedia.com">james@hicksnewmedia.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       FOOTER
+       ════════════════════════════════════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-wm">Hicks<span class="signal">New</span>Media<span class="signal">.</span></div>
+        <div class="footer-tag">An independent media agency.</div>
+        <div class="footer-meta">EST. 2010 · ROCKLIN, CA · © 2026 ALL RIGHTS RESERVED</div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
