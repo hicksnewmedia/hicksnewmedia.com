@@ -1,0 +1,3 @@
+# Subdomain routing — full-URL syntax with 200 (rewrite, no URL change)
+https://mediakit.hicksnewmedia.com/*  /mediakit/:splat  200
+https://links.hicksnewmedia.com/*     /links/:splat     200
