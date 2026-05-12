@@ -236,6 +236,43 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
+      .nav-cross {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 0 0 32px;
+      padding: 0;
+      list-style: none;
+    }
+    .nav-cross a {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--paper-3);
+      transition: color 0.18s;
+      position: relative;
+      padding: 6px 2px;
+    }
+    .nav-cross a:hover { color: var(--paper); }
+    .nav-cross a.active {
+      color: var(--signal);
+      pointer-events: none;
+    }
+    .nav-cross a.active::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 1px;
+      background: var(--signal);
+    }
+    .top .mark-link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
@@ -244,11 +281,20 @@
 
     <!-- ─── Top: brand + tagline ──────────────────────────── -->
     <div class="top">
-      <div class="mark">HNM<span class="signal">.</span></div>
-      <div class="wordmark">Hicks<span class="signal">New</span>Media<span class="signal">.</span></div>
+      <a class="mark-link" href="https://hicksnewmedia.com">
+        <div class="mark">HNM<span class="signal">.</span></div>
+        <div class="wordmark">Hicks<span class="signal">New</span>Media<span class="signal">.</span></div>
+      </a>
       <div class="tagline">An independent media agency.</div>
       <div class="sub-tagline">No Hype · Just the Facts</div>
     </div>
+
+    <!-- ─── Network nav ───────────────────────────────────── -->
+    <ul class="nav-cross" aria-label="Network">
+      <li><a href="https://mediakit.hicksnewmedia.com">Media Kit</a></li>
+      <li><a href="https://merch.hicksnewmedia.com">Merch</a></li>
+      <li><a href="https://links.hicksnewmedia.com" class="active" aria-current="page">Links</a></li>
+    </ul>
 
     <!-- ─── Watch & Listen ────────────────────────────────── -->
     <div class="group">

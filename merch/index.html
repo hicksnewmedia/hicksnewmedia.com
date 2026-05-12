@@ -63,6 +63,37 @@
     .nav-divider { width: 2px; height: 26px; background: var(--signal); }
     .nav-wm-text { display: none; }
     @media (min-width: 720px) { .nav-wm-text { display: inline; } }
+    .nav-cross {
+      display: none;
+      gap: 28px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+    @media (min-width: 900px) { .nav-cross { display: flex; } }
+    .nav-cross a {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--paper-3);
+      transition: color 0.18s;
+      position: relative;
+    }
+    .nav-cross a:hover { color: var(--paper); }
+    .nav-cross a.active {
+      color: var(--signal);
+      pointer-events: none;
+    }
+    .nav-cross a.active::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: -8px;
+      height: 2px;
+      background: var(--signal);
+    }
     .nav-cta { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; padding: 12px 20px; background: transparent; color: var(--paper); border: 1px solid var(--rule-strong); border-radius: 2px; transition: all 0.2s; }
     .nav-cta:hover { border-color: var(--signal); color: var(--signal); }
 
@@ -150,6 +181,11 @@
         <span class="nav-divider"></span>
         <span class="nav-wm-text">Hicks<span class="signal">New</span>Media<span class="signal">.</span></span>
       </a>
+      <ul class="nav-cross" aria-label="Network">
+        <li><a href="https://mediakit.hicksnewmedia.com">Media Kit</a></li>
+        <li><a href="https://merch.hicksnewmedia.com" class="active" aria-current="page">Merch</a></li>
+        <li><a href="https://links.hicksnewmedia.com">Links</a></li>
+      </ul>
       <a href="https://hnmmerch.store" class="nav-cta" target="_blank" rel="noopener">Visit full store →</a>
     </div>
   </nav>
