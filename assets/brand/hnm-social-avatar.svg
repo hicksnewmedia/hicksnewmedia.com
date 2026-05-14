@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-label="HicksNewMedia social avatar">
+  <title>HicksNewMedia · Social Avatar (1024×1024)</title>
+  <rect width="1024" height="1024" fill="#0A0A0A"/>
+  <!-- Mark scaled to ~70% of canvas, centered -->
+  <!-- Original viewBox 220×180; scale to 718×588, position at center -->
+  <g transform="translate(153, 218)">
+    <rect x="0" y="0" width="392" height="78" fill="#F5F1EB"/>
+    <rect x="0" y="158" width="549" height="78" fill="#F48022"/>
+    <rect x="0" y="316" width="392" height="78" fill="#F5F1EB"/>
+    <rect x="471" y="316" width="78" height="78" fill="#F48022"/>
+  </g>
+</svg>
