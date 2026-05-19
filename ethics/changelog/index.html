@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ethics Changelog — Version History · HicksNewMedia</title>
+  <meta name="description" content="Every change to the HicksNewMedia editorial standard, documented. Version history, dated, with plain-English summaries of what shifted and why." />
+
+  <meta property="og:title" content="Ethics Changelog — Version History · HicksNewMedia" />
+  <meta property="og:description" content="Every change to the HicksNewMedia editorial standard, dated and documented." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://hicksnewmedia.com/ethics/changelog" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Geist:wght@300..700&family=JetBrains+Mono:wght@400;500;600&family=National+Park:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --ink: #0a0a0a; --ink-2: #131313; --ink-3: #1a1a1a; --ink-4: #232323;
+      --paper: #f5f1eb; --paper-2: #e8e2d6; --paper-3: #c8c2b4;
+      --muted: #8a857c; --muted-2: #5a5650;
+      --signal: #f48022; --signal-deep: #d96a14; --signal-soft: rgba(244, 128, 34, 0.12);
+      --ocean: #20557b; --ocean-soft: rgba(32, 85, 123, 0.18);
+      --rule: rgba(245, 241, 235, 0.10); --rule-strong: rgba(245, 241, 235, 0.22);
+      --font-display: "Fraunces", "Times New Roman", serif;
+      --font-body: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, monospace;
+      --container: 1280px; --gutter: clamp(20px, 4vw, 56px);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--font-body); font-weight: 400;
+      color: var(--paper); background: var(--ink);
+      line-height: 1.55; overflow-x: hidden;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0;
+      pointer-events: none; opacity: 0.035; z-index: 2;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/></svg>");
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+    ::selection { background: var(--signal); color: var(--ink); }
+    .container { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+
+    .kicker {
+      font-family: var(--font-mono); font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--signal);
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+    .kicker::before { content: ""; width: 28px; height: 1px; background: var(--signal); }
+    .display-xl {
+      font-family: var(--font-display); font-weight: 400;
+      font-size: clamp(2.6rem, 7vw, 5.4rem); line-height: 0.98;
+      letter-spacing: -0.025em; font-variation-settings: "opsz" 144, "SOFT" 30;
+    }
+    .em-italic { font-style: italic; font-variation-settings: "opsz" 144, "SOFT" 100; color: var(--signal); }
+    .lede {
+      font-size: clamp(1.05rem, 1.3vw, 1.2rem); line-height: 1.6;
+      color: var(--paper-2); max-width: 62ch;
+    }
+
+    /* NAV */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10, 10, 10, 0.72);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-inner {
+      max-width: var(--container); margin: 0 auto;
+      padding: 18px var(--gutter);
+      display: flex; align-items: center; justify-content: space-between; gap: 32px;
+    }
+    .nav-logo {
+      font-family: "National Park", "Geist", -apple-system, sans-serif;
+      font-weight: 700; font-size: 1.35rem; letter-spacing: -0.01em;
+      display: flex; align-items: center; gap: 12px; color: var(--paper);
+    }
+    .nav-logo .signal { color: var(--signal); }
+    .nav-logo-mark {
+      font-family: "National Park", "Geist", sans-serif;
+      font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em;
+      color: var(--paper);
+    }
+    .nav-logo-mark .signal { color: var(--signal); }
+    .nav-divider { width: 2px; height: 26px; background: var(--signal); display: inline-block; }
+    .nav-links { display: flex; align-items: center; gap: 22px; list-style: none; }
+    .nav-links li { white-space: nowrap; }
+    .nav-links a {
+      font-size: 0.86rem; color: var(--paper-2);
+      transition: color 0.2s; position: relative; white-space: nowrap;
+    }
+    .nav-links a .ext-arrow { color: var(--signal); font-size: 0.82em; margin-left: 3px; }
+    .nav-sep { width: 1px; height: 16px; background: var(--rule-strong); }
+    .nav-links a:hover { color: var(--paper); }
+    .nav-links a::after {
+      content: ""; position: absolute; bottom: -6px; left: 0; right: 0;
+      height: 1px; background: var(--signal);
+      transform: scaleX(0); transition: transform 0.25s ease; transform-origin: left;
+    }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-links a.current { color: var(--paper); }
+    .nav-links a.current::after { transform: scaleX(1); }
+    .nav-cta {
+      padding: 10px 18px; background: var(--paper); color: var(--ink);
+      font-size: 0.85rem; font-weight: 500; transition: all 0.2s; white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--signal); }
+    .nav-toggle { display: none; }
+    @media (max-width: 1180px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; flex-direction: column; gap: 4px; padding: 8px; }
+      .nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--paper); }
+    }
+
+    /* HERO */
+    .log-hero {
+      padding: clamp(140px, 18vh, 180px) 0 clamp(50px, 8vh, 80px);
+      position: relative; overflow: hidden;
+      border-bottom: 1px solid var(--rule);
+    }
+    .log-hero::after {
+      content: ""; position: absolute;
+      top: 40%; right: -10%; width: 50%; height: 60%;
+      background: radial-gradient(ellipse at center, var(--signal-soft) 0%, transparent 60%);
+      pointer-events: none; filter: blur(60px);
+    }
+    .log-hero-inner { position: relative; z-index: 1; max-width: 920px; }
+    .log-hero .kicker { margin-bottom: 28px; }
+    .log-hero h1 { margin-bottom: 32px; }
+    .log-hero .lede { margin-bottom: 32px; }
+    .log-hero-meta {
+      display: flex; gap: 32px; flex-wrap: wrap;
+      padding-top: 24px; border-top: 1px solid var(--rule);
+      font-family: var(--font-mono); font-size: 0.72rem;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+    }
+    .log-hero-meta strong { color: var(--paper); font-weight: 500; }
+
+    /* VERSIONING EXPLAINER */
+    .versioning {
+      background: var(--ink-2);
+      padding: clamp(50px, 8vh, 80px) 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .versioning-inner { max-width: 960px; margin: 0 auto; padding: 0 var(--gutter); }
+    .versioning .kicker { margin-bottom: 20px; }
+    .versioning h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.8vw, 2rem); line-height: 1.1;
+      letter-spacing: -0.018em; font-weight: 400;
+      font-variation-settings: "opsz" 96, "SOFT" 25;
+      margin-bottom: 32px; max-width: 32ch;
+    }
+    .versioning h2 .em { font-style: italic; color: var(--signal); font-variation-settings: "opsz" 96, "SOFT" 100; }
+    .version-types {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .version-type {
+      padding: 24px;
+      background: var(--ink);
+      border: 1px solid var(--rule);
+    }
+    .version-type .badge {
+      display: inline-block;
+      font-family: var(--font-mono); font-size: 0.72rem;
+      font-weight: 600; letter-spacing: 0.12em;
+      padding: 4px 10px; margin-bottom: 16px;
+      border: 1px solid var(--rule-strong);
+      color: var(--signal);
+    }
+    .version-type h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem; font-weight: 400; line-height: 1.2;
+      letter-spacing: -0.01em;
+      font-variation-settings: "opsz" 72, "SOFT" 25;
+      margin-bottom: 8px;
+    }
+    .version-type p {
+      color: var(--paper-2); font-size: 0.88rem; line-height: 1.6;
+    }
+    .version-type .ex {
+      display: block; margin-top: 10px;
+      font-family: var(--font-mono); font-size: 0.74rem;
+      color: var(--muted); letter-spacing: 0.06em;
+    }
+    @media (max-width: 760px) {
+      .version-types { grid-template-columns: 1fr; }
+    }
+
+    /* TIMELINE */
+    .timeline {
+      padding: clamp(80px, 12vh, 140px) 0;
+      background: var(--ink);
+    }
+    .timeline-inner {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+    .timeline-head {
+      margin-bottom: 60px;
+    }
+    .timeline-head .kicker { margin-bottom: 20px; }
+    .timeline-head h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      line-height: 1.05;
+      letter-spacing: -0.018em;
+      font-weight: 400;
+      font-variation-settings: "opsz" 96, "SOFT" 25;
+    }
+    .timeline-head h2 .em { font-style: italic; color: var(--signal); font-variation-settings: "opsz" 96, "SOFT" 100; }
+
+    .version {
+      position: relative;
+      padding: 36px 0 36px 56px;
+      border-bottom: 1px solid var(--rule);
+    }
+    .version:last-of-type { border-bottom: none; }
+    .version::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: 48px;
+      bottom: 0;
+      width: 1px;
+      background: var(--rule);
+    }
+    .version:last-of-type::before { display: none; }
+    .version::after {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 44px;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--signal);
+      border: 3px solid var(--ink);
+      box-shadow: 0 0 0 1px var(--signal);
+    }
+    .version.latest::after {
+      background: var(--paper);
+      box-shadow: 0 0 0 1px var(--signal), 0 0 20px var(--signal-soft);
+    }
+
+    .version-head {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .version-num {
+      font-family: var(--font-mono);
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--signal);
+      padding: 6px 14px;
+      border: 1px solid var(--signal);
+      background: var(--signal-soft);
+    }
+    .version-date {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .version-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border: 1px solid var(--rule-strong);
+      color: var(--paper-2);
+    }
+    .version-label.initial { color: var(--signal); border-color: var(--signal); }
+
+    .version h3 {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+      line-height: 1.15;
+      font-weight: 400;
+      letter-spacing: -0.015em;
+      font-variation-settings: "opsz" 72, "SOFT" 30;
+      margin-bottom: 16px;
+      max-width: 32ch;
+    }
+    .version h3 .em { font-style: italic; color: var(--signal); font-variation-settings: "opsz" 72, "SOFT" 100; }
+
+    .version-summary {
+      color: var(--paper-2);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      max-width: 65ch;
+    }
+
+    .changes-block {
+      margin-top: 20px;
+    }
+    .changes-block .changes-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+    .changes-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+    .changes-list li {
+      position: relative;
+      padding: 10px 0 10px 24px;
+      color: var(--paper-2);
+      font-size: 0.94rem;
+      line-height: 1.6;
+      border-bottom: 1px solid var(--rule);
+    }
+    .changes-list li:last-child { border-bottom: none; }
+    .changes-list li::before {
+      content: "+";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      color: var(--signal);
+      font-family: var(--font-mono);
+      font-weight: 600;
+    }
+    .changes-list li.removed::before { content: "−"; }
+    .changes-list li.changed::before { content: "~"; }
+    .changes-list li strong { color: var(--paper); font-weight: 600; }
+
+    @media (max-width: 720px) {
+      .version { padding-left: 36px; }
+      .version::before { left: 8px; }
+      .version::after { left: 2px; top: 44px; width: 12px; height: 12px; }
+    }
+
+    /* SUBSCRIBE / FUTURE */
+    .subscribe {
+      background: var(--paper);
+      color: var(--ink);
+      padding: clamp(80px, 12vh, 120px) 0;
+    }
+    .subscribe-inner { max-width: 920px; margin: 0 auto; padding: 0 var(--gutter); }
+    .subscribe .kicker { color: var(--signal-deep); margin-bottom: 28px; }
+    .subscribe .kicker::before { background: var(--signal-deep); }
+    .subscribe h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.4rem); line-height: 1.02;
+      letter-spacing: -0.022em; font-weight: 400;
+      font-variation-settings: "opsz" 144, "SOFT" 25;
+      margin-bottom: 28px; max-width: 22ch;
+    }
+    .subscribe h2 .em { font-style: italic; color: var(--signal-deep); font-variation-settings: "opsz" 144, "SOFT" 100; }
+    .subscribe p {
+      color: var(--muted-2); font-size: 1.08rem; line-height: 1.65;
+      margin-bottom: 36px; max-width: 60ch;
+    }
+    .subscribe-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .subscribe .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 26px;
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.92rem;
+      letter-spacing: 0.01em;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .subscribe .btn-primary {
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .subscribe .btn-primary:hover {
+      background: var(--signal-deep);
+      color: var(--paper);
+      transform: translateY(-2px);
+    }
+    .subscribe .btn-ghost {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--muted);
+    }
+    .subscribe .btn-ghost:hover {
+      background: var(--ink);
+      color: var(--paper);
+      border-color: var(--ink);
+    }
+    .subscribe .arrow {
+      font-family: var(--font-mono);
+      transition: transform 0.25s ease;
+    }
+    .subscribe .btn:hover .arrow { transform: translateX(4px); }
+
+    /* FOOTER */
+    footer { background: var(--ink-2); padding: 80px 0 40px; border-top: 1px solid var(--rule); }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 60px; }
+    .footer-brand { max-width: 320px; }
+    .footer-logo {
+      display: flex; align-items: center; gap: 12px;
+      font-family: "National Park", "Geist", sans-serif;
+      font-weight: 700; font-size: 1.35rem; letter-spacing: -0.01em;
+      margin-bottom: 16px; color: var(--paper);
+    }
+    .footer-logo .signal { color: var(--signal); }
+    .footer-tagline { color: var(--paper-2); font-size: 0.92rem; line-height: 1.6; margin-bottom: 24px; }
+    .footer-social { display: flex; gap: 12px; }
+    .footer-social a {
+      width: 38px; height: 38px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--rule-strong); color: var(--paper-2); transition: all 0.2s;
+    }
+    .footer-social a:hover { background: var(--signal); color: var(--ink); border-color: var(--signal); }
+    .footer-col h4 {
+      font-family: var(--font-mono); font-size: 0.72rem;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--paper); margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col ul a { color: var(--paper-2); font-size: 0.92rem; transition: color 0.2s; }
+    .footer-col ul a:hover { color: var(--signal); }
+    .footer-bottom {
+      padding-top: 36px; border-top: 1px solid var(--rule);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; flex-wrap: wrap;
+      font-family: var(--font-mono); font-size: 0.72rem;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+    }
+    .footer-bottom .status { color: var(--signal); display: flex; align-items: center; gap: 8px; }
+    .pulse { width: 8px; height: 8px; border-radius: 50%; background: var(--signal); animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; transform: scale(0.85); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; } }
+    @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
+
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+  </style>
+  <link rel="icon" type="image/svg+xml" href="/assets/brand/hnm-favicon.svg">
+  <link rel="apple-touch-icon" href="/assets/brand/hnm-favicon.svg">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <span class="nav-logo-mark" aria-label="HicksNewMedia"><svg viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg" width="44" height="36" style="width:44px;height:36px;display:block;flex-shrink:0;" role="img" aria-hidden="true"><rect x="26" y="30" width="120" height="24" fill="#F5F1EB"/><rect x="26" y="78" width="168" height="24" fill="#F48022"/><rect x="26" y="126" width="120" height="24" fill="#F5F1EB"/><rect x="170" y="126" width="24" height="24" fill="#F48022"/></svg></span>
+        <span class="nav-divider"></span>
+        <span>Hicks<span class="signal">New</span>Media<span class="signal">.</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/#why">Why James</a></li>
+        <li><a href="/#network">The Network</a></li>
+        <li><a href="/#pillars">Pillars</a></li>
+        <li><a href="/#work-with-me">Partnership Tiers</a></li>
+        <li><a href="/#case-studies">Featured Work</a></li>
+        <li><a href="/ethics" class="current">Ethics</a></li>
+        <li class="nav-sep" aria-hidden="true"></li>
+        <li><a href="https://links.hicksnewmedia.com">Links<span class="ext-arrow">↗</span></a></li>
+        <li><a href="https://mediakit.hicksnewmedia.com">Media Kit<span class="ext-arrow">↗</span></a></li>
+        <li><a href="https://merch.hicksnewmedia.com">Merch<span class="ext-arrow">↗</span></a></li>
+      </ul>
+      <a href="https://booking.hicksnewmedia.com" class="nav-cta">Book James →</a>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="log-hero">
+    <div class="container">
+      <div class="log-hero-inner reveal">
+        <div class="kicker">Version history · <a href="/ethics" style="color:var(--signal);">Ethics standard</a></div>
+        <h1 class="display-xl">Ethics <span class="em-italic">Changelog.</span></h1>
+        <p class="lede">
+          Every change to the HicksNewMedia editorial standard, documented. When a section is added, removed, or materially changed, it shows up here — dated, versioned, with a plain-English summary of what shifted and why. <strong style="color:var(--paper);">No silent edits.</strong>
+        </p>
+        <div class="log-hero-meta">
+          <div>Current version <strong>1.0</strong></div>
+          <div>Last updated <strong>May 18, 2026</strong></div>
+          <div>Next review <strong>August 2026</strong></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- VERSIONING EXPLAINER -->
+  <section class="versioning">
+    <div class="versioning-inner reveal">
+      <div class="kicker">How version numbers work</div>
+      <h2>Three kinds of changes — three kinds of <span class="em">version bumps.</span></h2>
+      <div class="version-types">
+        <div class="version-type">
+          <span class="badge">PATCH</span>
+          <h3>Clarifying changes</h3>
+          <p>Typo fixes, language clarification, broken link repairs. No substantive change to the standard itself.</p>
+          <span class="ex">e.g., 1.0 → 1.0.1</span>
+        </div>
+        <div class="version-type">
+          <span class="badge">MINOR</span>
+          <h3>Section additions / expansions</h3>
+          <p>A new section is added, an existing section is expanded with new requirements, or a category is added to an existing list.</p>
+          <span class="ex">e.g., 1.0 → 1.1</span>
+        </div>
+        <div class="version-type">
+          <span class="badge">MAJOR</span>
+          <h3>Philosophical shifts</h3>
+          <p>A standard is removed, weakened, or fundamentally restructured. Rare. When it happens, the change gets announced to the audience in editorial, not just here.</p>
+          <span class="ex">e.g., 1.0 → 2.0</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <main class="timeline">
+    <div class="timeline-inner">
+      <div class="timeline-head reveal">
+        <div class="kicker">The history</div>
+        <h2>Every version, in <span class="em">order.</span></h2>
+      </div>
+
+      <!-- v1.0 — INITIAL PUBLICATION -->
+      <div class="version latest reveal">
+        <div class="version-head">
+          <span class="version-num">v1.0</span>
+          <span class="version-date">May 18, 2026</span>
+          <span class="version-label initial">Initial publication</span>
+        </div>
+        <h3>The standard, <span class="em">in writing.</span></h3>
+        <p class="version-summary">
+          First public version of the HicksNewMedia editorial standard for brand partnerships, sponsorships, and affiliate relationships. Establishes the Five Rules as the headline commitments and expands them into ten operational sections covering everything from product vetting to AI use to corrections policy. Companion pages (Disclosures, Privacy, this changelog) shipped alongside.
+        </p>
+        <div class="changes-block">
+          <div class="changes-label">What was added</div>
+          <ul class="changes-list">
+            <li><strong>The Five Rules.</strong> TL;DR section establishing the headline commitments: only recommend what I've used; brand approves brief, I write script; everything disclosed; audience wins the tiebreaker; public corrections.</li>
+            <li><strong>Section 01 — The Standard.</strong> Opening manifesto on audience trust as the only renewable resource in the creator-economy business model.</li>
+            <li><strong>Section 02 — The "Would I Use It" Test.</strong> Operational filter every partnership has to clear: 30-day production-scale trial, real workflow integration, honest opinion before commercial conversation continues.</li>
+            <li><strong>Section 03 — What I Won't Promote.</strong> No-go list covering speculative finance, predatory AI, products with active security/privacy issues, MLM structures, audience-exploitative products, and bad-faith brands.</li>
+            <li><strong>Section 04 — Editorial Independence.</strong> Wall between sponsorship and editorial: brand approves brief, not script. Sponsored content can include constructive criticism. No retroactive edits. No veto on competitor coverage.</li>
+            <li><strong>Section 05 — Disclosure Standards.</strong> On-screen disclosure in first 30 seconds. Written disclosure in every description and cross-post. Affiliate links labeled at point of recommendation. Gifts disclosed even without money. Ongoing relationships disclosed everywhere.</li>
+            <li><strong>Section 06 — Conflicts of Interest.</strong> Over-disclose rule. Equity, advisory, board positions made public. Personal relationships acknowledged. Gifts above $100 disclosed. Family relationships matter.</li>
+            <li><strong>Section 07 — AI &amp; Content Production.</strong> AI as tool not stand-in. No synthetic me, no AI-generated endorsements, no likeness use in AI marketing. AI-assisted research fact-checked. AI elements in sponsored content labeled.</li>
+            <li><strong>Section 08 — Corrections Policy.</strong> Public corrections only. Significant errors trigger full follow-up. Viewer corrections welcomed. Sponsored-content corrections issued at HNM's cost. Source disclosure on corrections.</li>
+            <li><strong>Section 09 — Audience First.</strong> The tiebreaker rule: when brand and audience conflict, audience wins. Bad updates from partners covered honestly. Tone pressure ends partnerships. Standing recommendations reviewed when products change. Representation matters in partnership evaluation.</li>
+            <li><strong>Section 10 — What This Page Doesn't Cover.</strong> Scope statement directing readers to Privacy, terms of service for paid products, and editorial standards for non-sponsored content.</li>
+            <li><strong>Contact line.</strong> <code style="font-family:var(--font-mono);color:var(--signal);">ethics@hicksnewmedia.com</code> opened for concerns. 5 business day response window. Anonymous reports accepted.</li>
+            <li><strong>Companion pages.</strong> Disclosures page (<code style="font-family:var(--font-mono);color:var(--signal);">/disclosures</code>) and Privacy page (<code style="font-family:var(--font-mono);color:var(--signal);">/privacy</code>) shipped concurrently.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- FUTURE VERSIONS GO HERE -->
+      <!--
+      Template for future version entries:
+
+      <div class="version reveal">
+        <div class="version-head">
+          <span class="version-num">v1.1</span>
+          <span class="version-date">Month DD, YYYY</span>
+          <span class="version-label">Minor — Section expansion</span>
+        </div>
+        <h3>Brief title for what changed.</h3>
+        <p class="version-summary">
+          One-paragraph summary of what shifted in this version and why. Plain English.
+        </p>
+        <div class="changes-block">
+          <div class="changes-label">What changed</div>
+          <ul class="changes-list">
+            <li>Added: ...</li>
+            <li class="changed">Changed: ...</li>
+            <li class="removed">Removed: ...</li>
+          </ul>
+        </div>
+      </div>
+      -->
+
+    </div>
+  </main>
+
+  <!-- SUBSCRIBE / NEWSLETTER -->
+  <section class="subscribe">
+    <div class="subscribe-inner reveal">
+      <div class="kicker">Stay current</div>
+      <h2>Want to be notified when the standard <span class="em">changes?</span></h2>
+      <p>Material changes to the editorial standard are announced in the Digital Collective newsletter alongside everything else worth knowing in the business of technology and the creator economy. Subscribe once; get a heads-up when this page updates.</p>
+      <div class="subscribe-actions">
+        <a href="https://digitalcollective.media" class="btn btn-primary">Subscribe to the newsletter <span class="arrow">→</span></a>
+        <a href="/ethics" class="btn btn-ghost">Read the standard <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="nav-logo-mark">HNM<span class="signal">.</span></span>
+            <span class="nav-divider"></span>
+            <span>Hicks<span class="signal">New</span>Media<span class="signal">.</span></span>
+          </div>
+          <p class="footer-tagline">Making technology make sense for the people who decide what gets built. Based in the USA. Established 2010.</p>
+          <div class="footer-social">
+            <a href="https://www.youtube.com/c/JamesHicks/" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <a href="https://www.linkedin.com/company/hicksnewmedia/" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.063 2.063 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+            <a href="https://x.com/jameshicks" aria-label="X" title="X (Twitter)"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg></a>
+            <a href="https://www.instagram.com/hicksnewmedia/" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg></a>
+            <a href="https://www.tiktok.com/@hicksnewmedia" aria-label="TikTok" title="TikTok"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="/#why">Why James</a></li>
+            <li><a href="/#network">The Network</a></li>
+            <li><a href="/#pillars">Pillars</a></li>
+            <li><a href="/#work-with-me">Partnership Tiers</a></li>
+            <li><a href="/#case-studies">Featured Work</a></li>
+            <li><a href="/ethics">Ethics</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Transparency</h4>
+          <ul>
+            <li><a href="/ethics">Editorial standards</a></li>
+            <li><a href="/disclosures">Disclosures</a></li>
+            <li><a href="/ethics/changelog">Ethics changelog</a></li>
+            <li><a href="/privacy">Privacy</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Work With James</h4>
+          <ul>
+            <li><a href="https://booking.hicksnewmedia.com">Book a partnership call</a></li>
+            <li><a href="https://links.hicksnewmedia.com">All my links ↗</a></li>
+            <li><a href="https://mediakit.hicksnewmedia.com">Media kit ↗</a></li>
+            <li><a href="https://digitalcollective.media">Newsletter ↗</a></li>
+            <li><a href="https://merch.hicksnewmedia.com">Shop merch ↗</a></li>
+            <li><a href="/#contact">Contact / inquiries</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 HicksNewMedia · All rights reserved · <a href="/ethics" style="color:var(--paper-2);">Editorial standards</a></div>
+        <div class="status"><span class="pulse"></span> Available for partnerships</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      const reveals = document.querySelectorAll('.reveal');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('in'), i * 60);
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+      reveals.forEach(el => io.observe(el));
+    })();
+  </script>
+</body>
+</html>

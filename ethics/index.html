@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Ethics — Brand Partnership Standards · HicksNewMedia</title>
+  <meta name="description" content="The HicksNewMedia editorial standard for brand partnerships, sponsored content, and affiliate relationships. No hype. Just the facts. The full rules — in writing." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="The Ethics — Brand Partnership Standards · HicksNewMedia" />
+  <meta property="og:description" content="The full editorial standard for every brand partnership, sponsorship, and affiliate relationship at HicksNewMedia. The rules in writing." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://hicksnewmedia.com/ethics" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Fonts: Fraunces + Geist + JetBrains Mono + National Park -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Geist:wght@300..700&family=JetBrains+Mono:wght@400;500;600&family=National+Park:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ──────────────────────────────────────────────────────────
+       FOUNDATION — matches main site
+       ────────────────────────────────────────────────────────── */
+    :root {
+      --ink: #0a0a0a;
+      --ink-2: #131313;
+      --ink-3: #1a1a1a;
+      --ink-4: #232323;
+      --paper: #f5f1eb;
+      --paper-2: #e8e2d6;
+      --paper-3: #c8c2b4;
+      --muted: #8a857c;
+      --muted-2: #5a5650;
+      --signal: #f48022;
+      --signal-deep: #d96a14;
+      --signal-soft: rgba(244, 128, 34, 0.12);
+      --ocean: #20557b;
+      --ocean-soft: rgba(32, 85, 123, 0.18);
+      --rule: rgba(245, 241, 235, 0.10);
+      --rule-strong: rgba(245, 241, 235, 0.22);
+
+      --font-display: "Fraunces", "Times New Roman", serif;
+      --font-body: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+      --container: 1280px;
+      --container-read: 780px;
+      --gutter: clamp(20px, 4vw, 56px);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      font-family: var(--font-body);
+      font-weight: 400;
+      color: var(--paper);
+      background: var(--ink);
+      line-height: 1.55;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.035;
+      z-index: 2;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/></svg>");
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+    ::selection { background: var(--signal); color: var(--ink); }
+
+    .container {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+    .container-read {
+      max-width: var(--container-read);
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+
+    /* ──────────────────────────────────────────────────────────
+       TYPOGRAPHY — matches main site
+       ────────────────────────────────────────────────────────── */
+    .kicker {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--signal);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .kicker::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--signal);
+    }
+
+    .display-xl {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(2.8rem, 8vw, 6rem);
+      line-height: 0.96;
+      letter-spacing: -0.025em;
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+    }
+    .display-lg {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      line-height: 1.02;
+      letter-spacing: -0.022em;
+      font-variation-settings: "opsz" 96, "SOFT" 25;
+    }
+    .display-md {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(1.5rem, 2.6vw, 2rem);
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      font-variation-settings: "opsz" 48, "SOFT" 20;
+    }
+
+    .em-italic {
+      font-style: italic;
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+      color: var(--signal);
+    }
+
+    .lede {
+      font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+      line-height: 1.6;
+      color: var(--paper-2);
+      max-width: 60ch;
+    }
+
+    .label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ──────────────────────────────────────────────────────────
+       BUTTONS — matches main site
+       ────────────────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 26px;
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.92rem;
+      letter-spacing: 0.01em;
+      border-radius: 0;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--signal);
+      color: var(--ink);
+    }
+    .btn-primary:hover {
+      background: var(--paper);
+      transform: translateY(-2px);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--paper);
+      border: 1px solid var(--rule-strong);
+    }
+    .btn-ghost:hover {
+      background: var(--paper);
+      color: var(--ink);
+      border-color: var(--paper);
+    }
+    .btn .arrow {
+      display: inline-block;
+      transition: transform 0.25s ease;
+      font-family: var(--font-mono);
+    }
+    .btn:hover .arrow { transform: translateX(4px); }
+
+    /* ──────────────────────────────────────────────────────────
+       NAV — matches main site
+       ────────────────────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(10, 10, 10, 0.72);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 18px var(--gutter);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+    }
+    .nav-logo {
+      font-family: "National Park", "Geist", -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 1.35rem;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--paper);
+    }
+    .nav-logo .signal { color: var(--signal); }
+    .nav-logo-mark {
+      font-family: "National Park", "Geist", sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      padding: 0;
+      background: transparent;
+      color: var(--paper);
+      border-radius: 0;
+    }
+    .nav-logo-mark .signal { color: var(--signal); }
+    .nav-divider {
+      width: 2px;
+      height: 26px;
+      background: var(--signal);
+      display: inline-block;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      list-style: none;
+    }
+    .nav-links li { white-space: nowrap; }
+    .nav-links a {
+      font-size: 0.86rem;
+      color: var(--paper-2);
+      transition: color 0.2s;
+      position: relative;
+      white-space: nowrap;
+    }
+    .nav-links a .ext-arrow {
+      color: var(--signal);
+      font-size: 0.82em;
+      margin-left: 3px;
+      display: inline-block;
+    }
+    .nav-sep {
+      width: 1px;
+      height: 16px;
+      background: var(--rule-strong);
+    }
+    .nav-links a:hover { color: var(--paper); }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--signal);
+      transform: scaleX(0);
+      transition: transform 0.25s ease;
+      transform-origin: left;
+    }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-links a.current { color: var(--paper); }
+    .nav-links a.current::after { transform: scaleX(1); }
+    .nav-cta {
+      padding: 10px 18px;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--signal); }
+    .nav-toggle { display: none; }
+    @media (max-width: 1180px) {
+      .nav-links { display: none; }
+      .nav-toggle {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding: 8px;
+      }
+      .nav-toggle span {
+        display: block;
+        width: 22px;
+        height: 1.5px;
+        background: var(--paper);
+      }
+    }
+
+    /* ──────────────────────────────────────────────────────────
+       HERO — compact editorial header
+       ────────────────────────────────────────────────────────── */
+    .ethics-hero {
+      padding: clamp(140px, 20vh, 200px) 0 clamp(60px, 10vh, 100px);
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--rule);
+    }
+    .ethics-hero::after {
+      content: "";
+      position: absolute;
+      top: 40%;
+      right: -10%;
+      width: 50%;
+      height: 60%;
+      background: radial-gradient(ellipse at center, var(--signal-soft) 0%, transparent 60%);
+      pointer-events: none;
+      filter: blur(60px);
+    }
+    .ethics-hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 920px;
+    }
+    .ethics-hero .kicker { margin-bottom: 28px; }
+    .ethics-hero h1 { margin-bottom: 36px; }
+    .ethics-hero .lede { margin-bottom: 36px; max-width: 62ch; }
+    .ethics-hero-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      padding-top: 28px;
+      border-top: 1px solid var(--rule);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .ethics-hero-meta strong {
+      color: var(--paper);
+      font-weight: 500;
+    }
+
+    /* ──────────────────────────────────────────────────────────
+       TL;DR — five rules callout
+       ────────────────────────────────────────────────────────── */
+    .tldr {
+      background: var(--ink-2);
+      padding: clamp(64px, 10vh, 100px) 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .tldr-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+    .tldr-head {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 60px;
+      align-items: end;
+      margin-bottom: 56px;
+    }
+    .tldr-head .kicker { margin-bottom: 20px; }
+    .tldr-head h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      line-height: 1.05;
+      letter-spacing: -0.018em;
+      font-weight: 400;
+      font-variation-settings: "opsz" 96, "SOFT" 25;
+    }
+    .tldr-head h2 .em { font-style: italic; color: var(--signal); font-variation-settings: "opsz" 96, "SOFT" 100; }
+    .tldr-side {
+      color: var(--paper-2);
+      font-size: 0.96rem;
+      line-height: 1.65;
+    }
+    .tldr-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      border-top: 1px solid var(--rule-strong);
+      border-bottom: 1px solid var(--rule-strong);
+    }
+    .tldr-rule {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 32px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--rule);
+      align-items: baseline;
+    }
+    .tldr-rule:last-child { border-bottom: none; }
+    .tldr-rule .num {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      color: var(--signal);
+    }
+    .tldr-rule .text {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+      font-weight: 400;
+      line-height: 1.3;
+      letter-spacing: -0.012em;
+      font-variation-settings: "opsz" 72, "SOFT" 30;
+      color: var(--paper);
+    }
+    .tldr-rule .text em {
+      font-style: italic;
+      color: var(--signal);
+      font-variation-settings: "opsz" 72, "SOFT" 100;
+    }
+    @media (max-width: 720px) {
+      .tldr-head { grid-template-columns: 1fr; gap: 28px; }
+      .tldr-rule { grid-template-columns: 56px 1fr; gap: 20px; }
+    }
+
+    /* ──────────────────────────────────────────────────────────
+       ETHICS SECTIONS — long-form reading column
+       ────────────────────────────────────────────────────────── */
+    .ethics-body {
+      padding: clamp(80px, 12vh, 140px) 0;
+      background: var(--ink);
+    }
+    .ethics-section {
+      padding: clamp(48px, 7vh, 80px) 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .ethics-section:first-child { padding-top: 0; }
+    .ethics-section:last-child { border-bottom: none; }
+
+    .ethics-section .section-head {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 32px;
+      align-items: baseline;
+      margin-bottom: 36px;
+    }
+    .ethics-section .section-num {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      color: var(--signal);
+      padding-top: 8px;
+      border-top: 1px solid var(--signal);
+      align-self: start;
+    }
+    .ethics-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+      line-height: 1.05;
+      font-weight: 400;
+      letter-spacing: -0.018em;
+      font-variation-settings: "opsz" 96, "SOFT" 25;
+      color: var(--paper);
+    }
+    .ethics-section h2 .em {
+      font-style: italic;
+      color: var(--signal);
+      font-variation-settings: "opsz" 96, "SOFT" 100;
+    }
+
+    .ethics-prose {
+      padding-left: 128px;
+      max-width: 70ch;
+    }
+    .ethics-prose p {
+      color: var(--paper-2);
+      font-size: 1.02rem;
+      line-height: 1.72;
+      margin-bottom: 20px;
+    }
+    .ethics-prose p strong {
+      color: var(--paper);
+      font-weight: 600;
+    }
+    .ethics-prose p .signal-text {
+      color: var(--signal);
+      font-weight: 500;
+    }
+    .ethics-prose p em {
+      font-style: italic;
+      color: var(--paper);
+    }
+    .ethics-prose ul {
+      list-style: none;
+      margin: 8px 0 28px;
+      padding: 0;
+    }
+    .ethics-prose ul li {
+      position: relative;
+      padding: 12px 0 12px 28px;
+      color: var(--paper-2);
+      font-size: 1rem;
+      line-height: 1.65;
+      border-bottom: 1px solid var(--rule);
+    }
+    .ethics-prose ul li:last-child { border-bottom: none; }
+    .ethics-prose ul li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      top: 12px;
+      color: var(--signal);
+      font-family: var(--font-mono);
+      font-weight: 600;
+    }
+    .ethics-prose ul li strong {
+      color: var(--paper);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 4px;
+      font-family: var(--font-body);
+    }
+    .ethics-prose .pull {
+      margin: 32px 0;
+      padding: 20px 0 20px 24px;
+      border-left: 3px solid var(--signal);
+      font-family: var(--font-display);
+      font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+      line-height: 1.4;
+      color: var(--paper);
+      font-style: italic;
+      font-variation-settings: "opsz" 72, "SOFT" 100;
+    }
+    .ethics-prose code {
+      font-family: var(--font-mono);
+      font-size: 0.92em;
+      background: var(--ink-3);
+      padding: 2px 8px;
+      color: var(--signal);
+      border: 1px solid var(--rule);
+    }
+
+    @media (max-width: 820px) {
+      .ethics-section .section-head { grid-template-columns: 1fr; gap: 12px; }
+      .ethics-section .section-num {
+        border-top: none;
+        padding-top: 0;
+        justify-self: start;
+      }
+      .ethics-prose { padding-left: 0; }
+    }
+
+    /* ──────────────────────────────────────────────────────────
+       CONTACT CALLOUT
+       ────────────────────────────────────────────────────────── */
+    .ethics-contact {
+      background: var(--paper);
+      color: var(--ink);
+      padding: clamp(80px, 12vh, 120px) 0;
+    }
+    .ethics-contact-inner {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 var(--gutter);
+    }
+    .ethics-contact .kicker {
+      color: var(--signal-deep);
+      margin-bottom: 28px;
+    }
+    .ethics-contact .kicker::before { background: var(--signal-deep); }
+    .ethics-contact h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      line-height: 1.02;
+      letter-spacing: -0.022em;
+      font-weight: 400;
+      font-variation-settings: "opsz" 144, "SOFT" 25;
+      margin-bottom: 28px;
+      max-width: 18ch;
+    }
+    .ethics-contact h2 .em {
+      font-style: italic;
+      color: var(--signal-deep);
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+    }
+    .ethics-contact p {
+      color: var(--muted-2);
+      font-size: 1.08rem;
+      line-height: 1.65;
+      margin-bottom: 36px;
+      max-width: 56ch;
+    }
+    .ethics-contact .email-line {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      padding: 22px 28px;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--font-mono);
+      font-size: clamp(1rem, 1.6vw, 1.25rem);
+      letter-spacing: 0.02em;
+      transition: all 0.25s ease;
+      margin-bottom: 20px;
+    }
+    .ethics-contact .email-line:hover {
+      background: var(--signal);
+      color: var(--ink);
+      transform: translateY(-2px);
+    }
+    .ethics-contact .email-line .arrow {
+      font-family: var(--font-mono);
+      transition: transform 0.25s ease;
+    }
+    .ethics-contact .email-line:hover .arrow {
+      transform: translateX(4px);
+    }
+    .ethics-contact .fine {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted-2);
+    }
+
+    /* ──────────────────────────────────────────────────────────
+       FOOTER — matches main site
+       ────────────────────────────────────────────────────────── */
+    footer {
+      background: var(--ink-2);
+      padding: 80px 0 40px;
+      border-top: 1px solid var(--rule);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 60px;
+    }
+    .footer-brand {
+      max-width: 320px;
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: "National Park", "Geist", -apple-system, sans-serif;
+      font-weight: 700;
+      font-size: 1.35rem;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+      color: var(--paper);
+    }
+    .footer-logo .signal { color: var(--signal); }
+    .footer-tagline {
+      color: var(--paper-2);
+      font-size: 0.92rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 12px;
+    }
+    .footer-social a {
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--rule-strong);
+      color: var(--paper-2);
+      transition: all 0.2s;
+    }
+    .footer-social a:hover {
+      background: var(--signal);
+      color: var(--ink);
+      border-color: var(--signal);
+    }
+    .footer-col h4 {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--paper);
+      margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-col ul a {
+      color: var(--paper-2);
+      font-size: 0.92rem;
+      transition: color 0.2s;
+    }
+    .footer-col ul a:hover { color: var(--signal); }
+    .footer-bottom {
+      padding-top: 36px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .footer-bottom .status { color: var(--signal); display: flex; align-items: center; gap: 8px; }
+    .pulse {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--signal);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.4; transform: scale(0.85); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+    }
+    @media (max-width: 560px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ──────────────────────────────────────────────────────────
+       REVEAL
+       ────────────────────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+  <link rel="icon" type="image/svg+xml" href="/assets/brand/hnm-favicon.svg">
+  <link rel="apple-touch-icon" href="/assets/brand/hnm-favicon.svg">
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════════════════════
+       NAV — matches main site, with Ethics marked current
+       ════════════════════════════════════════════════════════════ -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <span class="nav-logo-mark" aria-label="HicksNewMedia"><svg viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg" width="44" height="36" style="width: 44px; height: 36px; display: block; flex-shrink: 0;" role="img" aria-hidden="true"><rect x="26" y="30" width="120" height="24" fill="#F5F1EB"/><rect x="26" y="78" width="168" height="24" fill="#F48022"/><rect x="26" y="126" width="120" height="24" fill="#F5F1EB"/><rect x="170" y="126" width="24" height="24" fill="#F48022"/></svg></span>
+        <span class="nav-divider"></span>
+        <span>Hicks<span class="signal">New</span>Media<span class="signal">.</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="/#why">Why James</a></li>
+        <li><a href="/#network">The Network</a></li>
+        <li><a href="/#pillars">Pillars</a></li>
+        <li><a href="/#work-with-me">Partnership Tiers</a></li>
+        <li><a href="/#case-studies">Featured Work</a></li>
+        <li><a href="/ethics" class="current">Ethics</a></li>
+        <li class="nav-sep" aria-hidden="true"></li>
+        <li><a href="https://links.hicksnewmedia.com">Links<span class="ext-arrow">↗</span></a></li>
+        <li><a href="https://mediakit.hicksnewmedia.com">Media Kit<span class="ext-arrow">↗</span></a></li>
+        <li><a href="https://merch.hicksnewmedia.com">Merch<span class="ext-arrow">↗</span></a></li>
+      </ul>
+      <a href="https://booking.hicksnewmedia.com" class="nav-cta">Book James →</a>
+      <button class="nav-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ════════════════════════════════════════════════════════════
+       HERO
+       ════════════════════════════════════════════════════════════ -->
+  <header class="ethics-hero">
+    <div class="container">
+      <div class="ethics-hero-inner reveal">
+        <div class="kicker">Editorial Standards · 2026</div>
+        <h1 class="display-xl">
+          The <span class="em-italic">Ethics.</span>
+        </h1>
+        <p class="lede">
+          Every brand partnership at HicksNewMedia runs through the same standard. <strong style="color:var(--paper);">No exceptions. No carve-outs for size of check.</strong> What follows is that standard, written out — for brand partners, for the audience, and for anyone who wants to know how the trust gets earned and kept.
+        </p>
+        <div class="ethics-hero-meta">
+          <div>Effective <strong>May 2026</strong></div>
+          <div>Version <strong>1.0</strong></div>
+          <div>Reviewed <strong>quarterly</strong></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ════════════════════════════════════════════════════════════
+       TL;DR — THE FIVE RULES
+       ════════════════════════════════════════════════════════════ -->
+  <section class="tldr">
+    <div class="tldr-inner">
+      <div class="tldr-head reveal">
+        <div>
+          <div class="kicker">TL;DR</div>
+          <h2>The five <span class="em">rules.</span></h2>
+        </div>
+        <div class="tldr-side">
+          If you read nothing else on this page, read this. The full standard expands every one of these into operational detail — but these are the rules that govern every partnership that ships from HicksNewMedia.
+        </div>
+      </div>
+
+      <div class="tldr-list reveal">
+        <div class="tldr-rule">
+          <div class="num">RULE 01</div>
+          <div class="text">I only recommend products I've actually <em>used.</em></div>
+        </div>
+        <div class="tldr-rule">
+          <div class="num">RULE 02</div>
+          <div class="text">The brand approves the brief. I write the <em>script.</em></div>
+        </div>
+        <div class="tldr-rule">
+          <div class="num">RULE 03</div>
+          <div class="text">Every sponsored placement is disclosed — on screen, in writing, on the <em>audience side.</em></div>
+        </div>
+        <div class="tldr-rule">
+          <div class="num">RULE 04</div>
+          <div class="text">When brand and audience interests conflict, the <em>audience wins.</em></div>
+        </div>
+        <div class="tldr-rule">
+          <div class="num">RULE 05</div>
+          <div class="text">When I get it wrong, I say so <em>publicly.</em></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       ETHICS BODY — long-form sections
+       ════════════════════════════════════════════════════════════ -->
+  <main class="ethics-body">
+    <div class="container">
+
+      <!-- ─── 01 · THE STANDARD ─── -->
+      <article class="ethics-section reveal" id="standard">
+        <div class="section-head">
+          <div class="section-num">01</div>
+          <h2>The <span class="em">Standard.</span></h2>
+        </div>
+        <div class="ethics-prose">
+          <p>The most honest framing of any brand partnership in the creator economy is this: I sell access to the audience I've built. Most creators won't say it out loud because saying it out loud raises the obvious follow-up — <em>what protections are in place to make sure that access is worth what brands pay for it?</em></p>
+          <p>This page is the answer.</p>
+          <p><strong>Audience trust is the only renewable resource in this business.</strong> Every video, every newsletter, every panel, every recommendation either reinforces it or burns it down. And the math on burning it is brutal — one bad partnership can erode a relationship with viewers that took years to build, and no payday from the brand that caused it covers the long-term cost.</p>
+          <p>So the editorial standard isn't a constraint on the business. <span class="signal-text">It is the business.</span></p>
+          <p>What follows are the rules that govern how partnerships work at HicksNewMedia. They're not aspirational. They're operational. Every brand that signs gets sent this page before contracts go out, so there's no ambiguity about how the work gets done.</p>
+        </div>
+      </article>
+
+      <!-- ─── 02 · THE "WOULD I USE IT" TEST ─── -->
+      <article class="ethics-section reveal" id="would-i-use-it">
+        <div class="section-head">
+          <div class="section-num">02</div>
+          <h2>The "would I use it" <span class="em">test.</span></h2>
+        </div>
+        <div class="ethics-prose">
+          <p>Every partnership has to clear one filter before money or contracts enter the conversation: <strong>would I use this product if no one were paying me to?</strong></p>
+          <p>The test is operational, not theoretical. When a brand pitches, the workflow looks like this:</p>
+          <ul>
+            <li><strong>30-day trial at production scale.</strong> Not a demo unit. Not a curated walkthrough. The same version of the product the audience would buy or sign up for.</li>
+            <li><strong>Run it inside an actual HicksNewMedia workflow.</strong> Edit a real video, ship a real newsletter, deploy to a real environment. No contrived tests.</li>
+            <li><strong>Form an honest opinion before any commercial conversation continues.</strong> If the product fails the test, the partnership ends right there. No edit notes can fix that.</li>
+          </ul>
+          <p class="pull">"I've walked away from five-figure deals after two weeks of testing because the product didn't deliver on the page-one pitch. That's the cost of the standard. It's also why the partnerships that do go forward carry weight when they show up in content."</p>
+          <p>The "would I use it" test isn't a credential I claim. It's a process anyone reviewing my work can verify in the content itself — every sponsored piece references specific use cases, specific workflows, specific outcomes. <strong>Generic praise is the tell that the test wasn't run.</strong></p>
+        </div>
+      </article>
+
+      <!-- ─── 03 · WHAT I WON'T PROMOTE ─── -->
+      <article class="ethics-section reveal" id="wont-promote">
+        <div class="section-head">
+          <div class="section-num">03</div>
+          <h2>What I won't <span class="em">promote.</span></h2>
+        </div>
+        <div class="ethics-prose">
+          <p>Regardless of the offer, the following categories are declined at intake — meaning the conversation ends before pricing, terms, or creative direction is discussed. This is the floor, not the ceiling.</p>
+          <ul>
+            <li><strong>Speculative financial products.</strong> Crypto trading platforms, NFT projects, day-trading apps, "passive income" funnels, course-based wealth pitches, signal services, prop firms. The audience is technical and culturally engaged. They don't need to be sold a get-rich pathway.</li>
+            <li><strong>AI tools that misrepresent capability or harvest user data without disclosure.</strong> Including any platform that trains on customer content without explicit opt-in, any tool that claims outcomes it can't reproduce in a public demo, and any product that conflates AI assistance with AI authorship.</li>
+            <li><strong>Products with active, unresolved security or privacy issues.</strong> Current CVEs, known data exposures, hostile telemetry practices, mandatory data collection that isn't disclosed at sign-up. The IT background isn't optional context here — it's the filter.</li>
+            <li><strong>Multi-level marketing structures of any kind.</strong> Regardless of how they're branded, what category they sit in, or who's pitching. The structure is the disqualifier.</li>
+            <li><strong>Direct competitors to current partners or recommendations</strong>, without resolving the conflict in writing first. No talking out of both sides of the mouth.</li>
+            <li><strong>Brands with documented patterns of bad-faith behavior toward creators.</strong> Late payment, hostile contract terms, retroactive content rights grabs, manipulative attribution practices. The creator economy has receipts. They get checked.</li>
+            <li><strong>Products that target vulnerable audiences with predatory pricing or terms.</strong> Subscription traps, deceptive billing, products that exploit financial precarity, "free trial" mechanics that punish cancellation.</li>
+            <li><strong>Anything that competes with the audience.</strong> If the product is built to extract from the people I serve rather than serve them, the answer is no, no matter how aligned the messaging looks on the surface.</li>
+          </ul>
+          <p>This list isn't exhaustive. New categories of bad actor emerge every quarter — the rule that holds across all of them is simple: <span class="signal-text">if I wouldn't recommend it to a friend with no commercial relationship attached, it doesn't ship.</span></p>
+        </div>
+      </article>
+
+      <!-- ─── 04 · EDITORIAL INDEPENDENCE ─── -->
+      <article class="ethics-section reveal" id="editorial-independence">
+        <div class="section-head">
+          <div class="section-num">04</div>
+          <h2>Editorial <span class="em">independence.</span></h2>
+        </div>
+        <div class="ethics-prose">
+          <p>The wall between sponsorship and editorial is non-negotiable. Brands buy access to the audience. They do not buy the editorial voice that makes the access valuable in the first place.</p>
+          <p>In practice, that means:</p>
+          <ul>
+            <li><strong>Brands approve the brief — not the script.</strong> The brand tells me what they want the audience to know. I decide how to say it. That's the trade.</li>
+            <li><strong>Honest responses to audience questions, even on sponsored content.</strong> If a viewer asks a hard question in the comments about a sponsored product, my answer is honest. The brand doesn't get a veto on what I say in my own thread.</li>
+            <li><strong>Sponsored content can include constructive criticism of the sponsor's product.</strong> In fact, balanced sponsored content performs better than pure cheerleading — both for audience trust and for the brand's reputation. The audience can smell a sales pitch. Telling them what's good <em>and</em> what's not is what makes the recommendation land.</li>
+            <li><strong>Retroactive edits to remove unflattering observations are off the table.</strong> Once it ships, it ships. If the brand wants a do-over, they can pay for a follow-up — they cannot purchase a quiet edit on what already exists.</li>
+            <li><strong>No veto power over coverage of competitors.</strong> Signing as a partner does not buy silence on the rest of the category. Other tools, products, and platforms in the same space remain in scope for editorial coverage.</li>
+            <li><strong>No editorial favors as part of a partnership.</strong> Being a sponsor doesn't earn extra positive coverage outside the sponsored content. The line is bright.</li>
+          </ul>
+          <p>The reason this wall holds is structural, not personal. A brand that controls the editorial voice gets short-term content and burns the long-term asset. A brand that respects the wall gets the actual product they're paying for: a credible voice telling a real audience that the thing is worth their time.</p>
+        </div>
+      </article>
+
+      <!-- ─── 05 · DISCLOSURE STANDARDS ─── -->
+      <article class="ethics-section reveal" id="disclosure">
+        <div class="section-head">
+          <div class="section-num">05</div>
+          <h2>Disclosure <span class="em">standards.</span></h2>
+        </div>
+        <div class="ethics-prose">
+          <p>FTC compliance is the legal minimum. The HicksNewMedia standard goes further — not because the regulator is watching, but because the audience deserves to know exactly what kind of transaction they're inside of when they watch, read, or click.</p>
+          <ul>
+            <li><strong>On-screen disclosure within the first 30 seconds.</strong> Every video that contains sponsored content gets a visible disclosure at the top of the video. Not in the corner. Not at the end. At the point where audience attention is highest.</li>
+            <li><strong>Written disclosure in every description and cross-post.</strong> <code>#ad</code> plus a plain-English statement of who paid, what was paid for, and what the relationship is. The same disclosure carries to Twitter, LinkedIn, Instagram, newsletter copy, and anywhere else the content shows up.</li>
+            <li><strong>Affiliate links labeled at the point of recommendation.</strong> When a link earns a commission, the viewer sees that fact at the moment they're deciding whether to click — not in a generic footer they never read.</li>
+            <li><strong>Gifted product is disclosed even with no money on the table.</strong> A free product is a form of compensation. The audience gets to know that, regardless of whether a check changed hands.</li>
+            <li><strong>Ongoing relationships disclosed across all relevant content.</strong> Advisory roles, equity stakes, board seats, paid consulting — these get disclosed in every piece of content where the company is mentioned, not just the explicitly sponsored ones.</li>
+            <li><strong>Cross-property disclosure.</strong> A sponsorship on @JamesHicks gets disclosed if I reference the same product on Digital Collective or Team No Sleep within the relationship window. No silent re-promotion.</li>
+          </ul>
+          <p class="pull">"The bar is straightforward: if a reasonable viewer would care that I have skin in the game, they get told."</p>
+        </div>
+      </article>
+
+      <!-- ─── 06 · CONFLICTS OF INTEREST ─── -->
+      <article class="ethics-section reveal" id="conflicts">
+        <div class="section-head">
+          <div class="section-num">06</div>
+          <h2>Conflicts of <span class="em">interest.</span></h2>
+        </div>
+        <div class="ethics-prose">
+          <p>Disclosure handles the simple case — paid sponsorship, named brand, transactional. Conflict of interest is the messier case: when the editorial line gets crossed in directions the audience can't see from the surface of the content.</p>
+          <p>The internal rule is to over-disclose, always:</p>
+          <ul>
+            <li><strong>Disclose more than you think you need to.</strong> When in doubt, disclose. The cost of over-disclosing is zero. The cost of under-disclosing compounds with every piece of content where it goes unflagged.</li>
+            <li><strong>Equity, advisory, and board positions are public.</strong> If I own equity in a company, hold an advisory seat, or sit on a board — that fact is listed publicly, and any content that mentions the company carries the disclosure inline.</li>
+            <li><strong>Personal relationships with founders, executives, or PR teams get acknowledged.</strong> Not every friendship is a conflict, but any relationship that could plausibly affect coverage is acknowledged in the coverage itself.</li>
+            <li><strong>Gifts above $100 in value are disclosed even without expectation of coverage.</strong> If a brand sends gear, swag, or hardware unsolicited, and that gear ends up in a video — the audience hears about it.</li>
+            <li><strong>Family and household relationships matter.</strong> If a family member works at, advises, or has equity in a company that appears in HicksNewMedia content, that's disclosed in the content.</li>
+          </ul>
+          <p>The disclosures page at <code>hicksnewmedia.com/disclosures</code> lists current relationships and is reviewed quarterly. If you spot something there that conflicts with content you've seen and isn't flagged — email me. That's a process failure I want to know about.</p>
+        </div>
+      </article>
+
+      <!-- ─── 07 · AI & CONTENT PRODUCTION ─── -->
+      <article class="ethics-section reveal" id="ai">
+        <div class="section-head">
+          <div class="section-num">07</div>
+          <h2>AI &amp; content <span class="em">production.</span></h2>
+        </div>
+        <div class="ethics-prose">
+          <p>This section gets longer every quarter, and probably will for the next several years. The HicksNewMedia standard on AI in production is built around a single principle: <strong>AI is a tool, not a stand-in.</strong></p>
+          <p>What that means in practice:</p>
+          <ul>
+            <li><strong>Where AI is used.</strong> Research synthesis. Transcript editing and timestamp generation. Thumbnail iteration. Code assistance on internal tools. Workflow automation. Image generation for blog posts and supporting visuals where clearly labeled.</li>
+            <li><strong>Where AI is not used.</strong> Generating endorsements, fabricating test results, synthesizing my voice or likeness, writing sponsored copy passed off as editorial, or producing the analysis layer of any review. The opinion in the content is mine. The recommendation is mine. The reasoning is mine.</li>
+            <li><strong>No synthetic me.</strong> No AI-generated James Hicks. No voice clones for content production. No deepfake spokespeople. If it appears to be me speaking, writing, or recommending — it's actually me, doing those things.</li>
+            <li><strong>AI-assisted research gets fact-checked.</strong> Hallucinations are real. Every factual claim sourced from AI-assisted research gets verified against a primary source before it ships. If a fact can't be verified, it doesn't make the edit.</li>
+            <li><strong>Sponsored content using AI elements gets labeled.</strong> AI-generated visuals, voiceovers, or scripts are labeled as such even when the FTC doesn't require it yet. The audience deserves to know what they're looking at.</li>
+            <li><strong>Brands cannot use my likeness in AI-generated marketing.</strong> Not for promotional clips. Not for B-roll. Not for "personalized" outreach. The likeness is not part of the deliverable.</li>
+          </ul>
+          <p>This standard will evolve. The principles won't.</p>
+        </div>
+      </article>
+
+      <!-- ─── 08 · CORRECTIONS ─── -->
+      <article class="ethics-section reveal" id="corrections">
+        <div class="section-head">
+          <div class="section-num">08</div>
+          <h2>Corrections <span class="em">policy.</span></h2>
+        </div>
+        <div class="ethics-prose">
+          <p>I get things wrong sometimes. When that happens, the response matters more than the original error.</p>
+          <ul>
+            <li><strong>Corrections are public.</strong> If a video contained inaccurate information, the next video opens with a correction, or a pinned comment goes on the original. Quiet edits and silent re-uploads don't happen.</li>
+            <li><strong>Significant errors trigger a full follow-up piece.</strong> Not a card. Not a community post buried in the feed. A standalone video or newsletter that walks through what was wrong, what's right, and what the audience should take away.</li>
+            <li><strong>Reader and viewer corrections are welcomed.</strong> If you spotted something wrong in HicksNewMedia content, email me directly at the address at the bottom of this page. Corrections from the audience are treated as a feature of the system, not an attack on it.</li>
+            <li><strong>For sponsored content, corrections are issued at HicksNewMedia's cost.</strong> Not the brand's. The accountability sits with me. The fact that a partner paid for the original piece doesn't transfer the editorial responsibility to them.</li>
+            <li><strong>Source disclosure on corrections.</strong> When a correction is published, the source of the correction is credited — whether that's a viewer email, a follow-up call with a vendor, or an internal review process.</li>
+          </ul>
+          <p>The reason this policy exists in writing: getting it wrong is inevitable in a content business that ships frequently. <span class="signal-text">The thing that separates trustworthy publishers from the rest is how the correction gets handled when it shows up.</span></p>
+        </div>
+      </article>
+
+      <!-- ─── 09 · AUDIENCE FIRST ─── -->
+      <article class="ethics-section reveal" id="audience-first">
+        <div class="section-head">
+          <div class="section-num">09</div>
+          <h2>Audience <span class="em">first.</span></h2>
+        </div>
+        <div class="ethics-prose">
+          <p>When brand interest and audience interest conflict, the audience wins. This is the tiebreaker rule that holds the rest of the system together. Every other principle on this page ladders up to it.</p>
+          <p>What it looks like in practice:</p>
+          <ul>
+            <li><strong>Bad updates from current partners get covered honestly.</strong> If a partner ships a release I think is bad — a price hike that hurts users, a feature removal, a policy change that betrays the audience — I say so, in editorial, with disclosure, even though it complicates the commercial relationship. The relationship is a downstream consideration. The audience comes first.</li>
+            <li><strong>Tone pressure ends partnerships.</strong> If a brand pressures for messaging changes that would mislead the audience or paper over real product issues, the partnership ends. The check doesn't come back. The video doesn't ship. The brand finds a different creator with a different standard.</li>
+            <li><strong>Standing recommendations are reviewed when products change.</strong> If a tool I've recommended over the years ships an update that meaningfully changes the value proposition — for better or worse — the recommendation gets updated, and the audience gets told.</li>
+            <li><strong>Audience concerns get treated as real.</strong> If a viewer raises a concern about a partnership in good faith, the response is also in good faith — in public, by name, with the actual reasoning. Not a copy-paste defensive PR line.</li>
+            <li><strong>Representation matters in the math.</strong> The HicksNewMedia audience is meaningfully more diverse than most technical channels — particularly across Black, Brown, and culturally engaged technical decision-makers. Partnerships are evaluated for whether the brand treats that audience with the same care they treat the rest of their customer base. Tokenization, "diversity moments," and surface-level inclusion plays don't move forward.</li>
+          </ul>
+          <p>The audience is paying with their attention. That's a real currency. They deserve at least the same standard of care that the brand paying with dollars does. <strong>The day that stops being true is the day the whole network stops being worth what it's worth.</strong></p>
+        </div>
+      </article>
+
+      <!-- ─── 10 · WHAT THIS PAGE DOESN'T COVER ─── -->
+      <article class="ethics-section reveal" id="scope">
+        <div class="section-head">
+          <div class="section-num">10</div>
+          <h2>What this page <span class="em">doesn't cover.</span></h2>
+        </div>
+        <div class="ethics-prose">
+          <p>This document is the standard for brand partnerships, sponsored content, and affiliate relationships. It does not cover everything HicksNewMedia does.</p>
+          <ul>
+            <li><strong>Privacy practices</strong> — how visitor and subscriber data is handled across hicksnewmedia.com, digitalcollective.media, and connected properties — live on the Privacy page at <code>hicksnewmedia.com/privacy</code>.</li>
+            <li><strong>Terms of service</strong> for paid products (PostGrid, Digital Collective Premium, paid newsletters) live on the relevant product pages and govern the commercial relationship between HicksNewMedia and paying customers.</li>
+            <li><strong>Editorial standards for non-sponsored content</strong> — original journalism, opinion pieces, interviews, conference coverage — follow the same principles in spirit (accuracy, disclosure, audience-first) but operate without the partnership-specific guardrails on this page.</li>
+            <li><strong>Operational practices</strong> — how shoots are scheduled, how guests are briefed, how contractors are paid — are internal and not part of the public standard.</li>
+          </ul>
+          <p>This page is reviewed quarterly. When it changes, the version number at the top of the page changes with it, and a changelog is maintained at <code>hicksnewmedia.com/ethics/changelog</code>.</p>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- ════════════════════════════════════════════════════════════
+       CONTACT — concerns / flagging
+       ════════════════════════════════════════════════════════════ -->
+  <section class="ethics-contact">
+    <div class="ethics-contact-inner reveal">
+      <div class="kicker">Flag a concern</div>
+      <h2>If something on this page got <span class="em">broken</span> — tell me.</h2>
+      <p>If you believe a HicksNewMedia partnership, recommendation, or piece of content has violated the standards above — as a viewer, a brand, a former partner, or anyone with relevant context — there's a direct line. Concerns come to me personally, not to a PR queue.</p>
+      <a href="mailto:ethics@hicksnewmedia.com" class="email-line">
+        ethics@hicksnewmedia.com <span class="arrow">→</span>
+      </a>
+      <p class="fine">Response within 5 business days · Anonymous reports accepted · Receipts beat outrage</p>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════════════════════
+       FOOTER — matches main site, with Ethics added
+       ════════════════════════════════════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="nav-logo-mark">HNM<span class="signal">.</span></span>
+            <span class="nav-divider"></span>
+            <span>Hicks<span class="signal">New</span>Media<span class="signal">.</span></span>
+          </div>
+          <p class="footer-tagline">Making technology make sense for the people who decide what gets built. Based in the USA. Established 2010.</p>
+          <div class="footer-social">
+            <a href="https://www.youtube.com/c/JamesHicks/" aria-label="YouTube" title="YouTube">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/hicksnewmedia/" aria-label="LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.063 2.063 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://x.com/jameshicks" aria-label="X" title="X (Twitter)">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/hicksnewmedia/" aria-label="Instagram" title="Instagram">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+            </a>
+            <a href="https://www.tiktok.com/@hicksnewmedia" aria-label="TikTok" title="TikTok">
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigate</h4>
+          <ul>
+            <li><a href="/#why">Why James</a></li>
+            <li><a href="/#network">The Network</a></li>
+            <li><a href="/#pillars">Pillars</a></li>
+            <li><a href="/#work-with-me">Partnership Tiers</a></li>
+            <li><a href="/#case-studies">Featured Work</a></li>
+            <li><a href="/ethics">Ethics</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>The Network</h4>
+          <ul>
+            <li><a href="https://www.youtube.com/c/JamesHicks/">@JamesHicks · YouTube</a></li>
+            <li><a href="https://digitalcollective.media">Digital Collective · Newsletter</a></li>
+            <li><a href="https://digitalcollective.network">DC Network · Premium</a></li>
+            <li><a href="/#network">Team No Sleep</a></li>
+            <li><a href="/#network">tek FORUM</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Work With James</h4>
+          <ul>
+            <li><a href="https://booking.hicksnewmedia.com">Book a partnership call</a></li>
+            <li><a href="/ethics">Partnership ethics</a></li>
+            <li><a href="https://links.hicksnewmedia.com">All my links ↗</a></li>
+            <li><a href="https://mediakit.hicksnewmedia.com">Media kit ↗</a></li>
+            <li><a href="https://digitalcollective.media">Newsletter ↗</a></li>
+            <li><a href="https://merch.hicksnewmedia.com">Shop merch ↗</a></li>
+            <li><a href="https://testimonials.hicksnewmedia.com/">Leave a testimonial</a></li>
+            <li><a href="/#contact">Contact / inquiries</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 HicksNewMedia · All rights reserved · <a href="/ethics" style="color:var(--paper-2);">Editorial standards</a></div>
+        <div class="status"><span class="pulse"></span> Available for partnerships</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      const reveals = document.querySelectorAll('.reveal');
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            setTimeout(() => entry.target.classList.add('in'), i * 60);
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+      reveals.forEach(el => io.observe(el));
+    })();
+  </script>
+</body>
+</html>

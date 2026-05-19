@@ -1249,8 +1249,8 @@
     }
     .footer-grid {
       display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr 1fr;
-      gap: 48px;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+      gap: 40px;
       margin-bottom: 60px;
     }
     .footer-brand {
@@ -1325,6 +1325,9 @@
     }
     .footer-bottom .status { color: var(--signal); display: flex; align-items: center; gap: 8px; }
 
+    @media (max-width: 1100px) {
+      .footer-grid { grid-template-columns: 1.4fr 1fr 1fr; gap: 36px; }
+    }
     @media (max-width: 900px) {
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
     }
@@ -1435,6 +1438,7 @@
         <li><a href="#work-with-me">Partnership Tiers</a></li>
         <li><a href="#case-studies">Featured Work</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href="/ethics">Ethics</a></li>
         <li class="nav-sep" aria-hidden="true"></li>
         <li><a href="https://links.hicksnewmedia.com">Links<span class="ext-arrow">↗</span></a></li>
         <li><a href="https://mediakit.hicksnewmedia.com">Media Kit<span class="ext-arrow">↗</span></a></li>
@@ -2042,6 +2046,16 @@
         </div>
 
         <div class="footer-col">
+          <h4>Transparency</h4>
+          <ul>
+            <li><a href="/ethics">Editorial standards</a></li>
+            <li><a href="/disclosures">Disclosures</a></li>
+            <li><a href="/ethics/changelog">Ethics changelog</a></li>
+            <li><a href="/privacy">Privacy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
           <h4>Work With James</h4>
           <ul>
             <li><a href="https://booking.hicksnewmedia.com">Book a partnership call</a></li>
@@ -2056,7 +2070,7 @@
       </div>
 
       <div class="footer-bottom">
-        <div>© 2026 HicksNewMedia · All rights reserved</div>
+        <div>© 2026 HicksNewMedia · All rights reserved · <a href="/ethics" style="color:var(--paper-2);">Editorial standards</a></div>
         <div class="status"><span class="pulse"></span> Available for partnerships</div>
       </div>
     </div>
