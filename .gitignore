@@ -1,0 +1,13 @@
+# macOS noise
+.DS_Store
+**/.DS_Store
+**/Icon*
+
+# Local backups
+*.backup-*
+*.bak
+
+# Editor noise
+*.swp
+.vscode/
+.idea/
