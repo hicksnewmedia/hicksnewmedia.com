@@ -330,47 +330,39 @@
       border-radius: var(--radius-sm);
     }
     .tool-card__logo {
-      width: 44px;
-      height: 44px;
+      width: 48px;
+      height: 48px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      background: rgba(245, 241, 235, 0.08);
-      border: 1px solid rgba(245, 241, 235, 0.12);
-      border-radius: 8px;
-      padding: 8px;
-      transition: background 0.2s ease, border-color 0.2s ease;
+      background: var(--paper);
+      border-radius: 10px;
+      padding: 9px;
+      transition: background 0.2s ease, transform 0.2s ease;
     }
     .tool-card__logo-img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      filter: invert(1);
-      transition: filter 0.2s ease;
+      /* SVGs from Simple Icons are solid black — leave as-is on light tile */
+      transition: opacity 0.2s ease;
     }
     .tool-card:hover .tool-card__logo {
-      background: rgba(244, 128, 34, 0.15);
-      border-color: rgba(244, 128, 34, 0.4);
-    }
-    .tool-card:hover .tool-card__logo-img {
-      filter: invert(62%) sepia(85%) saturate(2200%) hue-rotate(347deg) brightness(98%) contrast(95%);
+      background: var(--signal);
+      transform: scale(1.05);
     }
     .tool-card__logo-letter {
       font-family: "National Park", "Geist", sans-serif;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 1.5rem;
       letter-spacing: -0.04em;
       line-height: 1;
-      color: var(--paper);
+      color: var(--ink);
       transition: color 0.2s ease;
     }
     .tool-card:hover .tool-card__logo-letter {
-      color: var(--signal);
-    }
-    .tool-card:hover .tool-card__logo-letter {
-      color: var(--signal);
-      opacity: 1;
+      color: var(--ink);
     }
     .tool-card__badges {
       display: flex;
