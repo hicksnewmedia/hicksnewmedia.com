@@ -329,6 +329,42 @@
       border: 1px solid var(--paper-3);
       border-radius: var(--radius-sm);
     }
+    .tool-card__logo {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .tool-card__logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      /* Recolor any Simple Icon SVG to paper white */
+      filter: brightness(0) invert(1);
+      opacity: 0.92;
+      transition: opacity 0.2s ease, filter 0.2s ease;
+    }
+    .tool-card:hover .tool-card__logo-img {
+      opacity: 1;
+      /* On hover, shift to signal orange */
+      filter: brightness(0) invert(58%) sepia(95%) saturate(2400%) hue-rotate(360deg) brightness(101%) contrast(96%);
+    }
+    .tool-card__logo-letter {
+      font-family: "National Park", "Geist", sans-serif;
+      font-weight: 700;
+      font-size: 1.45rem;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--paper);
+      opacity: 0.92;
+      transition: color 0.2s ease, opacity 0.2s ease;
+    }
+    .tool-card:hover .tool-card__logo-letter {
+      color: var(--signal);
+      opacity: 1;
+    }
     .tool-card__badges {
       display: flex;
       flex-direction: column;
@@ -687,6 +723,46 @@
   <script>
     // Tool data — edit this array to add/remove/update tools.
     // Each tool: { id, name, emoji, category, topPick, tagline, description, url, linkLabel }
+    // ─── Brand logo lookup ──────────────────────────────────
+    // Simple Icons slug for catalog brands, or null = use lettermark fallback
+    const LOGOS = {
+      'mac-studio':            { type: 'si', slug: 'apple' },
+      'bambu-p2s':             { type: 'si', slug: 'bambulab' },
+      'iphone-pro':            { type: 'lm', text: 'iP' },
+      'ecamm-live':            { type: 'lm', text: 'Ec' },
+      'riverside-fm':          { type: 'si', slug: 'riverside' },
+      'descript':              { type: 'si', slug: 'descript' },
+      'capcut':                { type: 'si', slug: 'capcut' },
+      'claude':                { type: 'si', slug: 'anthropic' },
+      'claude-code':           { type: 'lm', text: 'cc' },
+      'manus':                 { type: 'lm', text: 'Mn' },
+      'vidiq':                 { type: 'lm', text: 'vQ' },
+      'notion':                { type: 'si', slug: 'notion' },
+      'google-workspace':      { type: 'si', slug: 'google' },
+      'github':                { type: 'si', slug: 'github' },
+      'substack':              { type: 'si', slug: 'substack' },
+      'circle':                { type: 'lm', text: 'Cr' },
+      'youtube':               { type: 'si', slug: 'youtube' },
+      'fourthwall':            { type: 'lm', text: 'Fw' }
+    };
+
+    function logoMarkup(tool) {
+      const logo = LOGOS[tool.id];
+      if (!logo) {
+        // No mapping — fall back to existing emoji
+        return tool.emoji;
+      }
+      if (logo.type === 'si') {
+        // Simple Icons via jsDelivr CDN, recolored via CSS filter
+        const url = `https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${logo.slug}.svg`;
+        return `<img class="tool-card__logo-img" src="${url}" alt="${tool.name} logo" loading="lazy" onerror="this.outerHTML='${tool.emoji}'" />`;
+      }
+      if (logo.type === 'lm') {
+        // Lettermark — inline SVG so it inherits paper color
+        return `<span class="tool-card__logo-letter" aria-hidden="true">${logo.text}</span>`;
+      }
+      return tool.emoji;
+    }
     const TOOLS = [
       // =================== HARDWARE ===================
       {
@@ -930,7 +1006,7 @@
       return `
         <article class="tool-card" data-category="${tool.category}" data-id="${tool.id}">
           <div class="tool-card__header">
-            <div class="tool-card__emoji" aria-hidden="true">${tool.emoji}</div>
+            <div class="tool-card__logo" aria-hidden="true">${logoMarkup(tool)}</div>
             <div class="tool-card__badges">${topPick}</div>
           </div>
           <h3 class="tool-card__title">${tool.name}</h3>
