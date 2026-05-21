@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>James Hicks — Tenured Technologist · Founder, HicksNewMedia</title>
-  <meta name="description" content="James Hicks is a 20-year technologist, founder of HicksNewMedia, and operator of a multi-property media network reaching technical decision-makers, creator-builders, and culturally-engaged audiences." />
+  <meta name="description" content="30+ years in IT. No hype, just the facts. James Hicks is a tenured technologist and founder of HicksNewMedia — a multi-property media network for technical decision-makers and creator-builders." />
 
   <!-- Open Graph -->
   <meta property="og:title" content="James Hicks — Tenured Technologist · Founder, HicksNewMedia" />
@@ -316,12 +316,64 @@
         flex-direction: column;
         gap: 4px;
         padding: 8px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 101;
       }
       .nav-toggle span {
         display: block;
         width: 22px;
         height: 1.5px;
         background: var(--paper);
+        transition: transform 0.25s ease, opacity 0.2s ease;
+      }
+
+      /* Mobile menu open state */
+      body.menu-open { overflow: hidden; }
+      body.menu-open .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 72px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--ink);
+        padding: 32px var(--gutter) 40px;
+        margin: 0;
+        gap: 0;
+        overflow-y: auto;
+        z-index: 100;
+        align-items: stretch;
+        border-top: 1px solid var(--rule);
+      }
+      body.menu-open .nav-links li {
+        list-style: none;
+        border-bottom: 1px solid var(--rule);
+      }
+      body.menu-open .nav-links li.nav-sep {
+        border-bottom: none;
+        height: 20px;
+      }
+      body.menu-open .nav-links a {
+        display: block;
+        padding: 18px 4px;
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        font-weight: 400;
+        letter-spacing: -0.005em;
+        color: var(--paper);
+      }
+      body.menu-open .nav-links a:hover { color: var(--signal); }
+      body.menu-open .nav-toggle span:nth-child(1) {
+        transform: translateY(5.5px) rotate(45deg);
+      }
+      body.menu-open .nav-toggle span:nth-child(2) {
+        opacity: 0;
+      }
+      body.menu-open .nav-toggle span:nth-child(3) {
+        transform: translateY(-5.5px) rotate(-45deg);
       }
     }
 
@@ -1950,12 +2002,17 @@
         </div>
       </div>
 
-      <form class="contact-form reveal" action="#" onsubmit="event.preventDefault(); alert('Form submitted. (Wire to your form handler in production.)')">
+      <form class="contact-form reveal" id="partnership-form" novalidate>
         <div class="contact-form-head">
           <h3>Or send a quick brief.</h3>
           <p>Response within 24–48 hours.</p>
         </div>
         <div class="form-grid">
+          <!-- Honeypot — must remain empty; bots that fill all fields will be rejected by RLS -->
+          <div style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" aria-hidden="true">
+            <label for="source">Leave this empty</label>
+            <input type="text" id="source" name="source" tabindex="-1" autocomplete="off" />
+          </div>
           <div class="form-field">
             <label for="name">Full Name</label>
             <input id="name" name="name" type="text" required />
@@ -2080,7 +2137,10 @@
        MINIMAL JS — scroll reveal
        ════════════════════════════════════════════════════════════ -->
   <script>
-    (function() {
+    /* ──────────────────────────────────────────────────────────
+       Scroll reveal — fades elements in as they enter the viewport
+       ────────────────────────────────────────────────────────── */
+    (function scrollReveal() {
       const reveals = document.querySelectorAll('.reveal');
       const io = new IntersectionObserver((entries) => {
         entries.forEach((entry, i) => {
@@ -2091,6 +2151,123 @@
         });
       }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
       reveals.forEach(el => io.observe(el));
+    })();
+
+    /* ──────────────────────────────────────────────────────────
+       Mobile navigation toggle — hamburger opens full-screen menu
+       ────────────────────────────────────────────────────────── */
+    (function mobileNav() {
+      var toggle = document.querySelector('.nav-toggle');
+      var links  = document.querySelector('.nav-links');
+      if (!toggle || !links) return;
+
+      function closeMenu()  { document.body.classList.remove('menu-open'); }
+      function toggleMenu() { document.body.classList.toggle('menu-open'); }
+
+      toggle.addEventListener('click', toggleMenu);
+
+      // Close when a nav link is tapped so the menu doesn't stay open after navigation
+      links.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', closeMenu);
+      });
+
+      // Close on Escape key for keyboard users
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') closeMenu();
+      });
+    })();
+
+    /* ──────────────────────────────────────────────────────────
+       Contact form — submits inquiries to Supabase
+       Inserts into the partnership_inquiries table via the REST API.
+       RLS allows only validated INSERTs from the anon role.
+       Honeypot 'source' field must remain empty; bots get rejected.
+       ────────────────────────────────────────────────────────── */
+    (function contactForm() {
+      var form = document.getElementById('partnership-form');
+      if (!form) return;
+
+      // Status message element injected into the form grid
+      var statusEl = document.createElement('div');
+      statusEl.style.cssText =
+        'grid-column: 1 / -1; margin-top: 8px; font-family: var(--font-mono); ' +
+        'font-size: 0.85rem; letter-spacing: 0.02em; opacity: 0; ' +
+        'transition: opacity 0.3s ease;';
+      var grid = form.querySelector('.form-grid');
+      if (grid) grid.appendChild(statusEl);
+
+      function showStatus(message, type) {
+        statusEl.textContent = message;
+        statusEl.style.color = type === 'error' ? '#ff6b6b' : 'var(--signal)';
+        statusEl.style.opacity = '1';
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var cfg = window.HNM_CONFIG || {};
+        if (!cfg.SUPABASE_URL || !cfg.SUPABASE_ANON_KEY) {
+          showStatus('Form is not configured. Please book a call directly at booking.hicksnewmedia.com.', 'error');
+          return;
+        }
+
+        // Client-side validation (server-side validation enforced by RLS)
+        var name    = form.name.value.trim();
+        var email   = form.email.value.trim();
+        var message = form.message.value.trim();
+        if (!name || !email || !message) {
+          showStatus('Please fill in name, email, and brief.', 'error');
+          return;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          showStatus('Please enter a valid email address.', 'error');
+          return;
+        }
+
+        var btn = form.querySelector('button[type="submit"]');
+        var originalBtnHTML = btn.innerHTML;
+        btn.innerHTML = 'Sending&hellip;';
+        btn.disabled = true;
+        statusEl.style.opacity = '0';
+
+        var payload = {
+          name:       name,
+          email:      email,
+          company:    form.company.value.trim() || null,
+          inquiry:    form.inquiry.value,
+          message:    message,
+          source:     form.source ? form.source.value : '',
+          user_agent: navigator.userAgent.slice(0, 500),
+          referer:    document.referrer || null
+        };
+
+        fetch(cfg.SUPABASE_URL.replace(/\/$/, '') + '/rest/v1/partnership_inquiries', {
+          method: 'POST',
+          headers: {
+            'apikey':        cfg.SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + cfg.SUPABASE_ANON_KEY,
+            'Content-Type':  'application/json',
+            'Prefer':        'return=minimal'
+          },
+          body: JSON.stringify(payload)
+        })
+          .then(function (r) {
+            if (r.ok) {
+              showStatus('Brief received. Response within 24–48 hours.', 'success');
+              form.reset();
+            } else {
+              throw new Error('HTTP ' + r.status);
+            }
+          })
+          .catch(function (err) {
+            console.error('Inquiry submission failed:', err);
+            showStatus('Something went wrong. Please book a call directly at booking.hicksnewmedia.com.', 'error');
+          })
+          .then(function () {
+            btn.innerHTML = originalBtnHTML;
+            btn.disabled = false;
+          });
+      });
     })();
   </script>
 
