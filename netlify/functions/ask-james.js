@@ -339,7 +339,10 @@ const TOOLS = [
 ];
 
 // ─── Call Claude API ──────────────────────────────────────────────────
-async function callClaude(history, newMessage) {
+async function callClaude(history, newMessage, attempt) {
+  attempt = attempt || 1;
+  var MAX_ATTEMPTS = 3;
+
   const messages = [
     ...history.map((m) => ({ role: m.role, content: m.content })),
     { role: "user", content: newMessage },
@@ -361,9 +364,20 @@ async function callClaude(history, newMessage) {
     }),
   });
 
+  // Retry on 529 (overloaded) and 503 (service unavailable) with exp backoff
+  // 1s, 2s, 4s — total max wait ~7s before giving up
+  if ((res.status === 529 || res.status === 503) && attempt < MAX_ATTEMPTS) {
+    const delayMs = 1000 * Math.pow(2, attempt - 1);
+    console.log("Claude API " + res.status + ", retrying in " + delayMs + "ms (attempt " + attempt + "/" + MAX_ATTEMPTS + ")");
+    await new Promise((r) => setTimeout(r, delayMs));
+    return callClaude(history, newMessage, attempt + 1);
+  }
+
   if (!res.ok) {
     const text = await res.text();
-    throw new Error("Claude API " + res.status + ": " + text);
+    const err = new Error("Claude API " + res.status + ": " + text);
+    err.status = res.status;
+    throw err;
   }
   return res.json();
 }
@@ -548,6 +562,23 @@ exports.handler = async (event) => {
     };
   } catch (err) {
     console.error("Ask James error:", err);
+
+    // Anthropic API overloaded — surface a specific, useful message
+    if (
+      err.status === 529 ||
+      err.status === 503 ||
+      (err.message && (err.message.indexOf("Claude API 529") !== -1 || err.message.indexOf("Claude API 503") !== -1))
+    ) {
+      return {
+        statusCode: 503,
+        headers: cors(origin),
+        body: JSON.stringify({
+          error:
+            "Claude's servers are slammed right now. Try again in a minute, or use the contact form if you'd like James to follow up directly.",
+        }),
+      };
+    }
+
     return {
       statusCode: 500,
       headers: cors(origin),
