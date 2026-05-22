@@ -311,6 +311,14 @@
 
     @media (max-width: 1180px) {
       .nav-links { display: none; }
+      .nav-inner {
+        gap: 16px;
+        padding: 14px var(--gutter);
+      }
+      .nav-cta {
+        padding: 9px 14px;
+        font-size: 0.8rem;
+      }
       .nav-toggle {
         display: flex;
         flex-direction: column;
@@ -319,7 +327,9 @@
         background: none;
         border: none;
         cursor: pointer;
-        z-index: 101;
+        position: relative;
+        z-index: 110;
+        flex-shrink: 0;
       }
       .nav-toggle span {
         display: block;
@@ -379,6 +389,46 @@
       }
       body.menu-open .nav-toggle span:nth-child(3) {
         transform: translateY(-5.5px) rotate(-45deg);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-inner { gap: 10px; padding: 12px var(--gutter); }
+      .nav-divider { display: none; }
+      .nav-logo { font-size: 1.1rem; gap: 8px; }
+      .nav-logo-mark svg { width: 36px !important; height: 30px !important; }
+      .nav-cta { padding: 7px 11px; font-size: 0.74rem; }
+      .nav-links-cta-mobile a {
+        display: block;
+        background: var(--signal) !important;
+        color: var(--ink) !important;
+        text-align: center;
+        font-weight: 600 !important;
+        margin: 8px 0 16px !important;
+        padding: 14px !important;
+        border-radius: 2px;
+      }
+    }
+
+    /* Book James prominent at top of mobile menu */
+    .nav-links-cta-mobile { display: none; }
+    @media (max-width: 1180px) {
+      body.menu-open .nav-links-cta-mobile {
+        display: block;
+        list-style: none;
+        border-bottom: none !important;
+      }
+      body.menu-open .nav-links-cta-mobile a {
+        display: block;
+        background: var(--signal);
+        color: var(--ink) !important;
+        text-align: center;
+        font-weight: 600;
+        margin: 4px 0 12px;
+        padding: 14px;
+        border-radius: 2px;
+        font-family: var(--font-display);
+        font-size: 1rem;
       }
     }
 
@@ -1489,6 +1539,7 @@
         <span>Hicks<span class="signal">New</span>Media<span class="signal">.</span></span>
       </a>
       <ul class="nav-links">
+        <li class="nav-links-cta-mobile"><a href="https://booking.hicksnewmedia.com">Book James →</a></li>
         <li><a href="#why">Why James</a></li>
         <li><a href="#network">The Network</a></li>
         <li><a href="#pillars">Pillars</a></li>
