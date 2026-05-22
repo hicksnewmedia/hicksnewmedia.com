@@ -342,6 +342,13 @@
       /* Mobile menu open state */
       body.menu-open { overflow: hidden; }
       body.menu-open .nav-cta { display: none; }
+      /* CRITICAL: remove backdrop-filter so .nav-links escapes the nav's containing block
+         and can use position:fixed against the viewport, not the nav bar */
+      body.menu-open .nav {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: var(--ink);
+      }
       body.menu-open .nav-links {
         display: flex;
         flex-direction: column;
