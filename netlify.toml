@@ -1,3 +1,4 @@
+# ════════════════════════════════════════════════════════════════════════
 # Netlify configuration for hicksnewmedia.com
 # https://docs.netlify.com/configure-builds/file-based-configuration/
 #
@@ -8,9 +9,19 @@
 #
 # Subdomain pages reference shared assets at /assets/*, which serve
 # from the same site root for every subdomain.
+#
+# Also serves the Ask James AI chatbot as a Netlify Function at
+#   /.netlify/functions/ask-james
+# ════════════════════════════════════════════════════════════════════════
 
 [build]
   publish = "."
+  # Functions live in netlify/functions/ for the Ask James chatbot
+  functions = "netlify/functions"
+
+[functions]
+  # Faster bundling for the ask-james function
+  node_bundler = "esbuild"
 
 # ────────── Subdomain routing ──────────
 # Only rewrite the root path "/" for each subdomain. All other paths
@@ -30,6 +41,12 @@
   status = 200
   force = true
   conditions = {Host = ["links.hicksnewmedia.com"]}
+
+# Pretty URL for /ask → /ask.html (Ask James chatbot dedicated page)
+[[redirects]]
+  from = "/ask"
+  to = "/ask.html"
+  status = 200
 
 # ────────── Security headers (apply to all subdomains) ──────────
 [[headers]]
@@ -52,3 +69,9 @@
   for = "/*.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
+
+# Never cache the chatbot function responses
+[[headers]]
+  for = "/.netlify/functions/*"
+  [headers.values]
+    Cache-Control = "no-store, max-age=0"

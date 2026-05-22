@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ask James — AI Assistant · HicksNewMedia</title>
+  <meta name="description" content="Ask the AI version of James Hicks anything about HicksNewMedia, partnerships, the network, or the business of technology. Trained on James's editorial voice and published work." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ask James — AI Assistant · HicksNewMedia" />
+  <meta property="og:description" content="An AI version of James Hicks, available 24/7 to answer questions about partnerships, the HicksNewMedia network, and the business of technology." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://hicksnewmedia.com/ask" />
+  <meta property="og:image" content="https://hicksnewmedia.com/assets/brand/og-image-main.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:creator" content="@JamesHicks" />
+
+  <link rel="canonical" href="https://hicksnewmedia.com/ask" />
+  <link rel="icon" type="image/svg+xml" href="/assets/brand/hnm-favicon.svg" />
+
+  <!-- GA4 with Consent Mode v2 (mirrors main site) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-84CLZGN2R7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+      'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied',
+      'analytics_storage': 'denied', 'functionality_storage': 'denied', 'personalization_storage': 'denied',
+      'security_storage': 'granted', 'wait_for_update': 500
+    });
+    try {
+      if (localStorage.getItem('hnm_consent_v1') === 'granted') {
+        gtag('consent', 'update', {
+          'ad_storage': 'granted', 'ad_user_data': 'granted', 'ad_personalization': 'granted',
+          'analytics_storage': 'granted', 'functionality_storage': 'granted', 'personalization_storage': 'granted'
+        });
+      }
+    } catch(e) {}
+    gtag('js', new Date());
+    gtag('config', 'G-84CLZGN2R7', { 'anonymize_ip': true });
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&family=Geist:wght@300..700&family=JetBrains+Mono:wght@400;500;600&family=National+Park:wght@400;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --ink: #0a0a0a;
+      --ink-2: #131313;
+      --ink-3: #1a1a1a;
+      --paper: #f5f1eb;
+      --signal: #f48022;
+      --signal-deep: #d96a14;
+      --ocean: #20557b;
+      --rule: rgba(245, 241, 235, 0.10);
+      --rule-strong: rgba(245, 241, 235, 0.22);
+      --font-display: "Fraunces", Georgia, serif;
+      --font-sans: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: "JetBrains Mono", Menlo, monospace;
+      --gutter: clamp(20px, 4vw, 56px);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .ask-nav {
+      padding: 18px var(--gutter);
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .ask-nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--paper);
+      font-family: "National Park", var(--font-sans);
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: -0.01em;
+    }
+    .ask-nav-logo .signal { color: var(--signal); }
+    .ask-nav-logo svg { width: 38px; height: 32px; display: block; flex-shrink: 0; }
+    .ask-nav-back {
+      color: rgba(245, 241, 235, 0.65);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.15s;
+    }
+    .ask-nav-back:hover { color: var(--paper); }
+
+    .ask-hero {
+      padding: clamp(40px, 6vw, 72px) var(--gutter) 24px;
+      max-width: 880px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .ask-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--signal);
+      margin-bottom: 14px;
+    }
+    .ask-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.02;
+      margin: 0 0 16px;
+      font-variation-settings: "opsz" 144, "SOFT" 50;
+    }
+    .ask-title em {
+      font-style: italic;
+      color: var(--signal);
+    }
+    .ask-lede {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: rgba(245, 241, 235, 0.72);
+      max-width: 620px;
+      margin: 0;
+    }
+
+    .ask-chat-container {
+      max-width: 880px;
+      margin: 24px auto 48px;
+      padding: 0 var(--gutter);
+      width: 100%;
+      flex: 1;
+    }
+
+    .ask-footer {
+      padding: 32px var(--gutter);
+      border-top: 1px solid var(--rule);
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(245, 241, 235, 0.4);
+      margin-top: auto;
+    }
+    .ask-footer a { color: var(--signal); text-decoration: none; }
+    .ask-footer a:hover { color: var(--paper); }
+
+    @media (max-width: 540px) {
+      .ask-hero { padding-top: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="ask-nav">
+    <a href="/" class="ask-nav-logo">
+      <svg viewBox="0 0 220 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+        <rect x="26" y="30" width="120" height="24" fill="#F5F1EB"/>
+        <rect x="26" y="78" width="168" height="24" fill="#F48022"/>
+        <rect x="26" y="126" width="120" height="24" fill="#F5F1EB"/>
+        <rect x="170" y="126" width="24" height="24" fill="#F48022"/>
+      </svg>
+      <span>Hicks<span class="signal">New</span>Media<span class="signal">.</span></span>
+    </a>
+    <a href="/" class="ask-nav-back">← Back to site</a>
+  </nav>
+
+  <header class="ask-hero">
+    <div class="ask-eyebrow">AI Assistant · Beta</div>
+    <h1 class="ask-title">Ask <em>James.</em></h1>
+    <p class="ask-lede">
+      An AI version of James, trained on his work, editorial voice, and the HicksNewMedia network. Ask about partnerships, case studies, the business of technology, or anything on the site. No hype. Just the facts.
+    </p>
+  </header>
+
+  <main class="ask-chat-container">
+    <!-- The widget script auto-mounts here in fullscreen mode -->
+    <div id="hnm-chatbot-fullscreen"></div>
+  </main>
+
+  <footer class="ask-footer">
+    <a href="/">hicksnewmedia.com</a> · No hype. Just the facts. · <a href="/privacy">privacy</a>
+  </footer>
+
+  <script src="/hnm-chatbot.js" defer></script>
+</body>
+</html>
