@@ -335,37 +335,42 @@
         display: flex;
         flex-direction: column;
         position: fixed;
-        top: 72px;
+        top: 64px;
         left: 0;
         right: 0;
         bottom: 0;
         background: var(--ink);
-        padding: 32px var(--gutter) 40px;
+        padding: 8px var(--gutter) 32px;
         margin: 0;
         gap: 0;
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
         z-index: 100;
-        align-items: stretch;
+        list-style: none;
         border-top: 1px solid var(--rule);
       }
       body.menu-open .nav-links li {
         list-style: none;
+        margin: 0;
+        padding: 0;
         border-bottom: 1px solid var(--rule);
       }
       body.menu-open .nav-links li.nav-sep {
         border-bottom: none;
-        height: 20px;
+        height: 16px;
       }
       body.menu-open .nav-links a {
         display: block;
-        padding: 18px 4px;
+        padding: 14px 2px;
+        margin: 0;
         font-family: var(--font-display);
-        font-size: 1.1rem;
+        font-size: 1rem;
         font-weight: 400;
         letter-spacing: -0.005em;
         color: var(--paper);
       }
-      body.menu-open .nav-links a:hover { color: var(--signal); }
+      body.menu-open .nav-links a:hover,
+      body.menu-open .nav-links a:focus { color: var(--signal); }
       body.menu-open .nav-toggle span:nth-child(1) {
         transform: translateY(5.5px) rotate(45deg);
       }
