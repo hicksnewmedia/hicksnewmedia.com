@@ -2577,62 +2577,73 @@
 
     /* ────────────────────────────────────────────────────────────
        Cookie consent banner controller
+       Waits for DOM to be ready since the banner HTML is rendered
+       later in the document than this script.
        ──────────────────────────────────────────────────────────── */
     (function consentBanner() {
-      var banner = document.getElementById('hnm-consent');
-      if (!banner) return;
+      function init() {
+        var banner = document.getElementById('hnm-consent');
+        if (!banner) return;
 
-      // If user already chose, never show banner again
-      try {
-        if (localStorage.getItem('hnm_consent_v1') !== null) return;
-      } catch(e) {}
+        // If user already chose, never show banner again
+        try {
+          if (localStorage.getItem('hnm_consent_v1') !== null) return;
+        } catch(e) {}
 
-      // Show banner after a short delay so hero gets focus on first impression
-      setTimeout(function() {
-        banner.hidden = false;
-        requestAnimationFrame(function() {
-          banner.setAttribute('data-visible', 'true');
-        });
-      }, 1500);
+        // Show banner after a short delay so hero gets focus on first impression
+        setTimeout(function() {
+          banner.hidden = false;
+          requestAnimationFrame(function() {
+            banner.setAttribute('data-visible', 'true');
+          });
+        }, 1500);
 
-      // "More info" toggle
-      var moreBtn = banner.querySelector('.hnm-consent-more');
-      var details = document.getElementById('hnm-consent-details');
-      if (moreBtn && details) {
-        moreBtn.addEventListener('click', function() {
-          var isOpen = !details.hidden;
-          details.hidden = isOpen;
-          moreBtn.setAttribute('aria-expanded', String(!isOpen));
-          moreBtn.textContent = isOpen ? 'More info' : 'Hide info';
+        // "More info" toggle
+        var moreBtn = banner.querySelector('.hnm-consent-more');
+        var details = document.getElementById('hnm-consent-details');
+        if (moreBtn && details) {
+          moreBtn.addEventListener('click', function() {
+            var isOpen = !details.hidden;
+            details.hidden = isOpen;
+            moreBtn.setAttribute('aria-expanded', String(!isOpen));
+            moreBtn.textContent = isOpen ? 'More info' : 'Hide info';
+          });
+        }
+
+        // Accept / Decline
+        banner.addEventListener('click', function(e) {
+          var btn = e.target.closest('[data-consent]');
+          if (!btn) return;
+          var choice = btn.getAttribute('data-consent');
+
+          try {
+            localStorage.setItem('hnm_consent_v1', choice === 'accept' ? 'granted' : 'denied');
+          } catch(e) {}
+
+          if (choice === 'accept' && typeof gtag === 'function') {
+            gtag('consent', 'update', {
+              'ad_storage':             'granted',
+              'ad_user_data':           'granted',
+              'ad_personalization':     'granted',
+              'analytics_storage':      'granted',
+              'functionality_storage':  'granted',
+              'personalization_storage':'granted'
+            });
+          }
+          // On decline: keep default 'denied' state. Consent Mode v2 still sends
+          // anonymous pings to GA for aggregate counting without personal data.
+
+          banner.setAttribute('data-visible', 'false');
+          setTimeout(function() { banner.hidden = true; }, 400);
         });
       }
 
-      // Accept / Decline
-      banner.addEventListener('click', function(e) {
-        var btn = e.target.closest('[data-consent]');
-        if (!btn) return;
-        var choice = btn.getAttribute('data-consent');
-
-        try {
-          localStorage.setItem('hnm_consent_v1', choice === 'accept' ? 'granted' : 'denied');
-        } catch(e) {}
-
-        if (choice === 'accept' && typeof gtag === 'function') {
-          gtag('consent', 'update', {
-            'ad_storage':             'granted',
-            'ad_user_data':           'granted',
-            'ad_personalization':     'granted',
-            'analytics_storage':      'granted',
-            'functionality_storage':  'granted',
-            'personalization_storage':'granted'
-          });
-        }
-        // On decline: keep default 'denied' state. Consent Mode v2 still sends
-        // anonymous pings to GA for aggregate counting without personal data.
-
-        banner.setAttribute('data-visible', 'false');
-        setTimeout(function() { banner.hidden = true; }, 400);
-      });
+      // Run init when DOM is ready (banner HTML may not exist at script-execute time)
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
     })();
 
     /* ────────────────────────────────────────────────────────────
