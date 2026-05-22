@@ -13,6 +13,49 @@
   <meta property="og:url" content="https://hicksnewmedia.com" />
   <meta name="twitter:card" content="summary_large_image" />
 
+  <!-- ════════════════════════════════════════════════════════════
+       Google Analytics 4 (Consent Mode v2)
+       Default state denies all storage until user consents.
+       If a previous "granted" choice is in localStorage, restore it.
+       Custom event tracking is wired further down in body scripts.
+       ════════════════════════════════════════════════════════════ -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-84CLZGN2R7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+
+    // Consent Mode v2 — default to denied (required for GDPR/CCPA compliance)
+    gtag('consent', 'default', {
+      'ad_storage':             'denied',
+      'ad_user_data':           'denied',
+      'ad_personalization':     'denied',
+      'analytics_storage':      'denied',
+      'functionality_storage':  'denied',
+      'personalization_storage':'denied',
+      'security_storage':       'granted',
+      'wait_for_update':        500
+    });
+
+    // Restore previously-granted consent from localStorage
+    try {
+      if (localStorage.getItem('hnm_consent_v1') === 'granted') {
+        gtag('consent', 'update', {
+          'ad_storage':             'granted',
+          'ad_user_data':           'granted',
+          'ad_personalization':     'granted',
+          'analytics_storage':      'granted',
+          'functionality_storage':  'granted',
+          'personalization_storage':'granted'
+        });
+      }
+    } catch(e) {}
+
+    gtag('js', new Date());
+    gtag('config', 'G-84CLZGN2R7', {
+      'anonymize_ip': true
+    });
+  </script>
+
   <!-- Fonts: Fraunces (variable serif display) + Geist (sans body) + JetBrains Mono (accents) -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1462,6 +1505,117 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* ──────────────────────────────────────────────────────────
+       COOKIE CONSENT BANNER (Consent Mode v2)
+       Bottom-anchored, dark, signal-orange accent.
+       Visible only until user makes a choice (stored in localStorage).
+       ────────────────────────────────────────────────────────── */
+    .hnm-consent {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 9999;
+      background: var(--ink-2);
+      border-top: 1px solid var(--rule-strong);
+      padding: 20px var(--gutter);
+      font-family: var(--font-sans);
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 -16px 48px rgba(0, 0, 0, 0.5);
+    }
+    .hnm-consent[data-visible="true"] {
+      transform: translateY(0);
+    }
+    .hnm-consent-inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .hnm-consent-msg {
+      flex: 1 1 280px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: var(--paper);
+      margin: 0;
+    }
+    .hnm-consent-msg .label {
+      color: var(--signal);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      display: inline-block;
+      margin-right: 8px;
+      font-family: var(--font-mono);
+    }
+    .hnm-consent-actions {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .hnm-consent-btn {
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 10px 18px;
+      border: 1px solid var(--rule-strong);
+      background: transparent;
+      color: var(--paper);
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .hnm-consent-btn:hover {
+      border-color: var(--paper);
+    }
+    .hnm-consent-btn-primary {
+      background: var(--signal);
+      color: var(--ink);
+      border-color: var(--signal);
+      font-weight: 600;
+    }
+    .hnm-consent-btn-primary:hover {
+      background: var(--signal-deep);
+      border-color: var(--signal-deep);
+    }
+    .hnm-consent-more {
+      background: none;
+      border: none;
+      color: var(--signal);
+      cursor: pointer;
+      font: inherit;
+      text-decoration: underline;
+      padding: 0;
+      margin-left: 4px;
+    }
+    .hnm-consent-more:hover { color: var(--paper); }
+    .hnm-consent-details {
+      flex-basis: 100%;
+      margin-top: 4px;
+      padding-top: 14px;
+      border-top: 1px solid var(--rule);
+      font-size: 0.85rem;
+      color: rgba(245, 241, 235, 0.7);
+      line-height: 1.55;
+    }
+    .hnm-consent-details p { margin: 0 0 8px; }
+    .hnm-consent-details p:last-child { margin-bottom: 0; }
+    .hnm-consent-details a {
+      color: var(--signal);
+      text-decoration: underline;
+    }
+    @media (max-width: 720px) {
+      .hnm-consent { padding: 14px var(--gutter); }
+      .hnm-consent-inner { gap: 12px; }
+      .hnm-consent-msg { font-size: 0.85rem; }
+      .hnm-consent-actions { width: 100%; }
+      .hnm-consent-btn { flex: 1; padding: 11px 12px; font-size: 0.82rem; }
+    }
   </style>
   <link rel="icon" type="image/svg+xml" href="/assets/brand/hnm-favicon.svg">
   <link rel="apple-touch-icon" href="/assets/brand/hnm-favicon.svg">
@@ -2319,6 +2473,13 @@
             if (r.ok) {
               showStatus('Brief received. Response within 24–48 hours.', 'success');
               form.reset();
+              // GA4 conversion event — fires only after Supabase confirms insert
+              if (typeof window.hnmTrack === 'function') {
+                window.hnmTrack('partnership_inquiry_submit', {
+                  inquiry_type: payload.inquiry,
+                  has_company:  !!payload.company
+                });
+              }
             } else {
               throw new Error('HTTP ' + r.status);
             }
@@ -2413,8 +2574,129 @@
         return String(s == null ? "" : s).replace(/[^a-zA-Z0-9_\-]/g, "");
       }
     })();
+
+    /* ────────────────────────────────────────────────────────────
+       Cookie consent banner controller
+       ──────────────────────────────────────────────────────────── */
+    (function consentBanner() {
+      var banner = document.getElementById('hnm-consent');
+      if (!banner) return;
+
+      // If user already chose, never show banner again
+      try {
+        if (localStorage.getItem('hnm_consent_v1') !== null) return;
+      } catch(e) {}
+
+      // Show banner after a short delay so hero gets focus on first impression
+      setTimeout(function() {
+        banner.hidden = false;
+        requestAnimationFrame(function() {
+          banner.setAttribute('data-visible', 'true');
+        });
+      }, 1500);
+
+      // "More info" toggle
+      var moreBtn = banner.querySelector('.hnm-consent-more');
+      var details = document.getElementById('hnm-consent-details');
+      if (moreBtn && details) {
+        moreBtn.addEventListener('click', function() {
+          var isOpen = !details.hidden;
+          details.hidden = isOpen;
+          moreBtn.setAttribute('aria-expanded', String(!isOpen));
+          moreBtn.textContent = isOpen ? 'More info' : 'Hide info';
+        });
+      }
+
+      // Accept / Decline
+      banner.addEventListener('click', function(e) {
+        var btn = e.target.closest('[data-consent]');
+        if (!btn) return;
+        var choice = btn.getAttribute('data-consent');
+
+        try {
+          localStorage.setItem('hnm_consent_v1', choice === 'accept' ? 'granted' : 'denied');
+        } catch(e) {}
+
+        if (choice === 'accept' && typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'ad_storage':             'granted',
+            'ad_user_data':           'granted',
+            'ad_personalization':     'granted',
+            'analytics_storage':      'granted',
+            'functionality_storage':  'granted',
+            'personalization_storage':'granted'
+          });
+        }
+        // On decline: keep default 'denied' state. Consent Mode v2 still sends
+        // anonymous pings to GA for aggregate counting without personal data.
+
+        banner.setAttribute('data-visible', 'false');
+        setTimeout(function() { banner.hidden = true; }, 400);
+      });
+    })();
+
+    /* ────────────────────────────────────────────────────────────
+       GA4 conversion event tracking
+       Delegated click listener captures all CTAs and outbound clicks.
+       Events fire regardless of consent state — Consent Mode v2 handles
+       whether they're recorded with full data or as anonymous signals.
+       ──────────────────────────────────────────────────────────── */
+    (function eventTracking() {
+      function track(name, params) {
+        if (typeof gtag !== 'function') return;
+        gtag('event', name, params || {});
+      }
+
+      document.addEventListener('click', function(e) {
+        var a = e.target.closest('a');
+        if (!a) return;
+        var href = (a.getAttribute('href') || '').toLowerCase();
+        var text = (a.textContent || '').toLowerCase().trim().slice(0, 50);
+        if (!href) return;
+
+        if (href.indexOf('booking.hicksnewmedia.com') !== -1) {
+          track('book_call_click', { link_text: text, link_url: href });
+        } else if (href.indexOf('mediakit.hicksnewmedia.com') !== -1) {
+          track('media_kit_click', { link_text: text, link_url: href });
+        } else if (href.indexOf('digitalcollective.media') !== -1) {
+          track('newsletter_click', { link_text: text, link_url: href });
+        } else if (href.indexOf('digitalcollective.network') !== -1) {
+          track('community_click', { link_text: text, link_url: href });
+        } else if (href.indexOf('merch.hicksnewmedia.com') !== -1 || href.indexOf('hnmmerch') !== -1) {
+          track('merch_click', { link_text: text, link_url: href });
+        } else if (href.indexOf('links.hicksnewmedia.com') !== -1) {
+          track('external_property_click', { property: 'links', link_url: href });
+        } else if (/youtube\.com\/(@?jameshicks|c\/jameshicks)/i.test(href)) {
+          track('youtube_click', { link_text: text, link_url: href });
+        }
+      });
+
+      // Expose for hooking into other events (form submit, etc.)
+      window.hnmTrack = track;
+    })();
   </script>
 
   <script src="/hnm-live-banner.js" defer></script>
+
+  <!-- ════════════════════════════════════════════════════════════
+       Cookie consent banner (rendered last so it sits on top of all content)
+       ════════════════════════════════════════════════════════════ -->
+  <div id="hnm-consent" class="hnm-consent" role="dialog" aria-live="polite" aria-labelledby="hnm-consent-label" hidden>
+    <div class="hnm-consent-inner">
+      <p class="hnm-consent-msg" id="hnm-consent-label">
+        <span class="label">Analytics</span>We use Google Analytics to count visits and learn what content's working. No ad tracking. No selling your data.
+        <button type="button" class="hnm-consent-more" aria-expanded="false" aria-controls="hnm-consent-details">More info</button>
+      </p>
+      <div class="hnm-consent-actions">
+        <button type="button" class="hnm-consent-btn hnm-consent-btn-primary" data-consent="accept">Accept</button>
+        <button type="button" class="hnm-consent-btn" data-consent="decline">Decline</button>
+      </div>
+      <div class="hnm-consent-details" id="hnm-consent-details" hidden>
+        <p>Google Analytics 4 with IP anonymization. A single first-party cookie measures pageviews, traffic sources, and which calls-to-action (Book James, Media Kit, Newsletter) visitors click. Used to understand which content and properties drive partnerships.</p>
+        <p>Declining keeps the site fully functional. No personal data is sent to Google. Anonymous aggregate signals continue (Consent Mode v2 default behavior).</p>
+        <p>You can change your choice anytime by clearing this site's localStorage. Full details in the <a href="/privacy">privacy policy</a>.</p>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
