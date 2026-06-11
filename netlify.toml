@@ -7,9 +7,6 @@
 #   mediakit.hicksnewmedia.com  → /mediakit/index.html (browser media kit)
 #   links.hicksnewmedia.com     → /links/index.html    (link hub)
 #
-# Plus subdomain redirect:
-#   booking.hicksnewmedia.com   → hicksnewmedia.com/book (legacy URL preserve)
-#
 # Subdomain pages reference shared assets at /assets/*, which serve
 # from the same site root for every subdomain.
 #
@@ -46,15 +43,6 @@
   status = 200
   force = true
   conditions = {Host = ["links.hicksnewmedia.com"]}
-
-# Booking subdomain → hicksnewmedia.com/book (301 preserves SEO + legacy bookmarks)
-# Catches every path, not just root, so old deep links still resolve.
-[[redirects]]
-  from = "/*"
-  to = "https://hicksnewmedia.com/book"
-  status = 301
-  force = true
-  conditions = {Host = ["booking.hicksnewmedia.com"]}
 
 # Pretty URL for /ask → /ask.html (Ask James chatbot dedicated page)
 [[redirects]]
