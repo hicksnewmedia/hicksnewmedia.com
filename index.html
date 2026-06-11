@@ -11,6 +11,37 @@
   <meta property="og:description" content="30+ years in IT. No hype, just the facts. James Hicks is a tenured technologist and founder of HicksNewMedia." />
 <meta property="og:type" content="website" />
   <meta property="og:url" content="https://hicksnewmedia.com" />
+  <!-- ════════════════════════════════════════════════════════════
+       Cal.com embed (popup modal + element-click triggers)
+       Any element with data-cal-link="jameshicks" opens calendar in modal
+       ════════════════════════════════════════════════════════════ -->
+  <script type="text/javascript">
+    (function (C, A, L) {
+      let p = function (a, ar) { a.q.push(ar); };
+      let d = C.document;
+      C.Cal = C.Cal || function () {
+        let cal = C.Cal; let ar = arguments;
+        if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; }
+        if (ar[0] === L) {
+          const api = function () { p(api, arguments); };
+          const namespace = ar[1];
+          api.q = api.q || [];
+          if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); }
+          else p(cal, ar);
+          return;
+        }
+        p(cal, ar);
+      };
+    })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", { origin: "https://cal.com" });
+    Cal("ui", {
+      theme: "dark",
+      styles: { branding: { brandColor: "#F48022" } },
+      hideEventTypeDetails: false,
+      layout: "month_view"
+    });
+  </script>
+
   <meta name="twitter:card" content="summary_large_image" />
 
   <!-- ════════════════════════════════════════════════════════════
@@ -1899,7 +1930,7 @@
         <span>Hicks<span class="signal">New</span>Media<span class="signal">.</span></span>
       </a>
       <ul class="nav-links">
-        <li class="nav-links-cta-mobile"><a href="https://booking.hicksnewmedia.com">Book James →</a></li>
+        <li class="nav-links-cta-mobile"><a href="/book" data-cal-link="jameshicks" data-cal-namespace="">Book James →</a></li>
         <li><a href="#why">Why James</a></li>
         <li><a href="#network">The Network</a></li>
         <li><a href="#pillars">Pillars</a></li>
@@ -1913,7 +1944,7 @@
         <li><a href="https://merch.hicksnewmedia.com">Merch<span class="ext-arrow">↗</span></a></li>
         <li><a href="https://digitalcollective.media">Newsletter<span class="ext-arrow">↗</span></a></li>
       </ul>
-      <a href="https://booking.hicksnewmedia.com" class="nav-cta">Book James →</a>
+      <a href="/book" data-cal-link="jameshicks" data-cal-namespace="" class="nav-cta">Book James →</a>
       <button class="nav-toggle" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -1940,7 +1971,7 @@
             James Hicks is a tenured technologist with <strong style="color:var(--paper);">30+ years inside enterprise IT</strong>, founder of HicksNewMedia, and host of <a href="https://www.youtube.com/c/JamesHicks/" style="color:var(--signal);">@JamesHicks</a>. He operates a multi-property network reaching technical decision-makers, builder-class creators, and culturally-engaged audiences — and partners with brands that need a credible, no-hype voice.
           </p>
           <div class="hero-actions">
-            <a href="https://booking.hicksnewmedia.com" class="btn btn-primary">Book a Partnership Call <span class="arrow">→</span></a>
+            <a href="/book" data-cal-link="jameshicks" data-cal-namespace="" class="btn btn-primary">Book a Partnership Call <span class="arrow">→</span></a>
             <a href="https://mediakit.hicksnewmedia.com" class="btn btn-ghost">Download Media Kit <span class="arrow">↓</span></a>
           </div>
 
@@ -2246,7 +2277,7 @@
       <div class="partnership-foot reveal">
         <div class="label">Custom scopes, retainers, and conference partnerships available on request. All packages include strategy, scripting, production, and post-publish reporting.</div>
         <div style="display:flex; gap:14px;">
-          <a href="https://booking.hicksnewmedia.com" class="btn btn-primary">Book a partnership call <span class="arrow">→</span></a>
+          <a href="/book" data-cal-link="jameshicks" data-cal-namespace="" class="btn btn-primary">Book a partnership call <span class="arrow">→</span></a>
           <a href="https://mediakit.hicksnewmedia.com" class="btn btn-ghost">Get the media kit <span class="arrow">↓</span></a>
         </div>
       </div>
@@ -2441,7 +2472,7 @@
           Whether you're an enterprise tech brand looking for technically-fluent coverage, a creator tool ready to reach builders, or an event team that needs a host who can hold the room — let's talk about what the partnership looks like.
         </p>
         <div class="cta-actions">
-          <a href="https://booking.hicksnewmedia.com" class="btn btn-primary">Book a partnership call <span class="arrow">→</span></a>
+          <a href="/book" data-cal-link="jameshicks" data-cal-namespace="" class="btn btn-primary">Book a partnership call <span class="arrow">→</span></a>
           <a href="https://mediakit.hicksnewmedia.com" class="btn btn-ghost">Download media kit <span class="arrow">↓</span></a>
         </div>
       </div>
@@ -2559,7 +2590,7 @@
         <div class="footer-col">
           <h4>Work With James</h4>
           <ul>
-            <li><a href="https://booking.hicksnewmedia.com">Book a partnership call</a></li>
+            <li><a href="/book" data-cal-link="jameshicks" data-cal-namespace="">Book a partnership call</a></li>
             <li><a href="https://links.hicksnewmedia.com">All my links ↗</a></li>
             <li><a href="https://mediakit.hicksnewmedia.com">Media kit ↗</a></li>
             <li><a href="https://digitalcollective.media">Newsletter ↗</a></li>
@@ -2651,7 +2682,7 @@
 
         var cfg = window.HNM_CONFIG || {};
         if (!cfg.SUPABASE_URL || !cfg.SUPABASE_ANON_KEY) {
-          showStatus('Form is not configured. Please book a call directly at booking.hicksnewmedia.com.', 'error');
+          showStatus('Form is not configured. Please book a call directly at hicksnewmedia.com/book.', 'error');
           return;
         }
 
@@ -2712,7 +2743,7 @@
           })
           .catch(function (err) {
             console.error('Inquiry submission failed:', err);
-            showStatus('Something went wrong. Please book a call directly at booking.hicksnewmedia.com.', 'error');
+            showStatus('Something went wrong. Please book a call directly at hicksnewmedia.com/book.', 'error');
           })
           .then(function () {
             btn.innerHTML = originalBtnHTML;
@@ -3016,7 +3047,7 @@
         var text = (a.textContent || '').toLowerCase().trim().slice(0, 50);
         if (!href) return;
 
-        if (href.indexOf('booking.hicksnewmedia.com') !== -1) {
+        if (href.indexOf('booking.hicksnewmedia.com') !== -1 || href === '/book' || href.endsWith('/book')) {
           track('book_call_click', { link_text: text, link_url: href });
         } else if (href.indexOf('mediakit.hicksnewmedia.com') !== -1) {
           track('media_kit_click', { link_text: text, link_url: href });
@@ -3040,6 +3071,7 @@
 
   <script src="/hnm-live-banner.js" defer></script>
   <script src="/hnm-chatbot.js" defer></script>
+  <script src="/hnm-cal-modal.js" defer></script>
 
   <!-- ════════════════════════════════════════════════════════════
        Cookie consent banner (rendered last so it sits on top of all content)

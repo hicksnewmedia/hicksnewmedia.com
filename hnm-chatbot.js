@@ -184,7 +184,7 @@
       '<div class="hnm-chat-card-eyebrow">Partnership inquiry</div>',
       '<h3 class="hnm-chat-card-title">Talk to James directly</h3>',
       '<p class="hnm-chat-card-body">Book a partnership call. 15–30 minutes, no pitch deck required.</p>',
-      '<a href="https://booking.hicksnewmedia.com" class="hnm-chat-card-btn" target="_blank" rel="noopener" data-track="booking-card">Book a Call →</a>',
+      '<a href="/book" data-cal-link="jameshicks" data-cal-namespace="" class="hnm-chat-card-btn" data-track="booking-card">Book a Call →</a>',
     ].join("");
     msgs.appendChild(card);
     msgs.scrollTop = msgs.scrollHeight;
@@ -192,11 +192,20 @@
     // GA4 event
     track("chatbot_booking_surfaced", { reason: (reason || "").slice(0, 100) });
 
-    // Track click on the card button
+    // Track click — Cal.com auto-attaches modal trigger via data-cal-link attribute,
+    // but for dynamically-added buttons we also explicitly call Cal("modal") to be safe.
     var btn = card.querySelector("[data-track=booking-card]");
     if (btn) {
-      btn.addEventListener("click", function () {
+      btn.addEventListener("click", function (e) {
         track("chatbot_booking_click", { source: "ai-card" });
+        if (typeof window.Cal === "function") {
+          e.preventDefault();
+          window.Cal("modal", {
+            calLink: "jameshicks",
+            config: { layout: "month_view" }
+          });
+        }
+        // If Cal isn't loaded, href="/book" fallback navigation runs naturally
       });
     }
   }
