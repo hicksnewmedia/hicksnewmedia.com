@@ -1,0 +1,45 @@
+name: Sync The Stack
+
+# Regenerates links/tools.json from the Notion "The Stack — Tool Registry".
+# Trigger it from the Actions tab (the "Run workflow" button), or let the
+# weekly schedule pick up any changes you made in Notion.
+
+on:
+  workflow_dispatch:        # the button — run on demand
+  schedule:
+    - cron: '0 14 * * 1'    # every Monday 14:00 UTC, as a safety net
+
+permissions:
+  contents: write           # allow the action to commit tools.json
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate tools.json from Notion
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          DATABASE_ID: f0c74b57678f4c13a9701f627e2b69c6
+          OUTPUT_PATH: links/tools.json
+        run: node scripts/sync-stack.mjs
+
+      - name: Commit if changed
+        run: |
+          if [[ -n "$(git status --porcelain links/tools.json)" ]]; then
+            git config user.name "hnm-stack-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add links/tools.json
+            git commit -m "Sync The Stack from Notion"
+            git push
+            echo "tools.json updated and pushed."
+          else
+            echo "No changes — tools.json already current."
+          fi
