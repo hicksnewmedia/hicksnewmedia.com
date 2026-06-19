@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-tools-page="v1">
+<html lang="en" data-tools-page="v2">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -275,6 +275,18 @@
       font-weight: 600;
     }
 
+    /* ============ AFFILIATE DISCLOSURE ============ */
+    .affiliate-disclosure {
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      letter-spacing: 0.3px;
+      line-height: 1.5;
+      color: var(--ink-3);
+      max-width: 620px;
+      margin: 0 auto 28px;
+    }
+
     /* ============ TOOL GRID ============ */
     .tools-status {
       text-align: center;
@@ -309,6 +321,15 @@
     }
     .tool-card[data-hidden="true"] {
       display: none;
+    }
+    /* Featured tier — scarce, loud, floats to top */
+    .tool-card--featured {
+      border-color: var(--signal);
+      box-shadow: 0 0 0 1px var(--signal), var(--shadow-md);
+    }
+    .tool-card--featured:hover {
+      border-color: var(--signal);
+      box-shadow: 0 0 0 1px var(--signal), var(--shadow-lg);
     }
     .tool-card__header {
       display: flex;
@@ -370,6 +391,24 @@
       gap: 6px;
       align-items: flex-end;
     }
+    .badge-featured {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 10px;
+      background: var(--ink);
+      color: var(--signal);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 999px;
+    }
+    .badge-featured::before {
+      content: "\2726"; /* ✦ */
+      font-size: 11px;
+    }
     .badge-top-pick {
       display: inline-flex;
       align-items: center;
@@ -385,7 +424,7 @@
       border-radius: 999px;
     }
     .badge-top-pick::before {
-      content: "★";
+      content: "\2605"; /* ★ */
       font-size: 11px;
     }
     .tool-card__title {
@@ -448,6 +487,16 @@
     .tool-card__link svg {
       width: 12px;
       height: 12px;
+    }
+
+    /* ============ LOADING / ERROR ============ */
+    .tools-error {
+      grid-column: 1 / -1;
+      text-align: center;
+      color: var(--ink-3);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      padding: 48px 0;
     }
 
     /* ============ CLOSING CTA ============ */
@@ -569,7 +618,7 @@
         padding: 24px 16px;
         gap: 12px;
       }
-      .header-nav a { display: none; }
+      .header-nav a:not(.btn-visit) { display: none; }
       .filters { padding: 32px 0 24px; }
       .filters__inner { gap: 8px; }
       .chip { padding: 8px 14px; font-size: 13px; }
@@ -614,44 +663,38 @@
       <span class="hero__eyebrow">The Stack · 2026</span>
       <h1 class="hero__title">Tools I Actually<br>Use<span class="accent">.</span></h1>
       <p class="hero__lede">
-        The curated set of hardware, software, and services behind every HNM production, episode, and ship. <em>No paid placements. No filler.</em> Just the gear that earns its slot every week.
+        The curated set of hardware, software, and services behind every HNM production, episode, and ship. <em>Nothing here is sponsored.</em> Just the gear that earns its slot every week.
       </p>
 
       <div class="stats" role="region" aria-label="Stack statistics">
         <div class="stat">
-          <div class="stat__number" id="stat-tools">18</div>
+          <div class="stat__number" id="stat-tools">27</div>
           <div class="stat__label">Tools</div>
         </div>
         <div class="stat">
-          <div class="stat__number">5</div>
+          <div class="stat__number" id="stat-categories">6</div>
           <div class="stat__label">Categories</div>
         </div>
         <div class="stat">
-          <div class="stat__number">30<span class="accent">+</span></div>
+          <div class="stat__number" id="stat-years">30<span class="accent">+</span></div>
           <div class="stat__label">Yrs in Tech</div>
         </div>
       </div>
     </section>
 
-    <!-- ============ FILTERS ============ -->
+    <!-- ============ FILTERS (chips built from data) ============ -->
     <section class="filters">
       <div class="container">
-        <div class="filters__inner" id="filter-bar" role="tablist" aria-label="Filter tools by category">
-          <button class="chip" data-category="all" data-active="true" role="tab" aria-selected="true">All <span class="chip__count" id="count-all">18</span></button>
-          <button class="chip" data-category="hardware" role="tab">Hardware <span class="chip__count" id="count-hardware">3</span></button>
-          <button class="chip" data-category="studio" role="tab">Studio &amp; Production <span class="chip__count" id="count-studio">4</span></button>
-          <button class="chip" data-category="ai" role="tab">AI &amp; Automation <span class="chip__count" id="count-ai">4</span></button>
-          <button class="chip" data-category="ops" role="tab">Knowledge &amp; Ops <span class="chip__count" id="count-ops">3</span></button>
-          <button class="chip" data-category="audience" role="tab">Publishing &amp; Audience <span class="chip__count" id="count-audience">4</span></button>
-        </div>
+        <div class="filters__inner" id="filter-bar" role="tablist" aria-label="Filter tools by category"></div>
       </div>
     </section>
 
     <!-- ============ TOOL GRID ============ -->
     <section class="container">
-      <p class="tools-status" id="tools-status">Showing 18 tools</p>
+      <p class="affiliate-disclosure" id="affiliate-disclosure"></p>
+      <p class="tools-status" id="tools-status">Loading the stack…</p>
       <div class="tools-grid" id="tools-grid">
-        <!-- Tool cards rendered by JS below -->
+        <!-- Tool cards rendered by JS from tools.json -->
       </div>
     </section>
 
@@ -719,357 +762,175 @@
   </script>
 
   <!-- ============ DATA + INTERACTIVITY ============ -->
+  <!--
+    The tool list now lives in tools.json (generated from the Notion registry
+    "The Stack — Tool Registry"). To change the stack, edit Notion and run the
+    sync — do NOT hand-edit this file. Logos self-resolve: logo.icon = a Simple
+    Icons slug, otherwise logo.text renders a lettermark tile.
+  -->
   <script>
-    // Tool data — edit this array to add/remove/update tools.
-    // Each tool: { id, name, emoji, category, topPick, tagline, description, url, linkLabel }
-    // ─── Brand logo lookup ──────────────────────────────────
-    // Simple Icons slug for catalog brands, or null = use lettermark fallback
-    const LOGOS = {
-      'mac-studio':            { type: 'si', slug: 'apple' },
-      'bambu-p2s':             { type: 'si', slug: 'bambulab' },
-      'iphone-pro':            { type: 'lm', text: 'iP' },
-      'ecamm-live':            { type: 'lm', text: 'Ec' },
-      'riverside-fm':          { type: 'si', slug: 'riverside' },
-      'descript':              { type: 'si', slug: 'descript' },
-      'capcut':                { type: 'si', slug: 'capcut' },
-      'claude':                { type: 'si', slug: 'anthropic' },
-      'claude-code':           { type: 'lm', text: 'cc' },
-      'manus':                 { type: 'lm', text: 'Mn' },
-      'vidiq':                 { type: 'lm', text: 'vQ' },
-      'notion':                { type: 'si', slug: 'notion' },
-      'google-workspace':      { type: 'si', slug: 'google' },
-      'github':                { type: 'si', slug: 'github' },
-      'substack':              { type: 'si', slug: 'substack' },
-      'circle':                { type: 'lm', text: 'Cr' },
-      'youtube':               { type: 'si', slug: 'youtube' },
-      'fourthwall':            { type: 'lm', text: 'Fw' }
-    };
+    (function () {
+      'use strict';
 
-    function logoMarkup(tool) {
-      const logo = LOGOS[tool.id];
-      if (!logo) {
-        // No mapping — fall back to existing emoji
-        return tool.emoji;
+      var DATA_URL = './tools.json';
+      var grid = document.getElementById('tools-grid');
+      var statusEl = document.getElementById('tools-status');
+      var filterBar = document.getElementById('filter-bar');
+      var disclosureEl = document.getElementById('affiliate-disclosure');
+
+      var DATA = null;
+      var activeCategory = 'all';
+
+      function esc(s) {
+        return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
       }
-      if (logo.type === 'si') {
-        // Simple Icons via jsDelivr CDN, recolored via CSS filter
-        const url = `https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/${logo.slug}.svg`;
-        return `<img class="tool-card__logo-img" src="${url}" alt="${tool.name} logo" loading="lazy" onerror="this.outerHTML='${tool.emoji}'" />`;
+
+      function initials(name) {
+        var parts = String(name).trim().split(/\s+/);
+        if (parts.length >= 2) return (parts[0][0] + parts[1][0]).toUpperCase();
+        return String(name).slice(0, 2).toUpperCase();
       }
-      if (logo.type === 'lm') {
-        // Lettermark — inline SVG so it inherits paper color
-        return `<span class="tool-card__logo-letter" aria-hidden="true">${logo.text}</span>`;
+
+      function categoryLabel(key) {
+        var cats = DATA.categories || [];
+        for (var i = 0; i < cats.length; i++) { if (cats[i].key === key) return cats[i].label; }
+        return key;
       }
-      return tool.emoji;
-    }
-    const TOOLS = [
-      // =================== HARDWARE ===================
-      {
-        id: 'mac-studio',
-        name: 'Apple Mac Studio',
-        emoji: '🖥️',
-        category: 'hardware',
-        categoryLabel: 'Hardware',
-        topPick: true,
-        tagline: 'The workstation behind every HNM production.',
-        description: "M-series silicon, silent fans, and enough power to render, stream, code, and run a dozen AI workflows in parallel — without breaking a sweat. The daily driver.",
-        url: 'https://www.apple.com/shop/buy-mac/mac-studio',
-        linkLabel: 'Configure'
-      },
-      {
-        id: 'bambu-p2s',
-        name: 'Bambu Lab P2S',
-        emoji: '🛠️',
-        category: 'hardware',
-        categoryLabel: 'Hardware',
-        topPick: true,
-        tagline: 'Production-grade 3D printing without the babysitting.',
-        description: "Fast, multi-color, and reliable enough to run unattended. Prints functional prototypes, custom merch accessories, and brand props — same machine, same hour.",
-        url: 'https://store.bambulab.com/products/p2-series',
-        linkLabel: 'See Lineup'
-      },
-      {
-        id: 'iphone-pro',
-        name: 'iPhone Pro',
-        emoji: '📱',
-        category: 'hardware',
-        categoryLabel: 'Hardware',
-        topPick: false,
-        tagline: 'Studio in your pocket.',
-        description: "The B-roll camera, scratch recorder, livestream second-screen, and on-the-go editing rig all in one. The newest Pro shoots ProRes; everything else is downstream.",
-        url: 'https://www.apple.com/iphone/',
-        linkLabel: 'Latest Pro'
-      },
 
-      // =================== STUDIO & PRODUCTION ===================
-      {
-        id: 'ecamm-live',
-        name: 'Ecamm',
-        emoji: '🎬',
-        category: 'studio',
-        categoryLabel: 'Studio',
-        topPick: true,
-        tagline: 'Professional live streaming, Mac-native.',
-        description: "Multi-scene production, guest interviews, remote callers, lower-thirds, NDI inputs. Everything you'd build in OBS, but actually pleasant to use on a Mac.",
-        url: 'https://www.ecamm.com/mac/ecammlive/',
-        linkLabel: 'Try Ecamm'
-      },
-      {
-        id: 'riverside-fm',
-        name: 'Riverside.fm',
-        emoji: '🎙️',
-        category: 'studio',
-        categoryLabel: 'Studio',
-        topPick: true,
-        tagline: 'Studio-quality remote interviews.',
-        description: "Each participant records locally at full quality, then the tracks are auto-uploaded and aligned. No more 'sorry, my Wi-Fi cut out' as a quality excuse.",
-        url: 'https://riverside.fm/',
-        linkLabel: 'Visit Riverside'
-      },
-      {
-        id: 'descript',
-        name: 'Descript',
-        emoji: '✏️',
-        category: 'studio',
-        categoryLabel: 'Studio',
-        topPick: true,
-        tagline: 'Edit video like a doc.',
-        description: "Transcription-based audio and video editing — remove filler words across an interview in one click, generate captions, rough-cut from the transcript. The biggest time-saver in the studio.",
-        url: 'https://www.descript.com/',
-        linkLabel: 'Try Descript'
-      },
-      {
-        id: 'capcut',
-        name: 'CapCut',
-        emoji: '✂️',
-        category: 'studio',
-        categoryLabel: 'Studio',
-        topPick: false,
-        tagline: 'Fast cuts for short-form.',
-        description: "Reels, Shorts, TikToks — the templates, captions, and AI tools turn a 20-minute episode into a week of social cutdowns in an afternoon.",
-        url: 'https://www.capcut.com/',
-        linkLabel: 'Visit CapCut'
-      },
-      // =================== AI & AUTOMATION ===================
-      {
-        id: 'claude',
-        name: 'Claude (Anthropic)',
-        emoji: '🤖',
-        category: 'ai',
-        categoryLabel: 'AI',
-        topPick: true,
-        tagline: 'The thinking partner.',
-        description: "Research, scripting, strategy, content frameworks, code review. Claude handles long-context reasoning where most LLMs lose the plot — and it doesn't hallucinate citations.",
-        url: 'https://claude.ai/',
-        linkLabel: 'Visit Claude'
-      },
-      {
-        id: 'claude-code',
-        name: 'Claude Code',
-        emoji: '⌨️',
-        category: 'ai',
-        categoryLabel: 'AI',
-        topPick: true,
-        tagline: 'Agentic coding from the terminal.',
-        description: "An autonomous coding agent that can read your repo, edit files, run commands, and ship features end-to-end. Replaced my entire 'paste-into-chat' workflow.",
-        url: 'https://www.anthropic.com/claude-code',
-        linkLabel: 'See Claude Code'
-      },
-      {
-        id: 'manus',
-        name: 'Manus AI',
-        emoji: '⚡',
-        category: 'ai',
-        categoryLabel: 'AI',
-        topPick: false,
-        tagline: 'Autonomous agents that ship work.',
-        description: "Multi-step task execution — research, build, deploy — without the constant babysitting. Used for one-off automation projects and weekend experiments.",
-        url: 'https://manus.im/',
-        linkLabel: 'Visit Manus'
-      },
-      {
-        id: 'vidiq',
-        name: 'VidIQ',
-        emoji: '📊',
-        category: 'ai',
-        categoryLabel: 'AI',
-        topPick: false,
-        tagline: 'YouTube intelligence that actually moves the needle.',
-        description: "Keyword research, competitor benchmarking, thumbnail testing, and outlier discovery — the difference between guessing what to publish and knowing.",
-        url: 'https://vidiq.com/',
-        linkLabel: 'Visit VidIQ'
-      },
-
-      // =================== KNOWLEDGE & OPS ===================
-      {
-        id: 'notion',
-        name: 'Notion',
-        emoji: '🗂️',
-        category: 'ops',
-        categoryLabel: 'Ops',
-        topPick: true,
-        tagline: 'The HNM operating system.',
-        description: "Weekly intel briefs, the Resource Tracker, the Thursday Engine database, the entire Digital Collective backend — all of it lives here. Search and structure in one place.",
-        url: 'https://www.notion.so/',
-        linkLabel: 'Visit Notion'
-      },
-      {
-        id: 'google-workspace',
-        name: 'Google Workspace',
-        emoji: '📅',
-        category: 'ops',
-        categoryLabel: 'Ops',
-        topPick: false,
-        tagline: 'Calendar, mail, drive — the boring essentials.',
-        description: "Calendar runs the weekly rhythm (Wednesday Intel → Thursday Engine). Gmail keeps the work moving. Drive holds the archive. Workhorse tier, never glamorous.",
-        url: 'https://workspace.google.com/',
-        linkLabel: 'See Plans'
-      },
-      {
-        id: 'github',
-        name: 'GitHub',
-        emoji: '🐙',
-        category: 'ops',
-        categoryLabel: 'Ops',
-        topPick: false,
-        tagline: 'Code, content infrastructure, and the version-controlled brain.',
-        description: "Every HNM property's source lives here. The deploy pipelines run from here. Version control isn't just for developers — it's for anyone who edits anything important.",
-        url: 'https://github.com/',
-        linkLabel: 'Visit GitHub'
-      },
-
-      // =================== PUBLISHING & AUDIENCE ===================
-      {
-        id: 'substack',
-        name: 'Substack',
-        emoji: '📰',
-        category: 'audience',
-        categoryLabel: 'Audience',
-        topPick: false,
-        tagline: 'Home base for the Digital Collective newsletter.',
-        description: "Long-form publishing, email delivery, and subscriber relationships — all without managing a marketing stack. The current host for digitalcollective.media.",
-        url: 'https://digitalcollective.media/',
-        linkLabel: 'Read the Newsletter'
-      },
-      {
-        id: 'circle',
-        name: 'Circle',
-        emoji: '🔵',
-        category: 'audience',
-        categoryLabel: 'Audience',
-        topPick: true,
-        tagline: 'Premium community for the Digital Collective.',
-        description: "Spaces, events, courses, and direct member access — the paid tier home for the Digital Collective. Built for creator-led communities, not Slack-replacement teams.",
-        url: 'https://digitalcollective.network/',
-        linkLabel: 'Visit Community'
-      },
-      {
-        id: 'youtube',
-        name: 'YouTube',
-        emoji: '▶️',
-        category: 'audience',
-        categoryLabel: 'Audience',
-        topPick: false,
-        tagline: 'The flagship publishing platform.',
-        description: "Where the @JamesHicks channel lives — long-form video, Shorts, and the back catalog. Still the highest-leverage discovery surface for technology content.",
-        url: 'https://www.youtube.com/@JamesHicks',
-        linkLabel: 'Subscribe'
-      },
-      {
-        id: 'fourthwall',
-        name: 'Fourthwall',
-        emoji: '🛍️',
-        category: 'audience',
-        categoryLabel: 'Audience',
-        topPick: true,
-        tagline: 'Merch infrastructure that just runs.',
-        description: "Storefront, payments, fulfillment, custom domain — all out of the box. Powers merch.hicksnewmedia.com. Zero ops overhead means more time on the products themselves.",
-        url: 'https://merch.hicksnewmedia.com/',
-        linkLabel: 'Shop Merch'
+      function arrowIcon() {
+        return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>';
       }
-    ];
 
-    // =================== RENDERING ===================
-    const grid = document.getElementById('tools-grid');
-    const status = document.getElementById('tools-status');
+      function logoMarkup(tool) {
+        var logo = tool.logo || {};
+        var fallback = logo.text || initials(tool.name);
+        if (logo.icon) {
+          var url = 'https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/' + encodeURIComponent(logo.icon) + '.svg';
+          return '<img class="tool-card__logo-img" src="' + esc(url) + '" alt="' + esc(tool.name) + ' logo" loading="lazy" data-fallback="' + esc(fallback) + '" />';
+        }
+        return '<span class="tool-card__logo-letter" aria-hidden="true">' + esc(fallback) + '</span>';
+      }
 
-    function arrowIcon() {
-      return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>';
-    }
+      function renderCard(tool) {
+        var isFeatured = !!tool.featured;
+        var ribbon = isFeatured ? '<span class="badge-featured">Featured</span>' : '';
+        var topPick = tool.topPick ? '<span class="badge-top-pick">Top Pick</span>' : '';
+        var aff = tool.affiliateUrl && String(tool.affiliateUrl).trim();
+        var href = aff ? tool.affiliateUrl : tool.url;
+        var rel = aff ? 'sponsored nofollow noopener' : 'noopener';
 
-    function renderCard(tool) {
-      const topPick = tool.topPick
-        ? '<span class="badge-top-pick">Top Pick</span>'
-        : '';
+        return '' +
+          '<article class="tool-card' + (isFeatured ? ' tool-card--featured' : '') + '" data-category="' + esc(tool.category) + '" data-id="' + esc(tool.id) + '">' +
+            '<div class="tool-card__header">' +
+              '<div class="tool-card__logo" aria-hidden="true">' + logoMarkup(tool) + '</div>' +
+              '<div class="tool-card__badges">' + ribbon + topPick + '</div>' +
+            '</div>' +
+            '<h3 class="tool-card__title">' + esc(tool.name) + '</h3>' +
+            '<p class="tool-card__tagline">' + esc(tool.tagline) + '</p>' +
+            '<p class="tool-card__description">' + esc(tool.description) + '</p>' +
+            '<div class="tool-card__footer">' +
+              '<span class="tool-card__category">' + esc(categoryLabel(tool.category)) + '</span>' +
+              '<a href="' + esc(href) + '" class="tool-card__link" target="_blank" rel="' + rel + '">' +
+                esc(tool.ctaLabel) + ' ' + arrowIcon() +
+              '</a>' +
+            '</div>' +
+          '</article>';
+      }
 
-      return `
-        <article class="tool-card" data-category="${tool.category}" data-id="${tool.id}">
-          <div class="tool-card__header">
-            <div class="tool-card__logo" aria-hidden="true">${logoMarkup(tool)}</div>
-            <div class="tool-card__badges">${topPick}</div>
-          </div>
-          <h3 class="tool-card__title">${tool.name}</h3>
-          <p class="tool-card__tagline">${tool.tagline}</p>
-          <p class="tool-card__description">${tool.description}</p>
-          <div class="tool-card__footer">
-            <span class="tool-card__category">${tool.categoryLabel}</span>
-            <a href="${tool.url}" class="tool-card__link" target="_blank" rel="noopener">
-              ${tool.linkLabel}
-              ${arrowIcon()}
-            </a>
-          </div>
-        </article>
-      `;
-    }
+      function sortedTools() {
+        // Featured floats to the top; otherwise preserve registry order (stable sort).
+        return DATA.tools.slice().sort(function (a, b) {
+          return (b.featured ? 1 : 0) - (a.featured ? 1 : 0);
+        });
+      }
 
-    function renderAll() {
-      grid.innerHTML = TOOLS.map(renderCard).join('');
-    }
+      function attachLogoFallbacks() {
+        var imgs = grid.querySelectorAll('img.tool-card__logo-img');
+        Array.prototype.forEach.call(imgs, function (img) {
+          img.addEventListener('error', function () {
+            var span = document.createElement('span');
+            span.className = 'tool-card__logo-letter';
+            span.setAttribute('aria-hidden', 'true');
+            span.textContent = img.dataset.fallback || '·';
+            img.replaceWith(span);
+          }, { once: true });
+        });
+      }
 
-    // =================== FILTERING ===================
-    let activeCategory = 'all';
-    const filterBar = document.getElementById('filter-bar');
+      function countByCategory() {
+        return DATA.tools.reduce(function (acc, t) {
+          acc[t.category] = (acc[t.category] || 0) + 1;
+          return acc;
+        }, {});
+      }
 
-    function applyFilter(category) {
-      activeCategory = category;
-      const cards = grid.querySelectorAll('.tool-card');
-      let visible = 0;
+      function buildChips() {
+        var counts = countByCategory();
+        var html = '<button class="chip" data-category="all" data-active="true" role="tab" aria-selected="true">All <span class="chip__count">' + DATA.tools.length + '</span></button>';
+        (DATA.categories || []).forEach(function (c) {
+          var n = counts[c.key] || 0;
+          if (!n) return; // skip empty categories automatically
+          html += '<button class="chip" data-category="' + esc(c.key) + '" role="tab" aria-selected="false">' + esc(c.label) + ' <span class="chip__count">' + n + '</span></button>';
+        });
+        filterBar.innerHTML = html;
+      }
 
-      cards.forEach(card => {
-        const matches = category === 'all' || card.dataset.category === category;
-        card.dataset.hidden = matches ? 'false' : 'true';
-        if (matches) visible++;
+      function setStats() {
+        var counts = countByCategory();
+        var tEl = document.getElementById('stat-tools');
+        var cEl = document.getElementById('stat-categories');
+        var yEl = document.getElementById('stat-years');
+        if (tEl) tEl.textContent = DATA.tools.length;
+        if (cEl) cEl.textContent = (DATA.categories || []).filter(function (c) { return counts[c.key]; }).length;
+        if (yEl) {
+          var yrs = (DATA.stats && DATA.stats.yearsInTech) || '30+';
+          var m = String(yrs).match(/^(\d+)(\D*)$/);
+          yEl.innerHTML = m ? esc(m[1]) + '<span class="accent">' + esc(m[2]) + '</span>' : esc(yrs);
+        }
+      }
+
+      function applyFilter(category) {
+        activeCategory = category;
+        var visible = 0;
+        var cards = grid.querySelectorAll('.tool-card');
+        Array.prototype.forEach.call(cards, function (card) {
+          var match = category === 'all' || card.dataset.category === category;
+          card.dataset.hidden = match ? 'false' : 'true';
+          if (match) visible++;
+        });
+        statusEl.textContent = 'Showing ' + visible + ' tool' + (visible === 1 ? '' : 's');
+        Array.prototype.forEach.call(filterBar.querySelectorAll('.chip'), function (chip) {
+          var on = chip.dataset.category === category;
+          chip.dataset.active = on ? 'true' : 'false';
+          chip.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+      }
+
+      function render() {
+        grid.innerHTML = sortedTools().map(renderCard).join('');
+        attachLogoFallbacks();
+        buildChips();
+        setStats();
+        if (disclosureEl && DATA.disclosure) disclosureEl.textContent = DATA.disclosure;
+        applyFilter('all');
+      }
+
+      filterBar.addEventListener('click', function (e) {
+        var chip = e.target.closest('.chip');
+        if (chip) applyFilter(chip.dataset.category);
       });
 
-      status.textContent = `Showing ${visible} tool${visible === 1 ? '' : 's'}`;
-
-      // Update active chip state
-      filterBar.querySelectorAll('.chip').forEach(chip => {
-        chip.dataset.active = chip.dataset.category === category ? 'true' : 'false';
-        chip.setAttribute('aria-selected', chip.dataset.category === category ? 'true' : 'false');
-      });
-    }
-
-    filterBar.addEventListener('click', (e) => {
-      const chip = e.target.closest('.chip');
-      if (!chip) return;
-      applyFilter(chip.dataset.category);
-    });
-
-    // =================== INIT ===================
-    renderAll();
-
-    // Verify counts match data (defense against drift between hardcoded counts and actual data)
-    const counts = TOOLS.reduce((acc, t) => {
-      acc.all = (acc.all || 0) + 1;
-      acc[t.category] = (acc[t.category] || 0) + 1;
-      return acc;
-    }, {});
-    Object.entries(counts).forEach(([cat, n]) => {
-      const el = document.getElementById('count-' + cat);
-      if (el) el.textContent = n;
-    });
-    document.getElementById('stat-tools').textContent = counts.all;
+      fetch(DATA_URL, { cache: 'no-store' })
+        .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+        .then(function (json) { DATA = json; render(); })
+        .catch(function (err) {
+          console.error('Failed to load tools.json', err);
+          statusEl.textContent = '';
+          grid.innerHTML = '<p class="tools-error">Couldn\'t load the stack right now. <a href="https://hicksnewmedia.com" style="text-decoration:underline;">Head to the main site &rarr;</a></p>';
+        });
+    })();
   </script>
 </body>
 </html>
