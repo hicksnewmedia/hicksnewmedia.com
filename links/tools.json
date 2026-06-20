@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "source": "Notion · The Stack — Tool Registry",
-  "updated": "2026-06-19",
+  "updated": "2026-06-20",
   "stats": {
     "yearsInTech": "30+"
   },
@@ -120,7 +120,7 @@
         "text": "EC"
       },
       "url": "https://www.ecamm.com/mac/ecammlive/",
-      "affiliateUrl": "",
+      "affiliateUrl": "https://www.ecamm.com/mac/ecammlive/?fp_ref=jameshicks",
       "ctaLabel": "Try Ecamm"
     },
     {
@@ -210,7 +210,7 @@
         "text": "MA"
       },
       "url": "https://manus.im/",
-      "affiliateUrl": "",
+      "affiliateUrl": "https://manus.im/invitation/ABSQEBCCTPQG?utm_source=invitation&utm_medium=social&utm_campaign=copy_link",
       "ctaLabel": "Visit Manus"
     },
     {
@@ -225,7 +225,7 @@
         "text": "VQ"
       },
       "url": "https://vidiq.com/",
-      "affiliateUrl": "",
+      "affiliateUrl": "https://vidiq.com/jameshicks",
       "ctaLabel": "Visit VidIQ"
     },
     {
@@ -270,7 +270,7 @@
         "text": "LB"
       },
       "url": "https://littlebird.ai/",
-      "affiliateUrl": "",
+      "affiliateUrl": "https://littlebird.ai/download?ref=JAN8EREU&utm_source=desktop_app&utm_medium=referral&utm_campaign=new_chat_card",
       "ctaLabel": "Visit littlebird"
     },
     {
@@ -390,7 +390,7 @@
         "icon": "youtube"
       },
       "url": "https://www.youtube.com/@JamesHicks",
-      "affiliateUrl": "",
+      "affiliateUrl": "https://jameshicks.live/subscribe",
       "ctaLabel": "Subscribe"
     },
     {
@@ -405,7 +405,7 @@
         "text": "FW"
       },
       "url": "https://merch.hicksnewmedia.com/",
-      "affiliateUrl": "",
+      "affiliateUrl": "https://link.fourthwall.com/join/jameshicks",
       "ctaLabel": "Shop Merch"
     },
     {
