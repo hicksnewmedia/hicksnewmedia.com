@@ -437,6 +437,21 @@
       "url": "https://ddjrproductions.com/dualshotrecorder/",
       "affiliateUrl": "",
       "ctaLabel": "Get DualShot"
+    },
+    {
+      "id": "publer",
+      "name": "Publer",
+      "category": "audience",
+      "featured": false,
+      "topPick": false,
+      "tagline": "",
+      "description": "Powerful social media management & scheduling tools",
+      "logo": {
+        "text": "PU"
+      },
+      "url": "https://publer.com/",
+      "affiliateUrl": "https://publer.com/jameshicks",
+      "ctaLabel": "Visit Publer"
     }
   ]
 }
