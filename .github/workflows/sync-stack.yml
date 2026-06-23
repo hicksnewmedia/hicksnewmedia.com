@@ -1,16 +1,19 @@
 name: Sync The Stack
 
-# Regenerates links/tools.json from the Notion "The Stack — Tool Registry".
-# Trigger it from the Actions tab (the "Run workflow" button), or let the
-# weekly schedule pick up any changes you made in Notion.
+# Regenerates links/tools.json from the Notion registry, commits it,
+# and explicitly tells Netlify to deploy — so "synced" always means "live."
 
 on:
-  workflow_dispatch:        # the button — run on demand
+  workflow_dispatch:        # the Notion button + manual "Run workflow"
   schedule:
-    - cron: '0 14 * * 1'    # every Monday 14:00 UTC, as a safety net
+    - cron: "0 14 * * 1"    # Mondays 14:00 UTC — weekly safety net
 
 permissions:
-  contents: write           # allow the action to commit tools.json
+  contents: write
+
+concurrency:
+  group: sync-the-stack
+  cancel-in-progress: false
 
 jobs:
   sync:
@@ -19,27 +22,38 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Node
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 20
 
-      - name: Generate tools.json from Notion
+      - name: Regenerate links/tools.json from Notion
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-          DATABASE_ID: f0c74b57678f4c13a9701f627e2b69c6
-          OUTPUT_PATH: links/tools.json
         run: node scripts/sync-stack.mjs
 
       - name: Commit if changed
+        id: commit
         run: |
-          if [[ -n "$(git status --porcelain links/tools.json)" ]]; then
-            git config user.name "hnm-stack-bot"
-            git config user.email "actions@users.noreply.github.com"
-            git add links/tools.json
-            git commit -m "Sync The Stack from Notion"
-            git push
-            echo "tools.json updated and pushed."
+          if git diff --quiet -- links/tools.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No changes to links/tools.json — nothing to commit."
           else
-            echo "No changes — tools.json already current."
+            git config user.name  "hnm-stack-bot"
+            git config user.email "stack-bot@hicksnewmedia.com"
+            git add links/tools.json
+            git commit -m "Sync The Stack — regenerate tools.json from Notion"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Committed updated links/tools.json."
           fi
+
+      - name: Trigger Netlify deploy
+        if: steps.commit.outputs.changed == 'true'
+        run: |
+          if [ -z "${{ secrets.NETLIFY_BUILD_HOOK }}" ]; then
+            echo "NETLIFY_BUILD_HOOK secret is not set — skipping deploy trigger."
+            exit 1
+          fi
+          curl -fsS -X POST -d '{}' "${{ secrets.NETLIFY_BUILD_HOOK }}"
+          echo "Netlify build hook fired — deploy on the way."
