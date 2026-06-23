@@ -7,6 +7,11 @@
 //                             shared with this integration (Content access).
 //   DATABASE_ID   (optional)  Defaults to the registry created for The Stack.
 //   OUTPUT_PATH   (optional)  Defaults to links/tools.json.
+//
+// Publish rule: a row is published when it has a Tool name AND at least one link
+// (Official Link OR Affiliate Link). The page CTA uses affiliate || official, so
+// an affiliate-only row is valid. Any skipped row is reported in the run log and
+// raised as a GitHub annotation — skips are never silent.
 
 import { writeFile } from 'node:fs/promises';
 
@@ -39,6 +44,8 @@ const CATEGORY_KEY = {
   'Publishing & Audience': 'audience'
 };
 
+const DEFAULT_CATEGORY = 'ops';
+
 const DISCLOSURE = 'Some links are affiliate links. I only list tools I actually use — No Hype. Just the Facts.';
 const STATS = { yearsInTech: '30+' };
 
@@ -56,6 +63,11 @@ function slug(name) {
     .replace(/&/g, 'and')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
+}
+
+// GitHub Actions annotation — surfaces in the run summary, not just the log.
+function annotate(message) {
+  console.log(`::warning title=Stack sync::${message}`);
 }
 
 // ---- Query the database (paginated) -----------------------------------------
@@ -90,13 +102,15 @@ async function queryDatabase() {
 function toTool(page) {
   const p = page.properties;
   const name = title(p['Tool']);
-  const category = CATEGORY_KEY[select(p['Category'])] || 'ops';
+  const rawCategory = select(p['Category']);
+  const category = CATEGORY_KEY[rawCategory] || DEFAULT_CATEGORY;
   const icon = text(p['Logo Icon']);
   const letters = text(p['Logo Text']);
   const logo = icon ? { icon } : { text: letters || name.slice(0, 2).toUpperCase() };
 
   return {
     _order: num(p['Order']),
+    _rawCategory: rawCategory,
     id: slug(name),
     name,
     category,
@@ -111,14 +125,37 @@ function toTool(page) {
   };
 }
 
+// ---- Validity: returns null if publishable, else a human reason -------------
+function skipReason(t) {
+  if (!t.name) return 'no Tool name';
+  if (!t.url && !t.affiliateUrl) return 'no Official Link or Affiliate Link';
+  return null;
+}
+
 // ---- Build + write ----------------------------------------------------------
 async function main() {
   const rows = await queryDatabase();
-  const tools = rows
-    .map(toTool)
-    .filter((t) => t.name && t.url) // never publish a tool with no name or no link
+  const mapped = rows.map(toTool);
+
+  const kept = [];
+  const skipped = [];
+  for (const t of mapped) {
+    const reason = skipReason(t);
+    if (reason) {
+      skipped.push({ name: t.name || '(untitled row)', reason });
+      continue;
+    }
+    // Published, but flag a Category typo so it doesn't quietly land in Ops.
+    if (t._rawCategory && !CATEGORY_KEY[t._rawCategory]) {
+      annotate(`"${t.name}" has an unrecognized Category "${t._rawCategory}" — placed in Knowledge & Ops. Fix the Category to recategorize.`);
+      console.log(`  ~ ${t.name} — Category "${t._rawCategory}" not recognized; defaulted to Knowledge & Ops.`);
+    }
+    kept.push(t);
+  }
+
+  const tools = kept
     .sort((a, b) => a._order - b._order)
-    .map(({ _order, ...rest }) => rest);
+    .map(({ _order, _rawCategory, ...rest }) => rest);
 
   const payload = {
     schemaVersion: 1,
@@ -131,7 +168,17 @@ async function main() {
   };
 
   await writeFile(OUTPUT_PATH, JSON.stringify(payload, null, 2) + '\n', 'utf8');
-  console.log(`Wrote ${tools.length} tools to ${OUTPUT_PATH}`);
+
+  // ---- Run report -----------------------------------------------------------
+  console.log(`Queried ${rows.length} live row(s) → published ${tools.length}, skipped ${skipped.length}.`);
+  if (skipped.length) {
+    console.log(`Skipped row(s) — not published:`);
+    for (const s of skipped) {
+      console.log(`  • ${s.name} — ${s.reason}`);
+      annotate(`"${s.name}" was not published — ${s.reason}.`);
+    }
+  }
+  console.log(`Wrote ${tools.length} tool(s) to ${OUTPUT_PATH}.`);
 }
 
 main().catch((err) => {
