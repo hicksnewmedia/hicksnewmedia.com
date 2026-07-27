@@ -3093,5 +3093,109 @@
       </div>
     </div>
   </div>
+  <!-- ============================================================
+  HNM LIVE BANNER · v1.0
+  Drop-in for hicksnewmedia.com — paste this entire block just
+  before </body> in index.html, then ship via your standard
+  complete-file replacement through the GitHub web editor.
+
+  Behavior:
+  · Polls the live-status endpoint on load + every 60s (cached edge fn)
+  · Not live -> does absolutely nothing. Zero DOM, zero layout shift.
+  · Live -> slides in a top banner: pulse dot, show title, WATCH cta
+  · Dismissible; stays dismissed for the browser session
+  · Fail-silent: network error, timeout, or bad JSON = no banner,
+    and the main site is never affected. No dependencies.
+============================================================ -->
+<script>
+(function () {
+  var CONFIG = {
+    // Swap YOUR-PROJECT for the ONSET Supabase project ref after deploy:
+    statusUrl: "https://ggnfhuxvsyywplfxuomp.supabase.co/functions/v1/live-status",
+    pollMs: 60000,          // re-check every 60s (endpoint is CDN-cached 30s)
+    timeoutMs: 4000,        // give up quietly if the endpoint is slow
+    zIndex: 9999
+  };
+
+  var shown = false;
+
+  function makeBanner(data) {
+    if (shown || sessionStorage.getItem("hnmLiveDismissed") === "1") return;
+    shown = true;
+
+    var css = document.createElement("style");
+    css.textContent =
+      "#hnm-live{position:fixed;top:0;left:0;right:0;z-index:" + CONFIG.zIndex + ";" +
+        "background:#0A0A0A;color:#F5F1EB;font-family:'Geist','Inter',system-ui,sans-serif;" +
+        "display:flex;align-items:center;justify-content:center;gap:14px;" +
+        "padding:11px 44px 11px 16px;font-size:14px;line-height:1.3;" +
+        "border-bottom:2px solid #F48022;transform:translateY(-100%);" +
+        "transition:transform .35s ease;}" +
+      "#hnm-live.on{transform:translateY(0);}" +
+      "#hnm-live .dot{width:9px;height:9px;border-radius:50%;background:#1E9E5A;" +
+        "flex:none;animation:hnmPulse 1.6s ease-in-out infinite;}" +
+      "@keyframes hnmPulse{0%,100%{box-shadow:0 0 0 0 rgba(30,158,90,.55)}" +
+        "50%{box-shadow:0 0 0 7px rgba(30,158,90,0)}}" +
+      "@media (prefers-reduced-motion:reduce){#hnm-live{transition:none}" +
+        "#hnm-live .dot{animation:none}}" +
+      "#hnm-live .lbl{font-weight:700;letter-spacing:.14em;font-size:11px;" +
+        "text-transform:uppercase;color:#1E9E5A;flex:none;}" +
+      "#hnm-live .ttl{opacity:.92;overflow:hidden;text-overflow:ellipsis;" +
+        "white-space:nowrap;max-width:46vw;}" +
+      "#hnm-live a.cta{color:#0A0A0A;background:#F48022;text-decoration:none;" +
+        "font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;" +
+        "padding:6px 14px;border-radius:3px;flex:none;}" +
+      "#hnm-live button.x{position:absolute;right:10px;top:50%;transform:translateY(-50%);" +
+        "background:none;border:0;color:#F5F1EB;opacity:.55;font-size:18px;" +
+        "cursor:pointer;padding:6px;line-height:1;}" +
+      "#hnm-live button.x:hover{opacity:1;}" +
+      "@media (max-width:640px){#hnm-live .ttl{display:none}}";
+    document.head.appendChild(css);
+
+    var bar = document.createElement("div");
+    bar.id = "hnm-live";
+    bar.setAttribute("role", "region");
+    bar.setAttribute("aria-label", "Live broadcast notification");
+
+    var dot = document.createElement("span"); dot.className = "dot";
+    var lbl = document.createElement("span"); lbl.className = "lbl";
+    lbl.textContent = "Live Now";
+    var ttl = document.createElement("span"); ttl.className = "ttl";
+    ttl.textContent = data.title || "James is on the air";
+    var cta = document.createElement("a"); cta.className = "cta";
+    cta.href = data.url || "https://live.hicksnewmedia.com";
+    cta.textContent = "Watch \u2192";
+    var x = document.createElement("button"); x.className = "x";
+    x.setAttribute("aria-label", "Dismiss"); x.innerHTML = "&times;";
+    x.onclick = function () {
+      sessionStorage.setItem("hnmLiveDismissed", "1");
+      bar.classList.remove("on");
+      setTimeout(function () { bar.remove(); }, 400);
+    };
+
+    bar.appendChild(dot); bar.appendChild(lbl); bar.appendChild(ttl);
+    bar.appendChild(cta); bar.appendChild(x);
+    document.body.appendChild(bar);
+    requestAnimationFrame(function () { bar.classList.add("on"); });
+  }
+
+  function check() {
+    try {
+      var ctl = new AbortController();
+      var t = setTimeout(function () { ctl.abort(); }, CONFIG.timeoutMs);
+      fetch(CONFIG.statusUrl, { signal: ctl.signal })
+        .then(function (r) { clearTimeout(t); return r.json(); })
+        .then(function (d) { if (d && d.live === true) makeBanner(d); })
+        .catch(function () { /* fail silent — never touch the page */ });
+    } catch (e) { /* fail silent */ }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", check);
+  } else { check(); }
+  setInterval(check, CONFIG.pollMs);
+})();
+</script>
+<!-- ============ END HNM LIVE BANNER ============ -->
 </body>
 </html>
