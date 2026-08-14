@@ -2,10 +2,10 @@
 # Netlify configuration for hicksnewmedia.com
 # https://docs.netlify.com/configure-builds/file-based-configuration/
 #
-# Three subdomains served from one Netlify site:
+# Subdomains served from one Netlify site:
 #   hicksnewmedia.com           → /index.html          (main site)
 #   mediakit.hicksnewmedia.com  → /mediakit/index.html (browser media kit)
-#   links.hicksnewmedia.com     → /links/index.html    (link hub)
+#   links.hicksnewmedia.com     → 301 → shelf.hicksnewmedia.com (retired Aug 2026)
 #
 # Subdomain pages reference shared assets at /assets/*, which serve
 # from the same site root for every subdomain.
@@ -37,10 +37,15 @@
   force = true
   conditions = {Host = ["mediakit.hicksnewmedia.com"]}
 
+# links.hicksnewmedia.com → shelf.hicksnewmedia.com (301 permanent)
+# The Stack was folded into The Shelf in Aug 2026. Every path on the old
+# subdomain lands on The Shelf so legacy bookmarks and bio links survive.
+# NOTE: keep links.hicksnewmedia.com as a domain alias on this site —
+# removing the alias is what breaks host-conditional rules.
 [[redirects]]
-  from = "/"
-  to = "/links/index.html"
-  status = 200
+  from = "/*"
+  to = "https://shelf.hicksnewmedia.com"
+  status = 301
   force = true
   conditions = {Host = ["links.hicksnewmedia.com"]}
 
