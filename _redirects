@@ -2,3 +2,10 @@ https://mediakit.hicksnewmedia.com/*  /mediakit/:splat  200!
 https://links.hicksnewmedia.com/*     https://shelf.hicksnewmedia.com  301!
 https://merch.hicksnewmedia.com/products/*  /merch/product.html  200!
 https://merch.hicksnewmedia.com/*           /merch/:splat        200!
+
+# Show sponsorships live on hnm.live (THE PLUG, Oct 2026). One home for
+# packages, booking and partner logins; this domain only forwards.
+/partners     https://hnm.live/partners          301!
+/partners/*   https://hnm.live/partners/:splat   301!
+/sponsor      https://hnm.live/partners          301!
+/sponsors     https://hnm.live/partners          301!
