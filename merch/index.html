@@ -345,6 +345,9 @@
     .cart-empty { padding: 36px 0; }
     .cart-empty p { margin-bottom: 18px; color: var(--muted); }
     .cart-err { margin: 12px 0 0; color: var(--error); font-weight: 600; }
+    .cart-back { margin: 14px 0 16px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; }
+    .cart-back p { margin: 0 0 6px; }
+    .cart-back .link { min-height: 44px; font-weight: 600; }
 
     /* ───────── Status / footer / consent ───────── */
     .state { padding: 56px 0; max-width: 60ch; }
@@ -1016,23 +1019,34 @@
     /* ══════════ Cart ══════════ */
     var Cart = (function () {
       var KEY = 'hnm_cart_v1';
-      var id = read(KEY), items = [], busy = false, lastError = '';
+      // Remembers which cart was sent to checkout. Fourthwall does not tell the
+      // store when an order is paid, so on the way back the store re-checks the
+      // cart: gone or empty means paid, and it is cleared. If Fourthwall still
+      // holds it, the shopper gets a one-tap way to clear it.
+      var SENT = 'hnm_checkout_v1';
+      var id = read(KEY), items = [], busy = false, lastError = '', checked = 0;
       var dlg = document.getElementById('cart'), body = document.getElementById('cart-body'), foot = document.getElementById('cart-foot');
       var countEl = document.getElementById('cart-count'), countLabel = document.getElementById('cart-count-label');
 
       function setCart(c) { id = c.id; items = c.items || []; store(KEY, id); draw(); }
-      function forget() { id = null; items = []; store(KEY, null); draw(); }
+      function forget() { id = null; items = []; store(KEY, null); store(SENT, null); draw(); }
+      function sent() { return !!id && read(SENT) === id; }
       function total() { return items.reduce(function (s, it) { return s + it.variant.unitPrice.value * it.quantity; }, 0); }
       function count() { return items.reduce(function (s, it) { return s + it.quantity; }, 0); }
       function checkoutUrl() { return 'https://' + CFG.CHECKOUT_DOMAIN + '/checkout/?cartCurrency=USD&cartId=' + encodeURIComponent(id); }
 
       function load() {
-        if (!id) { draw(); return Promise.resolve(); }
-        return api('/carts/' + encodeURIComponent(id)).then(setCart).catch(function (err) { if (err.status === 404) forget(); else draw(); });
+        if (!id) { store(SENT, null); draw(); return Promise.resolve(); }
+        checked = Date.now();
+        return api('/carts/' + encodeURIComponent(id)).then(function (c) {
+          if (read(SENT) === c.id && !(c.items || []).length) { forget(); return; }
+          setCart(c);
+        }).catch(function (err) { if (err.status === 404) forget(); else draw(); });
       }
       function add(variantId, qty) {
         var line = { items: [{ variantId: variantId, quantity: qty }] };
         var fresh = function () { return api('/carts', line).then(setCart); };
+        store(SENT, null);
         if (!id) return fresh();
         return api('/carts/' + encodeURIComponent(id) + '/add', line).then(setCart).catch(function (err) {
           if (err.code === 'CART_NOT_FOUND') { id = null; return fresh(); }
@@ -1046,7 +1060,7 @@
                             : api('/carts/' + encodeURIComponent(id) + '/change', { items: [{ variantId: variantId, quantity: qty }] });
         var focusKey = document.activeElement && document.activeElement.getAttribute && document.activeElement.getAttribute('data-k');
         call.then(function (c) {
-          busy = false; setCart(c);
+          busy = false; store(SENT, null); setCart(c);
           announce(qty <= 0 ? 'Removed. ' + plural(count(), 'item') + ' in your cart.' : 'Quantity updated. Subtotal ' + money(total()) + '.');
           var again = focusKey && body.querySelector('[data-k="' + focusKey + '"]');
           (again || document.getElementById('cart-close')).focus();
@@ -1066,7 +1080,8 @@
           foot.innerHTML = ''; foot.hidden = true; return;
         }
         foot.hidden = false;
-        body.innerHTML = '<ul>' + items.map(function (it) {
+        var back = sent() ? '<div class="cart-back"><p>Already paid for these? Your receipt is in your email.</p><button class="link" type="button" id="cart-fresh">Clear this cart</button></div>' : '';
+        body.innerHTML = back + '<ul>' + items.map(function (it) {
           var v = it.variant, pr = v.product || {}, im = v.images && v.images[0] && v.images[0].url;
           var nm = String(pr.name || v.name || '').replace(/[​-‏‪-‮﻿]/g, '');
           var optText = (v.attributes && v.attributes.description) || '';
@@ -1090,6 +1105,7 @@
           '<button class="btn btn-quiet" type="button" id="keep">Keep shopping</button>';
       }
       body.addEventListener('click', function (e) {
+        if (e.target.closest('#cart-fresh')) { forget(); announce('Cart cleared.'); document.getElementById('cart-close').focus(); return; }
         var b = e.target.closest('button[data-act]'); if (!b) return;
         var vid = b.getAttribute('data-v');
         var it = items.filter(function (x) { return x.variant.id === vid; })[0]; if (!it) return;
@@ -1099,6 +1115,7 @@
       });
       foot.addEventListener('click', function (e) {
         if (e.target.closest('#keep')) dlg.close();
+        if (e.target.closest('#checkout')) store(SENT, id);
         if (e.target.closest('#checkout')) track('begin_checkout', { currency: 'USD', value: total(), items: items.map(function (it) { return { item_id: it.variant.sku || it.variant.id, item_name: (it.variant.product || {}).name, quantity: it.quantity, price: it.variant.unitPrice.value }; }) });
       });
       document.getElementById('cart-close').addEventListener('click', function () { dlg.close(); });
@@ -1111,8 +1128,12 @@
         track('view_cart', { currency: 'USD', value: total() });
       }
       document.getElementById('cart-open').addEventListener('click', open);
-      // Coming back from checkout: refresh, in case the order went through
+      // Coming back from checkout (Back button, or switching back to this tab):
+      // re-check the cart, in case the order went through
       window.addEventListener('pageshow', function (e) { if (e.persisted) load(); });
+      document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState === 'visible' && id && !busy && Date.now() - checked > 5000) load();
+      });
       return { load: load, add: add, open: open };
     })();
 
