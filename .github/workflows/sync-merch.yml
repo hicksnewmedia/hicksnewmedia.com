@@ -1,0 +1,59 @@
+name: Sync Merch
+
+# Rebuilds merch/catalog.json and merch/sitemap.xml from the Fourthwall shop,
+# commits them when something changed, and tells Netlify to deploy.
+# New or edited products reach merch.hicksnewmedia.com without anyone touching code.
+
+on:
+  workflow_dispatch:          # the "Run workflow" button on GitHub
+  schedule:
+    - cron: "17 */6 * * *"    # every 6 hours
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-merch
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Rebuild the product index from Fourthwall
+        run: node scripts/sync-merch.mjs
+
+      - name: Commit if changed
+        id: commit
+        run: |
+          if git diff --quiet -- merch/catalog.json merch/sitemap.xml; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Shop unchanged — nothing to commit."
+          else
+            git config user.name  "hnm-merch-bot"
+            git config user.email "merch-bot@hicksnewmedia.com"
+            git add merch/catalog.json merch/sitemap.xml
+            git commit -m "Sync Merch — refresh product index from Fourthwall"
+            git pull --rebase
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            echo "Committed the refreshed product index."
+          fi
+
+      - name: Trigger Netlify deploy
+        if: steps.commit.outputs.changed == 'true'
+        run: |
+          if [ -z "${{ secrets.NETLIFY_BUILD_HOOK }}" ]; then
+            echo "NETLIFY_BUILD_HOOK secret is not set — skipping deploy trigger."
+            exit 1
+          fi
+          curl -fsS -X POST -d '{}' "${{ secrets.NETLIFY_BUILD_HOOK }}"
+          echo "Netlify build hook fired — deploy on the way."

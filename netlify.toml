@@ -61,6 +61,15 @@
   to = "/book.html"
   status = 200
 
+# ────────── Merch store photos ──────────
+# Fourthwall only serves 1920px product photos (~250 KB each). The merch
+# store asks Netlify's image resizer for phone-sized copies instead, via
+# https://hicksnewmedia.com/.netlify/images?url=...&w=...
+# This allowlist is what lets the resizer fetch them. If it is ever removed,
+# the store falls back to the full-size photos on its own.
+[images]
+  remote_images = ["https://imgproxy\\.fourthwall\\.dev/.*"]
+
 # ────────── Security headers (apply to all subdomains) ──────────
 [[headers]]
   for = "/*"
