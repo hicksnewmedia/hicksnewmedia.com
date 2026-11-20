@@ -1,0 +1,71 @@
+{
+  "series": {
+    "name": "SHOP TALK",
+    "tagline": "The business of tech, from the barbershop.",
+    "cadence": "New strip every Tuesday",
+    "newsletter_url": null
+  },
+  "follow": [
+    {"label": "Instagram", "url": "https://www.instagram.com/hicksnewmedia/"},
+    {"label": "LinkedIn", "url": "https://www.linkedin.com/company/hicksnewmedia/"},
+    {"label": "YouTube", "url": "https://www.youtube.com/c/JamesHicks/"}
+  ],
+  "cast": [
+    {"id": "scoop", "name": "Scoop", "role": "The Newsman", "line": "No hype. Just the facts.", "bio": "Brings the story and the receipts. Thirty years inside enterprise tech, zero patience for hype.", "img": "/assets/shoptalk/cast/scoop.webp"},
+    {"id": "unc", "name": "Unc", "role": "The Owner", "line": "Follow the money.", "bio": "Has run The Shop for 34 years. Every story ends with one question: who's getting paid?", "img": "/assets/shoptalk/cast/unc.webp"},
+    {"id": "keys", "name": "Keys", "role": "The Engineer", "line": "Show me the specs.", "bio": "Builds the systems everybody else is talking about. Translates the tech so nobody gets fooled.", "img": "/assets/shoptalk/cast/keys.webp"},
+    {"id": "dre", "name": "Dre", "role": "The Hustler", "line": "Okay, but how do I get paid?", "bio": "Creator, reseller, future mogul. Turns every headline into a side hustle, for better or worse.", "img": "/assets/shoptalk/cast/dre.webp"},
+    {"id": "pearl", "name": "Miss Pearl", "role": "The Teacher", "line": "Baby, sit down.", "bio": "Taught economics for 36 years. Owns more dividend stocks than anybody in the room. Says less, lands more.", "img": "/assets/shoptalk/cast/pearl.webp"}
+  ],
+  "episodes": [
+    {
+      "number": 1,
+      "slug": "ep-01",
+      "publish_at": "2026-11-24T10:00:00-08:00",
+      "title": "The $115 Billion Question",
+      "dek": "Nvidia just posted its biggest quarter ever, five days after its founder-CEO resigned.",
+      "beat": "AI & Chips",
+      "tiles": [
+        {"src": "/assets/shoptalk/ep01/tile-01.webp", "alt": "Dre, in a barber chair, turns to Scoop as he walks into the shop with a tablet while Unc holds clippers. Dre: Scoop! Nvidia's CEO stepped down. They finished, right? Scoop: Not even close, young man. Title: The $115 Billion Question."},
+        {"src": "/assets/shoptalk/ep01/tile-02.webp", "alt": "Scoop shows a rising bar chart to a stunned Unc and Dre. Scoop: Five days later, they reported $115.8 billion. In one quarter. Unc: Billion? With a B?!"},
+        {"src": "/assets/shoptalk/ep01/tile-03.webp", "alt": "Keys explains from the waiting bench with her laptop. Keys: $107.6 billion of it is data centers. Every AI company is buying their chips. Scoop: Gold rush. Nvidia sells the shovels."},
+        {"src": "/assets/shoptalk/ep01/tile-04.webp", "alt": "A thoughtful Scoop with Unc behind him under an orange neon scissors sign. Unc: So the money's right. But who's driving the bus? Scoop: The CFO, for now. The board is still searching for a new CEO."},
+        {"src": "/assets/shoptalk/ep01/tile-05.webp", "alt": "Unc spreads his arms over his busy shop. Unc: I tell my barbers: if this shop can't run without me, I don't own a business... Scoop: ...you own a job. Wall Street calls it key-person risk."},
+        {"src": "/assets/shoptalk/ep01/tile-06.webp", "alt": "Dre holds up his phone as Scoop laughs and Miss Pearl peers over her glasses. Dre: Say less. I'm buying Nvidia tonight! Miss Pearl: Baby, you still owe Unc for last week's cut."},
+        {"src": "/assets/shoptalk/ep01/tile-07.webp", "alt": "SHOP TALK end card with Scoop's portrait and the cast. Sources and the full breakdown at hicksnewmedia.com/shoptalk."}
+      ],
+      "facts": [
+        "Revenue: $115.8B for the quarter ended Oct 25, up 103% from a year ago.",
+        "Data center: $107.6B, up 110%. That's about 93% of Nvidia's sales.",
+        "Leadership: Jensen Huang resigned Nov 12. CFO Colette Kress is interim CEO; the board says it will not reinstate Huang.",
+        "Outlook: Q4 guided to $130B (±3%), with no China data center compute revenue assumed. FY28 growth outlook raised to about 75%."
+      ],
+      "why": "Record results during a leadership vacuum tell you the product and the customers are strong. They don't tell you who sets the next five-year bet. That's key-person risk, and it applies to a trillion-dollar chipmaker and a four-chair barbershop the same way.",
+      "sources": [
+        {"label": "Nvidia: Q3 FY27 financial results", "url": "https://investor.nvidia.com/financial-info/financial-reports"},
+        {"label": "TechCrunch: Kress reports $115.8B, guides $130B", "url": "https://techcrunch.com/?p=3189812"},
+        {"label": "CFO Dive: Nvidia projects 75% growth amid leadership upheaval", "url": "https://www.cfodive.com/news/nvidia-projects-75-growth-leadership-upheaval-earnings/875000/"}
+      ]
+    },
+    {
+      "number": 0,
+      "slug": "ep-00",
+      "publish_at": "2026-11-24T06:00:00-08:00",
+      "title": "Meet the Family",
+      "dek": "Every Tuesday, the business of tech gets argued out at The Shop. Here's who's in the chairs.",
+      "beat": "Series premiere",
+      "tiles": [
+        {"src": "/assets/shoptalk/ep00/tile-01.webp", "alt": "Family portrait of the SHOP TALK cast inside The Shop barbershop: Unc seated in a barber chair, Scoop and Keys standing behind him, Dre crouched in front, Miss Pearl seated with a newspaper. Unc: Welcome to The Shop. Title: Meet the Family."},
+        {"src": "/assets/shoptalk/ep00/tile-02.webp", "alt": "Scoop, a bald man in black glasses and a camel tweed blazer, holds a tablet by the shop window. Scoop: No hype. Just the facts. Scoop, the Newsman."},
+        {"src": "/assets/shoptalk/ep00/tile-03.webp", "alt": "Unc, the gray-bearded owner in a burgundy vest, leans on his barber chair with arms folded. Unc: Follow the money. Unc, the Owner."},
+        {"src": "/assets/shoptalk/ep00/tile-04.webp", "alt": "Keys, an engineer with locs and gold hoops, works on a sticker-covered laptop on the waiting bench. Keys: Show me the specs. Keys, the Engineer."},
+        {"src": "/assets/shoptalk/ep00/tile-05.webp", "alt": "Dre, a young man in a cream hoodie, films himself with his phone and a ring light. Dre: Okay, but how do I get paid? Dre, the Hustler."},
+        {"src": "/assets/shoptalk/ep00/tile-06.webp", "alt": "Miss Pearl, in cat-eye glasses and a lavender cardigan, peers over her newspaper. Miss Pearl: Baby, sit down. Miss Pearl, the Teacher."},
+        {"src": "/assets/shoptalk/ep00/tile-07.webp", "alt": "SHOP TALK end card with Scoop's portrait and the cast. Episode 01 drops later today at hicksnewmedia.com/shoptalk."}
+      ],
+      "facts": [],
+      "why": "SHOP TALK takes one business-of-tech story a week and argues it out at The Shop: six panels, one lesson that outlasts the headline.",
+      "sources": []
+    }
+  ]
+}

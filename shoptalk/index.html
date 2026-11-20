@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SHOP TALK: the business of tech, from the barbershop · HicksNewMedia</title>
+  <meta name="description" content="SHOP TALK is a weekly comic strip from James Hicks. One business-of-tech story, argued out at The Shop, with the facts and sources behind every panel. New strip every Tuesday." />
+  <link rel="canonical" href="https://hicksnewmedia.com/shoptalk/" />
+  <meta property="og:site_name" content="HicksNewMedia" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="SHOP TALK: the business of tech, from the barbershop" />
+  <meta property="og:description" content="One business-of-tech story a week, argued out at The Shop. No hype. Just the facts." />
+  <meta property="og:url" content="https://hicksnewmedia.com/shoptalk/" />
+  <meta property="og:image" content="https://hicksnewmedia.com/assets/brand/og-image-shoptalk.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@JamesHicks" />
+  <meta name="theme-color" content="#f5f1eb" />
+  <link rel="icon" type="image/svg+xml" href="https://hicksnewmedia.com/assets/brand/hnm-favicon.svg" />
+  <link rel="apple-touch-icon" href="https://hicksnewmedia.com/assets/hnm-favicon-512.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:ital,opsz,wght@1,9..144,600&family=Geist:wght@400;500;600;700;800&family=Red+Hat+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Analytics: Google Analytics 4 with Consent Mode, same setup as the rest of the site. Nothing is stored until the visitor allows it. -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-84CLZGN2R7"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+      ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+      analytics_storage: 'denied', functionality_storage: 'denied', personalization_storage: 'denied',
+      security_storage: 'granted', wait_for_update: 500
+    });
+    try {
+      if (localStorage.getItem('hnm_consent_v1') === 'granted') {
+        gtag('consent', 'update', { analytics_storage: 'granted', functionality_storage: 'granted', personalization_storage: 'granted' });
+      }
+    } catch (e) {}
+    gtag('js', new Date());
+    gtag('config', 'G-84CLZGN2R7');
+  </script>
+
+  <style>
+    :root {
+      --paper: #F5F1EB; --ink: #0A0A0A; --signal: #F48022; --card: #FFFCF5;
+      --muted: #5f5950; --line: #ddd4c6; --deep: #B5470E;
+      --display: 'Bebas Neue', Impact, sans-serif;
+      --body: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      --serif: 'Fraunces', Georgia, serif;
+      --mono: 'Red Hat Mono', ui-monospace, Menlo, monospace;
+      --wrap: 1200px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--signal); outline-offset: 3px; }
+    .skip { position: absolute; left: -9999px; top: 8px; background: var(--ink); color: var(--paper); padding: 10px 14px; z-index: 100; border-radius: 6px; }
+    .skip:focus { left: 8px; }
+    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+    .kicker { font-family: var(--mono); font-size: 13px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
+    .tag { display: inline-block; font-family: var(--mono); font-weight: 700; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; background: var(--ink); color: var(--paper); padding: 6px 10px; border-radius: 5px; }
+    .tag i { color: var(--signal); font-style: normal; }
+
+    /* Top bar */
+    .top { position: sticky; top: 0; z-index: 40; background: rgba(245,241,235,.92); backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px); border-bottom: 1px solid var(--line); }
+    .top .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .brand .mk { width: 44px; height: 44px; border-radius: 9px; background: var(--ink); display: grid; place-items: center; flex: none; }
+    .brand .mk svg { width: 32px; }
+    .brand b { font-family: var(--display); font-weight: 400; font-size: 34px; line-height: .9; letter-spacing: .02em; display: block; }
+    .brand b i { color: var(--signal); font-style: normal; }
+    .brand small { font-family: var(--mono); font-size: 10.5px; letter-spacing: .2em; color: var(--muted); display: block; margin-top: 3px; }
+    nav.links { display: flex; gap: 6px; align-items: center; }
+    nav.links a { text-decoration: none; font-weight: 600; font-size: 15px; padding: 9px 12px; border-radius: 8px; }
+    nav.links a:hover { background: #ebe4d8; }
+    nav.links a.cta { background: var(--ink); color: var(--paper); }
+    nav.links a.cta:hover { background: #222; }
+    @media (max-width: 760px) { nav.links a:not(.cta) { display: none; } .brand small { display: none; } }
+
+    /* Hero: latest episode */
+    .hero { padding: 40px 0 72px; }
+    .hero .grid { display: grid; grid-template-columns: minmax(0, 1fr) 440px; gap: 48px; align-items: start; }
+    @media (max-width: 1020px) { .hero .grid { grid-template-columns: 1fr; gap: 32px; } }
+
+    .viewer { position: relative; border-radius: 18px; background: var(--ink); padding: 14px; box-shadow: 0 30px 60px -30px rgba(10,10,10,.45); }
+    .track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: 10px; aspect-ratio: 4 / 5; }
+    .track::-webkit-scrollbar { display: none; }
+    .track figure { flex: 0 0 100%; scroll-snap-align: center; }
+    .track img { width: 100%; height: 100%; object-fit: cover; }
+    .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); width: 52px; height: 52px; border-radius: 50%; border: 3px solid var(--ink); background: var(--signal); color: var(--ink); font: 700 22px/1 var(--mono); cursor: pointer; box-shadow: 4px 4px 0 var(--ink); display: grid; place-items: center; }
+    .nav-btn:disabled { opacity: .35; cursor: default; }
+    .nav-btn.prev { left: -18px; } .nav-btn.next { right: -18px; }
+    @media (max-width: 640px) { .nav-btn { width: 44px; height: 44px; } .nav-btn.prev { left: 6px; } .nav-btn.next { right: 6px; } }
+    .vbar { display: flex; align-items: center; justify-content: space-between; padding: 14px 6px 2px; color: var(--paper); }
+    .count { font-family: var(--mono); font-size: 14px; letter-spacing: .14em; }
+    .count b { color: var(--signal); }
+    .dots { display: flex; gap: 7px; }
+    .dots button { width: 9px; height: 9px; border-radius: 50%; border: 0; background: #4a4a4a; cursor: pointer; padding: 0; }
+    .dots button[aria-current="true"] { background: var(--signal); width: 26px; border-radius: 6px; }
+
+    .info h1 { font-family: var(--display); font-weight: 400; font-size: clamp(56px, 7vw, 88px); line-height: .88; letter-spacing: .01em; margin: 14px 0 12px; }
+    .info h1 i { color: var(--signal); font-style: normal; }
+    .dek { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 23px; line-height: 1.3; }
+    .block { margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--line); }
+    .facts { list-style: none; margin-top: 14px; display: grid; gap: 12px; }
+    .facts li { position: relative; padding-left: 22px; font-weight: 500; }
+    .facts li::before { content: ""; position: absolute; left: 0; top: .62em; width: 10px; height: 10px; background: var(--signal); border-radius: 2px; }
+    .why { margin-top: 12px; }
+    .sources { list-style: none; margin-top: 12px; display: grid; gap: 8px; }
+    .sources a { font-family: var(--mono); font-size: 14px; color: var(--deep); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 26px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 10px 18px; border-radius: 999px; border: 2px solid var(--ink); background: transparent; color: var(--ink); font: 700 14px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; text-decoration: none; cursor: pointer; }
+    .btn.solid { background: var(--ink); color: var(--paper); }
+    .btn.hot { background: var(--signal); border-color: var(--signal); color: var(--ink); }
+    .note { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; color: var(--muted); margin-top: 18px; }
+
+    /* Teaser state (before the premiere) */
+    .countdown { display: flex; gap: 12px; margin-top: 24px; }
+    .countdown div { background: var(--ink); color: var(--paper); border-radius: 12px; padding: 14px 16px; min-width: 86px; text-align: center; }
+    .countdown b { font-family: var(--display); font-weight: 400; font-size: 52px; line-height: .9; display: block; color: var(--signal); }
+    .countdown span { font-family: var(--mono); font-size: 11px; letter-spacing: .18em; }
+
+    /* Family */
+    .family { background: var(--ink); color: var(--paper); padding: 84px 0; }
+    .sec-h { display: flex; align-items: end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 34px; }
+    .sec-h h2 { font-family: var(--display); font-weight: 400; font-size: clamp(54px, 7vw, 96px); line-height: .86; letter-spacing: .01em; }
+    .sec-h h2 i { color: var(--signal); font-style: normal; }
+    .sec-h p { max-width: 460px; color: #cfc8bc; }
+    .family .kicker { color: #a9a39a; }
+    .cast { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+    @media (max-width: 1100px) { .cast { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 680px) { .cast { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
+    .card { background: #151515; border: 1px solid #2a2a2a; border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; }
+    .card img { aspect-ratio: 1; object-fit: cover; width: 100%; }
+    .card .body { padding: 16px 16px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .card h3 { font-family: var(--display); font-weight: 400; font-size: 40px; line-height: .9; letter-spacing: .02em; }
+    .card .role { align-self: start; font-family: var(--mono); font-weight: 700; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; background: var(--signal); color: var(--ink); padding: 5px 8px; border-radius: 5px; }
+    .card q { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 19px; line-height: 1.25; color: #fff; quotes: "\201C" "\201D"; }
+    .card p { font-size: 14.5px; color: #bdb6aa; line-height: 1.45; }
+
+    /* Episode archive */
+    .episodes { padding: 84px 0; }
+    .eps { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 22px; }
+    .ep { text-decoration: none; background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; transition: transform .15s, box-shadow .15s; }
+    .ep:hover { transform: translateY(-3px); box-shadow: 0 18px 36px -24px rgba(10,10,10,.5); }
+    .ep[aria-current="true"] { outline: 3px solid var(--signal); }
+    .ep img { aspect-ratio: 4 / 5; object-fit: cover; width: 100%; }
+    .ep .body { padding: 14px 16px 18px; }
+    .ep h3 { font-family: var(--display); font-weight: 400; font-size: 32px; line-height: .95; margin-top: 6px; }
+
+    /* Follow band */
+    .follow { background: var(--signal); padding: 72px 0; }
+    .follow h2 { font-family: var(--display); font-weight: 400; font-size: clamp(58px, 9vw, 128px); line-height: .84; }
+    .follow p { font-size: 20px; max-width: 620px; margin-top: 14px; font-weight: 500; }
+    .follow .btn { border-color: var(--ink); }
+
+    footer { padding: 40px 0 56px; }
+    footer .wrap { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; align-items: center; }
+    footer p { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; color: var(--muted); line-height: 1.8; }
+    footer a { text-decoration: none; font-weight: 600; }
+
+    .consent { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 60; max-width: 560px; margin: 0 auto; background: var(--ink); color: var(--paper); border-radius: 8px; padding: 10px 12px 10px 16px; box-shadow: 0 12px 30px rgba(0,0,0,.3); display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; }
+    .consent p { flex: 1 1 200px; font-size: .95rem; line-height: 1.35; }
+    .consent button { min-height: 44px; padding: 8px 14px; border-radius: 6px; border: 2px solid var(--paper); background: transparent; color: var(--paper); font-weight: 600; cursor: pointer; }
+    .consent button.yes { background: var(--signal); border-color: var(--signal); color: var(--ink); }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#latest">Skip to the strip</a>
+
+  <header class="top">
+    <div class="wrap">
+      <a class="brand" href="/shoptalk/" aria-label="SHOP TALK home">
+        <span class="mk"><svg viewBox="0 0 220 180" aria-hidden="true"><rect x="26" y="30" width="120" height="24" fill="#F5F1EB"/><rect x="26" y="78" width="168" height="24" fill="#F48022"/><rect x="26" y="126" width="120" height="24" fill="#F5F1EB"/><rect x="170" y="126" width="24" height="24" fill="#F48022"/></svg></span>
+        <span><b>SHOP TALK<i>.</i></b><small>BY HICKSNEWMEDIA</small></span>
+      </a>
+      <nav class="links" aria-label="Sections">
+        <a href="#latest">Latest</a>
+        <a href="#family">The Family</a>
+        <a href="#episodes">Episodes</a>
+        <a class="cta" href="#follow">Follow</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="latest" aria-live="polite">
+      <div class="wrap"><div class="grid" id="hero"><p class="kicker">Loading the strip…</p></div></div>
+      <noscript><div class="wrap"><p>SHOP TALK is a weekly comic strip about the business of tech. Turn on JavaScript to read the strips.</p></div></noscript>
+    </section>
+
+    <section class="family" id="family">
+      <div class="wrap">
+        <div class="sec-h">
+          <div><p class="kicker">The cast</p><h2>MEET THE <i>FAMILY</i></h2></div>
+          <p>Every Tuesday, one business-of-tech story gets argued out at The Shop. Six panels, one lesson that outlasts the headline.</p>
+        </div>
+        <div class="cast" id="cast"></div>
+      </div>
+    </section>
+
+    <section class="episodes" id="episodes">
+      <div class="wrap">
+        <div class="sec-h"><div><p class="kicker">The archive</p><h2>EVERY <i>EPISODE</i></h2></div></div>
+        <div class="eps" id="eps"></div>
+      </div>
+    </section>
+
+    <section class="follow" id="follow">
+      <div class="wrap">
+        <h2>NEW STRIP<br>EVERY TUESDAY.</h2>
+        <p>Follow along so the next one finds you. No hype. Just the facts.</p>
+        <div class="row" id="followRow"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>Written by James Hicks · Art AI-assisted, lettered by HicksNewMedia · Characters and setting are fictional<br>Not financial advice · © <span id="yr">2026</span> HicksNewMedia</p>
+      <p><a href="/">HicksNewMedia.com →</a></p>
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    var params = new URLSearchParams(location.search);
+    var PREVIEW = params.get('preview') === '1';
+    var TZ = 'America/Los_Angeles';
+    var $ = function (s, r) { return (r || document).querySelector(s); };
+    function el(tag, attrs, kids) {
+      var n = document.createElement(tag);
+      if (attrs) for (var k in attrs) {
+        if (k === 'text') n.textContent = attrs[k];
+        else if (k === 'html') n.innerHTML = attrs[k];
+        else n.setAttribute(k, attrs[k]);
+      }
+      (kids || []).forEach(function (c) { if (c) n.appendChild(c); });
+      return n;
+    }
+    function track(name, p) { try { gtag('event', name, p || {}); } catch (e) {} }
+    function pad(n) { return (n < 10 ? '0' : '') + n; }
+    function fmtDate(iso) {
+      return new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric', timeZone: TZ }).format(new Date(iso));
+    }
+    function utm(url, ep) {
+      try { var u = new URL(url); u.searchParams.set('utm_source', 'shoptalk'); u.searchParams.set('utm_medium', 'site'); u.searchParams.set('utm_campaign', 'shoptalk_ep' + pad(ep)); return u.toString(); } catch (e) { return url; }
+    }
+    // Title with the dollar figure or key phrase picked out in orange: wraps the first $-amount if present
+    function titleHTML(t) {
+      var esc = t.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; });
+      var m = esc.match(/\$[\d.,]+\s*(Billion|Trillion|Million)?/i);
+      if (m) return esc.replace(m[0], '<i>' + m[0] + '</i>');
+      var w = esc.split(' '); if (w.length > 1) { w[w.length - 1] = '<i>' + w[w.length - 1] + '</i>'; }
+      return w.join(' ');
+    }
+
+    fetch('/shoptalk/episodes.json', { cache: 'no-cache' })
+      .then(function (r) { return r.json(); })
+      .then(init)
+      .catch(function () { $('#hero').innerHTML = '<p class="kicker">The strip couldn\'t load. Refresh to try again.</p>'; });
+
+    function init(data) {
+      var now = Date.now();
+      var all = data.episodes.slice().sort(function (a, b) { return b.number - a.number; });
+      var live = all.filter(function (e) { return PREVIEW || Date.parse(e.publish_at) <= now; });
+      renderCast(data.cast);
+      renderFollow(data);
+      if (!live.length) { renderTeaser(all, data); renderArchive([], null); return; }
+      function pick() {
+        var h = (location.hash.match(/^#ep-(\d+)/) || [])[1];
+        var ep = h != null ? live.filter(function (e) { return e.number === +h; })[0] : null;
+        return ep || live[0];
+      }
+      function show(scroll) {
+        var ep = pick();
+        renderEpisode(ep);
+        renderArchive(live, ep);
+        document.title = 'Ep. ' + pad(ep.number) + ': ' + ep.title + ' · SHOP TALK';
+        if (scroll) $('#latest').scrollIntoView();
+      }
+      show(false);
+      window.addEventListener('hashchange', function () { if (/^#ep-/.test(location.hash)) show(true); });
+    }
+
+    function renderEpisode(ep) {
+      var hero = $('#hero'); hero.innerHTML = '';
+      var trackEl = el('div', { class: 'track', tabindex: '0', 'aria-label': 'Strip panels. Use the arrow keys to move.' });
+      ep.tiles.forEach(function (t, i) {
+        var img = el('img', { src: t.src, alt: t.alt, width: '1080', height: '1350', loading: i === 0 ? 'eager' : 'lazy', decoding: 'async' });
+        if (i === 0) img.setAttribute('fetchpriority', 'high');
+        trackEl.appendChild(el('figure', { 'aria-roledescription': 'slide', 'aria-label': (i + 1) + ' of ' + ep.tiles.length }, [img]));
+      });
+      var prev = el('button', { class: 'nav-btn prev', type: 'button', 'aria-label': 'Previous panel', text: '←' });
+      var next = el('button', { class: 'nav-btn next', type: 'button', 'aria-label': 'Next panel', text: '→' });
+      var count = el('div', { class: 'count' });
+      var dots = el('div', { class: 'dots' });
+      ep.tiles.forEach(function (_, i) {
+        var d = el('button', { type: 'button', 'aria-label': 'Go to panel ' + (i + 1) });
+        d.addEventListener('click', function () { go(i); });
+        dots.appendChild(d);
+      });
+      var viewer = el('div', { class: 'viewer', role: 'region', 'aria-roledescription': 'carousel', 'aria-label': 'Episode ' + ep.number + ': ' + ep.title }, [trackEl, prev, next, el('div', { class: 'vbar' }, [count, dots])]);
+
+      var idx = 0, seen = {}, total = ep.tiles.length;
+      function go(i) { trackEl.scrollTo({ left: i * trackEl.clientWidth, behavior: 'smooth' }); }
+      function update() {
+        idx = Math.round(trackEl.scrollLeft / Math.max(1, trackEl.clientWidth));
+        count.innerHTML = '<b>' + pad(idx + 1) + '</b> / ' + pad(total);
+        [].forEach.call(dots.children, function (d, i) { d.setAttribute('aria-current', i === idx ? 'true' : 'false'); });
+        prev.disabled = idx === 0; next.disabled = idx === total - 1;
+        if (!seen[idx]) { seen[idx] = 1; track('shoptalk_panel_view', { episode: ep.number, panel: idx + 1 }); if (idx === total - 1) track('shoptalk_strip_complete', { episode: ep.number }); }
+      }
+      var raf; trackEl.addEventListener('scroll', function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(update); });
+      prev.addEventListener('click', function () { go(Math.max(0, idx - 1)); });
+      next.addEventListener('click', function () { go(Math.min(total - 1, idx + 1)); });
+      trackEl.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight') { e.preventDefault(); go(Math.min(total - 1, idx + 1)); }
+        if (e.key === 'ArrowLeft') { e.preventDefault(); go(Math.max(0, idx - 1)); }
+      });
+      window.addEventListener('resize', function () { trackEl.scrollLeft = idx * trackEl.clientWidth; });
+
+      var info = el('div', { class: 'info' });
+      info.appendChild(el('p', { class: 'kicker', text: 'Ep. ' + pad(ep.number) + ' · ' + fmtDate(ep.publish_at) + ' · ' + ep.beat }));
+      info.appendChild(el('h1', { html: titleHTML(ep.title) }));
+      info.appendChild(el('p', { class: 'dek', text: ep.dek }));
+      if (ep.facts && ep.facts.length) {
+        var b1 = el('div', { class: 'block' }, [el('span', { class: 'tag', html: 'The facts<i> ▸</i>' })]);
+        var ul = el('ul', { class: 'facts' });
+        ep.facts.forEach(function (f) { ul.appendChild(el('li', { text: f })); });
+        b1.appendChild(ul); info.appendChild(b1);
+      }
+      if (ep.why) {
+        info.appendChild(el('div', { class: 'block' }, [el('span', { class: 'tag', html: ep.facts && ep.facts.length ? 'Why it matters<i> ▸</i>' : 'The show<i> ▸</i>' }), el('p', { class: 'why', text: ep.why })]));
+      }
+      if (ep.sources && ep.sources.length) {
+        var b3 = el('div', { class: 'block' }, [el('span', { class: 'tag', html: 'Sources<i> ▸</i>' })]);
+        var sl = el('ul', { class: 'sources' });
+        ep.sources.forEach(function (s) {
+          var a = el('a', { href: s.url, target: '_blank', rel: 'noopener', text: s.label + ' ↗' });
+          a.addEventListener('click', function () { track('shoptalk_source_click', { episode: ep.number, source: s.label }); });
+          sl.appendChild(el('li', null, [a]));
+        });
+        b3.appendChild(sl); info.appendChild(b3);
+      }
+      var share = el('button', { class: 'btn solid', type: 'button', text: 'Share this strip' });
+      share.addEventListener('click', function () {
+        var url = 'https://hicksnewmedia.com/shoptalk/#ep-' + pad(ep.number);
+        track('shoptalk_share', { episode: ep.number });
+        if (navigator.share) { navigator.share({ title: 'SHOP TALK: ' + ep.title, url: url }).catch(function () {}); }
+        else if (navigator.clipboard) { navigator.clipboard.writeText(url).then(function () { share.textContent = 'Link copied'; setTimeout(function () { share.textContent = 'Share this strip'; }, 1800); }); }
+      });
+      info.appendChild(el('div', { class: 'row' }, [share, el('a', { class: 'btn', href: '#follow', text: 'Follow the show' })]));
+      if (ep.facts && ep.facts.length) info.appendChild(el('p', { class: 'note', text: 'Not financial advice. No hype. Just the facts.' }));
+
+      hero.appendChild(viewer); hero.appendChild(info);
+      requestAnimationFrame(update);
+    }
+
+    function renderTeaser(all, data) {
+      var first = all.slice().sort(function (a, b) { return Date.parse(a.publish_at) - Date.parse(b.publish_at); })[0];
+      var hero = $('#hero'); hero.innerHTML = '';
+      var art = el('div', { class: 'viewer' }, [el('div', { class: 'track' }, [el('figure', null, [el('img', { src: '/assets/shoptalk/cast/family.webp', alt: 'The SHOP TALK cast posed together inside The Shop barbershop.', width: '1200', height: '1200', fetchpriority: 'high' })])])]);
+      var info = el('div', { class: 'info' });
+      info.appendChild(el('p', { class: 'kicker', text: 'Series premiere · ' + fmtDate(first.publish_at) }));
+      info.appendChild(el('h1', { html: 'THE SHOP<br>OPENS <i>TUESDAY</i>' }));
+      info.appendChild(el('p', { class: 'dek', text: data.series.tagline + ' One story a week, six panels, one lesson that outlasts the headline.' }));
+      var cd = el('div', { class: 'countdown' });
+      info.appendChild(cd);
+      function tick() {
+        var ms = Math.max(0, Date.parse(first.publish_at) - Date.now());
+        if (ms === 0) { location.reload(); return; }
+        var d = Math.floor(ms / 864e5), h = Math.floor(ms / 36e5) % 24, m = Math.floor(ms / 6e4) % 60;
+        cd.innerHTML = '';
+        [[d, 'DAYS'], [h, 'HOURS'], [m, 'MINUTES']].forEach(function (x) { cd.appendChild(el('div', null, [el('b', { text: pad(x[0]) }), el('span', { text: x[1] })])); });
+      }
+      tick(); setInterval(tick, 30000);
+      info.appendChild(el('div', { class: 'row' }, [el('a', { class: 'btn solid', href: '#family', text: 'Meet the family' }), el('a', { class: 'btn', href: '#follow', text: 'Follow the show' })]));
+      hero.appendChild(art); hero.appendChild(info);
+    }
+
+    function renderCast(cast) {
+      var box = $('#cast');
+      cast.forEach(function (c) {
+        box.appendChild(el('article', { class: 'card' }, [
+          el('img', { src: c.img, alt: c.name + ', ' + c.role, width: '720', height: '720', loading: 'lazy' }),
+          el('div', { class: 'body' }, [el('h3', { text: c.name }), el('span', { class: 'role', text: c.role }), el('q', { text: c.line }), el('p', { text: c.bio })])
+        ]));
+      });
+    }
+
+    function renderArchive(live, current) {
+      var box = $('#eps'); box.innerHTML = '';
+      if (!live.length) { box.appendChild(el('p', { class: 'kicker', text: 'Episode 00 premieres Tuesday.' })); return; }
+      live.forEach(function (ep) {
+        var a = el('a', { class: 'ep', href: '#ep-' + pad(ep.number), 'aria-current': current && current.number === ep.number ? 'true' : 'false' }, [
+          el('img', { src: ep.tiles[0].src, alt: '', width: '1080', height: '1350', loading: 'lazy' }),
+          el('div', { class: 'body' }, [el('p', { class: 'kicker', text: 'Ep. ' + pad(ep.number) + ' · ' + new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: TZ }).format(new Date(ep.publish_at)) }), el('h3', { text: ep.title })])
+        ]);
+        box.appendChild(a);
+      });
+    }
+
+    function renderFollow(data) {
+      var row = $('#followRow');
+      if (data.series.newsletter_url) {
+        var n = el('a', { class: 'btn solid', href: data.series.newsletter_url, target: '_blank', rel: 'noopener', text: 'Get it by email' });
+        n.addEventListener('click', function () { track('shoptalk_follow_click', { network: 'newsletter' }); });
+        row.appendChild(n);
+      }
+      data.follow.forEach(function (f) {
+        var a = el('a', { class: 'btn', href: f.url, target: '_blank', rel: 'noopener', text: f.label + ' ↗' });
+        a.addEventListener('click', function () { track('shoptalk_follow_click', { network: f.label }); });
+        row.appendChild(a);
+      });
+    }
+
+    document.getElementById('yr').textContent = new Date().getFullYear();
+
+    /* Analytics choice: same wording pattern and storage key as the rest of hicksnewmedia.com */
+    (function () {
+      var read = function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } };
+      var store = function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} };
+      if (read('hnm_consent_v1') !== null) return;
+      var bar = document.createElement('div');
+      bar.className = 'consent'; bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', 'Analytics choice');
+      bar.innerHTML = '<p>OK to count your visit? It shows us which strips land. No ads.</p>' +
+        '<button type="button" class="yes">Allow</button><button type="button" class="no">No thanks</button>';
+      bar.addEventListener('click', function (e) {
+        var b = e.target.closest('button'); if (!b) return;
+        var yes = b.className === 'yes';
+        store('hnm_consent_v1', yes ? 'granted' : 'denied');
+        if (yes) { try { gtag('consent', 'update', { analytics_storage: 'granted', functionality_storage: 'granted', personalization_storage: 'granted' }); } catch (x) {} }
+        bar.remove();
+      });
+      document.body.appendChild(bar);
+    })();
+  })();
+  </script>
+</body>
+</html>
