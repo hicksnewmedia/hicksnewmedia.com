@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SHOP TALK: the business of tech, from the barbershop · HicksNewMedia</title>
-  <meta name="description" content="SHOP TALK is a weekly comic strip from James Hicks. One business-of-tech story, argued out at The Shop, with the facts and sources behind every panel. New strip every Tuesday." />
+  <meta name="description" content="SHOP TALK is a weekly comic strip from James Hicks. One business-of-tech story, argued out at The Shop, with the facts and sources behind every panel. New strips every Tuesday, plus a Weekend Edition on consumer tech every Saturday." />
   <link rel="canonical" href="https://hicksnewmedia.com/shoptalk/" />
   <meta property="og:site_name" content="HicksNewMedia" />
   <meta property="og:type" content="website" />
@@ -153,6 +153,14 @@
     .ep .body { padding: 14px 16px 18px; }
     .ep h3 { font-family: var(--display); font-weight: 400; font-size: 32px; line-height: .95; margin-top: 6px; }
 
+    /* Weekend Edition: same layout, Saturday teal */
+    .ed-weekend { --signal: #1FAE9F; }
+    .edtag { display: inline-block; font-family: var(--mono); font-weight: 700; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; background: var(--signal); color: var(--ink); padding: 5px 8px; border-radius: 5px; margin-bottom: 10px; }
+    .filters { display: flex; gap: 10px; flex-wrap: wrap; align-self: end; }
+    .filters button { font: 700 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; padding: 11px 15px; border-radius: 999px; border: 2px solid var(--ink); background: transparent; color: var(--ink); cursor: pointer; }
+    .filters button[aria-pressed="true"] { background: var(--signal); }
+    .why strong { font-family: var(--display); font-weight: 400; font-size: 1.5em; letter-spacing: .04em; color: var(--ink); background: var(--signal); padding: 0 .3em; border-radius: 4px; margin-right: .3em; }
+
     /* Follow band */
     .follow { background: var(--signal); padding: 72px 0; }
     .follow h2 { font-family: var(--display); font-weight: 400; font-size: clamp(58px, 9vw, 128px); line-height: .84; }
@@ -198,7 +206,7 @@
       <div class="wrap">
         <div class="sec-h">
           <div><p class="kicker">The cast</p><h2>MEET THE <i>FAMILY</i></h2></div>
-          <p>Every Tuesday, one business-of-tech story gets argued out at The Shop. Six panels, one lesson that outlasts the headline.</p>
+          <p>Tuesdays, one business-of-tech story gets argued out at The Shop. Saturdays, the Weekend Edition: the tech in your hands, with a verdict. Six panels, one lesson that outlasts the headline.</p>
         </div>
         <div class="cast" id="cast"></div>
       </div>
@@ -206,14 +214,14 @@
 
     <section class="episodes" id="episodes">
       <div class="wrap">
-        <div class="sec-h"><div><p class="kicker">The archive</p><h2>EVERY <i>EPISODE</i></h2></div></div>
+        <div class="sec-h"><div><p class="kicker">The archive</p><h2>EVERY <i>EPISODE</i></h2></div><div class="filters" id="epFilters" role="group" aria-label="Filter episodes by edition"></div></div>
         <div class="eps" id="eps"></div>
       </div>
     </section>
 
     <section class="follow" id="follow">
       <div class="wrap">
-        <h2>NEW STRIP<br>EVERY TUESDAY.</h2>
+        <h2>NEW STRIPS<br>TUES + SAT.</h2>
         <p>Follow along so the next one finds you. No hype. Just the facts.</p>
         <div class="row" id="followRow"></div>
       </div>
@@ -245,6 +253,10 @@
     }
     function track(name, p) { try { gtag('event', name, p || {}); } catch (e) {} }
     function pad(n) { return (n < 10 ? '0' : '') + n; }
+    function isWk(ep) { return ep.edition === 'weekend'; }
+    function slugOf(ep) { return ep.slug || ('ep-' + pad(ep.number)); }
+    function label(ep) { return (isWk(ep) ? 'Weekend No. ' : 'Ep. ') + pad(ep.number); }
+    var FILTER = 'all';
     function fmtDate(iso) {
       return new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric', timeZone: TZ }).format(new Date(iso));
     }
@@ -267,29 +279,29 @@
 
     function init(data) {
       var now = Date.now();
-      var all = data.episodes.slice().sort(function (a, b) { return b.number - a.number; });
+      var all = data.episodes.slice().sort(function (a, b) { return Date.parse(b.publish_at) - Date.parse(a.publish_at); });
       var live = all.filter(function (e) { return PREVIEW || Date.parse(e.publish_at) <= now; });
       renderCast(data.cast);
       renderFollow(data);
       if (!live.length) { renderTeaser(all, data); renderArchive([], null); return; }
       function pick() {
-        var h = (location.hash.match(/^#ep-(\d+)/) || [])[1];
-        var ep = h != null ? live.filter(function (e) { return e.number === +h; })[0] : null;
+        var h = (location.hash.match(/^#((?:ep|wknd)-\d+)/) || [])[1];
+        var ep = h ? live.filter(function (e) { return slugOf(e) === h; })[0] : null;
         return ep || live[0];
       }
       function show(scroll) {
         var ep = pick();
         renderEpisode(ep);
         renderArchive(live, ep);
-        document.title = 'Ep. ' + pad(ep.number) + ': ' + ep.title + ' · SHOP TALK';
+        document.title = label(ep) + ': ' + ep.title + ' · SHOP TALK' + (isWk(ep) ? ' Weekend Edition' : '');
         if (scroll) $('#latest').scrollIntoView();
       }
       show(false);
-      window.addEventListener('hashchange', function () { if (/^#ep-/.test(location.hash)) show(true); });
+      window.addEventListener('hashchange', function () { if (/^#(ep|wknd)-/.test(location.hash)) show(true); });
     }
 
     function renderEpisode(ep) {
-      var hero = $('#hero'); hero.innerHTML = '';
+      var hero = $('#hero'); hero.innerHTML = ''; $('#latest').classList.toggle('ed-weekend', isWk(ep));
       var trackEl = el('div', { class: 'track', tabindex: '0', 'aria-label': 'Strip panels. Use the arrow keys to move.' });
       ep.tiles.forEach(function (t, i) {
         var img = el('img', { src: t.src, alt: t.alt, width: '1080', height: '1350', loading: i === 0 ? 'eager' : 'lazy', decoding: 'async' });
@@ -305,7 +317,7 @@
         d.addEventListener('click', function () { go(i); });
         dots.appendChild(d);
       });
-      var viewer = el('div', { class: 'viewer', role: 'region', 'aria-roledescription': 'carousel', 'aria-label': 'Episode ' + ep.number + ': ' + ep.title }, [trackEl, prev, next, el('div', { class: 'vbar' }, [count, dots])]);
+      var viewer = el('div', { class: 'viewer', role: 'region', 'aria-roledescription': 'carousel', 'aria-label': label(ep) + ': ' + ep.title }, [trackEl, prev, next, el('div', { class: 'vbar' }, [count, dots])]);
 
       var idx = 0, seen = {}, total = ep.tiles.length;
       function go(i) { trackEl.scrollTo({ left: i * trackEl.clientWidth, behavior: 'smooth' }); }
@@ -314,7 +326,7 @@
         count.innerHTML = '<b>' + pad(idx + 1) + '</b> / ' + pad(total);
         [].forEach.call(dots.children, function (d, i) { d.setAttribute('aria-current', i === idx ? 'true' : 'false'); });
         prev.disabled = idx === 0; next.disabled = idx === total - 1;
-        if (!seen[idx]) { seen[idx] = 1; track('shoptalk_panel_view', { episode: ep.number, panel: idx + 1 }); if (idx === total - 1) track('shoptalk_strip_complete', { episode: ep.number }); }
+        if (!seen[idx]) { seen[idx] = 1; track('shoptalk_panel_view', { edition: ep.edition || 'tuesday', episode: ep.number, panel: idx + 1 }); if (idx === total - 1) track('shoptalk_strip_complete', { edition: ep.edition || 'tuesday', episode: ep.number }); }
       }
       var raf; trackEl.addEventListener('scroll', function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(update); });
       prev.addEventListener('click', function () { go(Math.max(0, idx - 1)); });
@@ -326,7 +338,8 @@
       window.addEventListener('resize', function () { trackEl.scrollLeft = idx * trackEl.clientWidth; });
 
       var info = el('div', { class: 'info' });
-      info.appendChild(el('p', { class: 'kicker', text: 'Ep. ' + pad(ep.number) + ' · ' + fmtDate(ep.publish_at) + ' · ' + ep.beat }));
+      if (isWk(ep)) info.appendChild(el('span', { class: 'edtag', text: 'Weekend Edition' }));
+      info.appendChild(el('p', { class: 'kicker', text: label(ep) + ' · ' + fmtDate(ep.publish_at) + ' · ' + ep.beat }));
       info.appendChild(el('h1', { html: titleHTML(ep.title) }));
       info.appendChild(el('p', { class: 'dek', text: ep.dek }));
       if (ep.facts && ep.facts.length) {
@@ -334,6 +347,10 @@
         var ul = el('ul', { class: 'facts' });
         ep.facts.forEach(function (f) { ul.appendChild(el('li', { text: f })); });
         b1.appendChild(ul); info.appendChild(b1);
+      }
+      if (ep.verdict) {
+        info.appendChild(el('div', { class: 'block' }, [el('span', { class: 'tag', html: 'The verdict<i> ▸</i>' }),
+          el('p', { class: 'why' }, [el('strong', { text: ep.verdict.call }), document.createTextNode(ep.verdict.text)])]));
       }
       if (ep.why) {
         info.appendChild(el('div', { class: 'block' }, [el('span', { class: 'tag', html: ep.facts && ep.facts.length ? 'Why it matters<i> ▸</i>' : 'The show<i> ▸</i>' }), el('p', { class: 'why', text: ep.why })]));
@@ -343,15 +360,15 @@
         var sl = el('ul', { class: 'sources' });
         ep.sources.forEach(function (s) {
           var a = el('a', { href: s.url, target: '_blank', rel: 'noopener', text: s.label + ' ↗' });
-          a.addEventListener('click', function () { track('shoptalk_source_click', { episode: ep.number, source: s.label }); });
+          a.addEventListener('click', function () { track('shoptalk_source_click', { edition: ep.edition || 'tuesday', episode: ep.number, source: s.label }); });
           sl.appendChild(el('li', null, [a]));
         });
         b3.appendChild(sl); info.appendChild(b3);
       }
       var share = el('button', { class: 'btn solid', type: 'button', text: 'Share this strip' });
       share.addEventListener('click', function () {
-        var url = 'https://hicksnewmedia.com/shoptalk/#ep-' + pad(ep.number);
-        track('shoptalk_share', { episode: ep.number });
+        var url = 'https://hicksnewmedia.com/shoptalk/#' + slugOf(ep);
+        track('shoptalk_share', { edition: ep.edition || 'tuesday', episode: ep.number });
         if (navigator.share) { navigator.share({ title: 'SHOP TALK: ' + ep.title, url: url }).catch(function () {}); }
         else if (navigator.clipboard) { navigator.clipboard.writeText(url).then(function () { share.textContent = 'Link copied'; setTimeout(function () { share.textContent = 'Share this strip'; }, 1800); }); }
       });
@@ -396,13 +413,25 @@
 
     function renderArchive(live, current) {
       var box = $('#eps'); box.innerHTML = '';
+      renderFilters(live, current);
       if (!live.length) { box.appendChild(el('p', { class: 'kicker', text: 'Episode 00 premieres Tuesday.' })); return; }
-      live.forEach(function (ep) {
-        var a = el('a', { class: 'ep', href: '#ep-' + pad(ep.number), 'aria-current': current && current.number === ep.number ? 'true' : 'false' }, [
+      live.filter(function (ep) { return FILTER === 'all' || (ep.edition || 'tuesday') === FILTER; }).forEach(function (ep) {
+        var a = el('a', { class: 'ep' + (isWk(ep) ? ' ed-weekend' : ''), href: '#' + slugOf(ep), 'aria-current': current === ep ? 'true' : 'false' }, [
           el('img', { src: ep.tiles[0].src, alt: '', width: '1080', height: '1350', loading: 'lazy' }),
-          el('div', { class: 'body' }, [el('p', { class: 'kicker', text: 'Ep. ' + pad(ep.number) + ' · ' + new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: TZ }).format(new Date(ep.publish_at)) }), el('h3', { text: ep.title })])
+          el('div', { class: 'body' }, [isWk(ep) ? el('span', { class: 'edtag', text: 'Weekend Edition' }) : null, el('p', { class: 'kicker', text: label(ep) + ' · ' + new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: TZ }).format(new Date(ep.publish_at)) }), el('h3', { text: ep.title })])
         ]);
         box.appendChild(a);
+      });
+    }
+
+    function renderFilters(live, current) {
+      var fb = $('#epFilters'); if (!fb) return; fb.innerHTML = '';
+      var eds = {}; live.forEach(function (e) { eds[e.edition || 'tuesday'] = 1; });
+      if (Object.keys(eds).length < 2) return;
+      [['all', 'All'], ['tuesday', 'Tuesday'], ['weekend', 'Weekend Edition']].forEach(function (f) {
+        var b = el('button', { type: 'button', class: f[0] === 'weekend' ? 'ed-weekend' : '', 'aria-pressed': FILTER === f[0] ? 'true' : 'false', text: f[1] });
+        b.addEventListener('click', function () { FILTER = f[0]; renderArchive(live, current); track('shoptalk_filter', { edition: f[0] }); });
+        fb.appendChild(b);
       });
     }
 
