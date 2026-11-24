@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SHOP TALK: the business of tech, from the barbershop · HicksNewMedia</title>
-  <meta name="description" content="SHOP TALK is a weekly comic strip from James Hicks. One business-of-tech story, argued out at The Shop, with the facts and sources behind every panel. New strips every Tuesday, plus a Weekend Edition on consumer tech every Saturday." />
+  <meta name="description" content="SHOP TALK is a weekly comic strip from James Hicks. One business-of-tech story, argued out at The Shop, with the facts and sources behind every panel. New strips every Tuesday, plus a Weekend Edition on consumer tech every Saturday. And THE RECEIPTS: one story in sixty seconds, every claim itemized with its source." />
   <link rel="canonical" href="https://hicksnewmedia.com/shoptalk/" />
   <meta property="og:site_name" content="HicksNewMedia" />
   <meta property="og:type" content="website" />
@@ -161,6 +161,39 @@
     .filters button[aria-pressed="true"] { background: var(--signal); }
     .why strong { font-family: var(--display); font-weight: 400; font-size: 1.5em; letter-spacing: .04em; color: var(--ink); background: var(--signal); padding: 0 .3em; border-radius: 4px; margin-right: .3em; }
 
+    /* THE RECEIPTS: the sixty-second series, itemized */
+    .receipts { background: var(--ink); color: var(--paper); padding: 84px 0 96px; }
+    .receipts .kicker { color: #a9a39a; }
+    .receipts .sec-h p { color: #cfc8bc; }
+    .rcpts { display: grid; gap: 34px; }
+    .rcpt { display: grid; grid-template-columns: 236px minmax(0, 1fr); gap: 30px; align-items: start; scroll-margin-top: 92px; }
+    @media (max-width: 760px) { .rcpt { grid-template-columns: 1fr; gap: 18px; } }
+    .rcpt .cover { position: relative; display: block; border-radius: 14px; overflow: hidden; border: 1px solid #2a2a2a; background: #151515; text-decoration: none; }
+    .rcpt .cover img { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; }
+    @media (max-width: 760px) { .rcpt .cover { max-width: 220px; } }
+    .rcpt .cover span { position: absolute; left: 10px; bottom: 10px; font: 700 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; background: var(--signal); color: var(--ink); padding: 7px 9px; border-radius: 5px; }
+    .paper { position: relative; background: var(--card); color: var(--ink); padding: 26px 28px 24px; border-radius: 4px 4px 0 0; margin-bottom: 12px; }
+    .paper::after { content: ""; position: absolute; left: 0; right: 0; bottom: -11px; height: 12px;
+      background: linear-gradient(-45deg, transparent 8px, var(--card) 0) 0 0 / 16px 12px repeat-x, linear-gradient(45deg, transparent 8px, var(--card) 0) 0 0 / 16px 12px repeat-x; }
+    @media (max-width: 520px) { .paper { padding: 22px 18px 20px; } }
+    .paper .phead { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; padding-bottom: 12px; border-bottom: 2px dashed #cfc5b4; font-family: var(--mono); font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+    .paper .phead b { font-family: var(--display); font-weight: 400; font-size: 30px; letter-spacing: .03em; color: var(--ink); line-height: .9; }
+    .paper .phead b i { color: var(--signal); font-style: normal; }
+    .paper h3 { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: clamp(22px, 2.6vw, 28px); line-height: 1.22; margin: 16px 0 6px; }
+    .items { list-style: none; counter-reset: item; margin-top: 12px; }
+    .items li { counter-increment: item; display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 4px 10px; padding: 12px 0; border-bottom: 1px dashed #cfc5b4; font-size: 15.5px; line-height: 1.45; }
+    .items li::before { content: counter(item, decimal-leading-zero); font-family: var(--mono); font-weight: 700; font-size: 12.5px; color: var(--deep); padding-top: 3px; }
+    .items a { grid-column: 2; justify-self: start; font-family: var(--mono); font-size: 12.5px; color: var(--deep); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+    .paper details summary { cursor: pointer; font: 700 12.5px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; padding: 14px 0 4px; color: var(--ink); }
+    .paper .row { margin-top: 18px; }
+    .paper .btn { min-height: 42px; padding: 9px 15px; font-size: 12.5px; }
+    .paper .fine { font-family: var(--mono); font-size: 11.5px; letter-spacing: .06em; color: var(--muted); margin-top: 14px; }
+    .older { margin-top: 44px; border-top: 1px solid #2a2a2a; }
+    .older a { display: grid; grid-template-columns: 74px minmax(0, 1fr) auto; gap: 14px; align-items: baseline; padding: 14px 2px; border-bottom: 1px solid #2a2a2a; text-decoration: none; }
+    .older a:hover b { color: var(--signal); }
+    .older span { font-family: var(--mono); font-size: 12.5px; letter-spacing: .12em; color: #a9a39a; text-transform: uppercase; }
+    .older b { font-weight: 600; }
+
     /* Follow band */
     .follow { background: var(--signal); padding: 72px 0; }
     .follow h2 { font-family: var(--display); font-weight: 400; font-size: clamp(58px, 9vw, 128px); line-height: .84; }
@@ -191,6 +224,7 @@
         <a href="#latest">Latest</a>
         <a href="#family">The Family</a>
         <a href="#episodes">Episodes</a>
+        <a href="#receipts" id="navReceipts" hidden>The Receipts</a>
         <a class="cta" href="#follow">Follow</a>
       </nav>
     </div>
@@ -216,6 +250,17 @@
       <div class="wrap">
         <div class="sec-h"><div><p class="kicker">The archive</p><h2>EVERY <i>EPISODE</i></h2></div><div class="filters" id="epFilters" role="group" aria-label="Filter episodes by edition"></div></div>
         <div class="eps" id="eps"></div>
+      </div>
+    </section>
+
+    <section class="receipts" id="receipts" hidden>
+      <div class="wrap">
+        <div class="sec-h">
+          <div><p class="kicker">Sixty seconds · Mon, Wed, Fri</p><h2>THE <i>RECEIPTS</i></h2></div>
+          <p>Same desk, different format. One business-of-tech story in a minute: the number, where it came from, and what most people miss. Every claim is itemized here with its source.</p>
+        </div>
+        <div class="rcpts" id="rcpts"></div>
+        <div class="older" id="rcptsOlder" hidden></div>
       </div>
     </section>
 
@@ -447,6 +492,67 @@
         a.addEventListener('click', function () { track('shoptalk_follow_click', { network: f.label }); });
         row.appendChild(a);
       });
+    }
+
+    /* THE RECEIPTS: its own file, so a missing or broken one never touches the strip */
+    fetch('/shoptalk/receipts.json', { cache: 'no-cache' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) { if (data && data.episodes) renderReceipts(data); })
+      .catch(function () {});
+
+    function renderReceipts(data) {
+      var now = Date.now();
+      var live = data.episodes.filter(function (e) { return PREVIEW || Date.parse(e.publish_at) <= now; })
+        .sort(function (a, b) { return Date.parse(b.publish_at) - Date.parse(a.publish_at); });
+      if (!live.length) return;
+      var box = $('#rcpts'), older = $('#rcptsOlder'), s = data.series || {};
+      var day = function (iso) { return new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric', timeZone: TZ }).format(new Date(iso)); };
+      function watch(label, url, ep, net, solid) {
+        var a = el('a', { class: 'btn' + (solid ? ' solid' : ''), href: url, target: '_blank', rel: 'noopener', text: label + ' ↗' });
+        a.addEventListener('click', function () { track('receipts_watch_click', { episode: ep.ep, network: net }); });
+        return a;
+      }
+      function item(r, ep) {
+        var kids = [el('span', { text: r.text })];
+        if (r.url) {
+          var a = el('a', { href: r.url, target: '_blank', rel: 'noopener', text: (r.source || 'Source') + ' ↗' });
+          a.addEventListener('click', function () { track('receipts_source_click', { episode: ep.ep, source: r.source || '' }); });
+          kids.push(a);
+        }
+        return el('li', null, kids);
+      }
+      live.slice(0, 3).forEach(function (ep) {
+        var links = ep.links || {}, yt = links.youtube, tk = links.tiktok || s.tiktok;
+        var first = (ep.receipts || []).slice(0, 4), rest = (ep.receipts || []).slice(4);
+        var list = el('ol', { class: 'items' }); first.forEach(function (r) { list.appendChild(item(r, ep)); });
+        var paper = el('div', { class: 'paper' }, [
+          el('div', { class: 'phead' }, [el('b', { html: 'THE RECEIPTS<i>.</i>' }), el('span', { text: 'EP.' + ep.ep + ' · ' + day(ep.publish_at) })]),
+          el('h3', { text: ep.title }), list
+        ]);
+        if (rest.length) {
+          var more = el('ol', { class: 'items', start: String(first.length + 1) }); more.style.counterReset = 'item ' + first.length;
+          rest.forEach(function (r) { more.appendChild(item(r, ep)); });
+          paper.appendChild(el('details', null, [el('summary', { text: rest.length + ' more on this receipt' }), more]));
+        }
+        var row = el('div', { class: 'row' });
+        if (yt) row.appendChild(watch('Watch on YouTube', yt, ep, 'youtube', true));
+        if (tk) row.appendChild(watch(links.tiktok ? 'Watch on TikTok' : 'On TikTok @hicksnewmedia', tk, ep, 'tiktok', !yt));
+        if (ep.strip) row.appendChild(el('a', { class: 'btn', href: '#' + ep.strip, text: 'Read the strip' }));
+        paper.appendChild(row);
+        paper.appendChild(el('p', { class: 'fine', text: 'Narrated in an AI clone of James Hicks\'s own voice. Not financial advice.' }));
+        var cover = el('a', { class: 'cover', href: yt || tk || '#receipts', 'aria-label': 'Watch THE RECEIPTS EP.' + ep.ep }, [
+          el('img', { src: ep.cover, alt: 'Cover frame of THE RECEIPTS EP.' + ep.ep + ': ' + ep.title, width: '720', height: '1280', loading: 'lazy', decoding: 'async' }),
+          el('span', { text: '60 sec' })
+        ]);
+        if (yt || tk) { cover.setAttribute('target', '_blank'); cover.setAttribute('rel', 'noopener'); }
+        box.appendChild(el('article', { class: 'rcpt', id: 'receipts-ep-' + ep.ep }, [cover, paper]));
+      });
+      live.slice(3).forEach(function (ep) {
+        var links = ep.links || {}, url = links.youtube || links.tiktok || s.tiktok || '#receipts';
+        older.appendChild(el('a', { href: url, target: '_blank', rel: 'noopener' }, [el('span', { text: 'EP.' + ep.ep }), el('b', { text: ep.title }), el('span', { text: day(ep.publish_at) })]));
+        older.hidden = false;
+      });
+      $('#receipts').hidden = false; $('#navReceipts').hidden = false;
     }
 
     document.getElementById('yr').textContent = new Date().getFullYear();

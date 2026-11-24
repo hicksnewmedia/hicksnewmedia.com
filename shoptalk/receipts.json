@@ -1,0 +1,103 @@
+{
+ "series": {
+  "name": "THE RECEIPTS",
+  "tagline": "One business-of-tech story in sixty seconds, with the receipts.",
+  "cadence": "Monday, Wednesday and Friday",
+  "tiktok": "https://www.tiktok.com/@hicksnewmedia",
+  "youtube": "https://www.youtube.com/c/JamesHicks/"
+ },
+ "episodes": [
+  {
+   "ep": "02",
+   "slug": "microsoft-365-outage",
+   "publish_at": "2026-11-25T08:00:00-08:00",
+   "title": "Microsoft 365 went dark for almost a full day. The bug had been hiding since July.",
+   "cover": "/assets/receipts/ep02/cover.webp",
+   "receipts": [
+    {
+     "text": "Outage from 11:20 AM ET Nov 12 to 11:10 AM ET Nov 13, 2026 (23 h 50 m of impact), worldwide; Outlook, Exchange Online, Teams, Copilot affected",
+     "source": "Microsoft preliminary PIR (11/15/26) via BleepingComputer and Next.ink copy",
+     "url": "https://www.bleepingcomputer.com/news/microsoft/microsoft-says-months-old-bug-caused-global-microsoft-365-outage/"
+    },
+    {
+     "text": "Bug introduced in July 2026 in an update to Microsoft 365 networking gateway servers; ran more than three months without issue",
+     "source": "BleepingComputer; The Register",
+     "url": "https://www.theregister.com/2026/11/16/microsoft-blames-monster-email-outage-on-software-defect-introduced-in-july-fix/5310026"
+    },
+    {
+     "text": "Teams failed over to the gateway used by Exchange Online about 15 hours before the outage (01:07 UTC vs 16:20 UTC)",
+     "source": "BleepingComputer; Data Studios timeline of the PIR",
+     "url": "https://www.bleepingcomputer.com/news/microsoft/microsoft-says-months-old-bug-caused-global-microsoft-365-outage/"
+    },
+    {
+     "text": "Nearly 14% of gateway capacity already offline (unrelated); more than 80% of servers unresponsive at worst; spread across the fleet in under two hours",
+     "source": "BleepingComputer quoting the PIR",
+     "url": "https://www.bleepingcomputer.com/news/microsoft/microsoft-says-months-old-bug-caused-global-microsoft-365-outage/"
+    },
+    {
+     "text": "Load testing missed it: lab hardware weaker than production; bug worse on newer, higher-core hardware",
+     "source": "BleepingComputer",
+     "url": "https://www.bleepingcomputer.com/news/microsoft/microsoft-says-months-old-bug-caused-global-microsoft-365-outage/"
+    },
+    {
+     "text": "Teams, OneDrive, SharePoint could switch to alternative infrastructure and recover sooner; Exchange Online could not ('for scale reasons')",
+     "source": "BleepingComputer; Office Watch reproduction of the PIR",
+     "url": "https://office-watch.com/?p=78199"
+    }
+   ],
+   "links": {
+    "youtube": null,
+    "tiktok": null
+   }
+  },
+  {
+   "ep": "01",
+   "slug": "nvidia-q3-fy27",
+   "publish_at": "2026-11-23T08:00:00-08:00",
+   "title": "Nvidia lost its founder. Then it posted its biggest quarter ever.",
+   "cover": "/assets/receipts/ep01/cover.webp",
+   "receipts": [
+    {
+     "text": "Board accepted Jensen Huang's resignation as President, CEO and director on Nov 11, 2026; Colette Kress (EVP & CFO) named interim CEO; Harvey C. Jones named chair",
+     "source": "NVIDIA Form 8-K, Nov 11, 2026 (SEC)",
+     "url": "https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000082/nvda-20261111.htm"
+    },
+    {
+     "text": "Huang led NVIDIA for 33 years",
+     "source": "NVIDIA CEO transition release, Nov 12, 2026 (Kress quote)",
+     "url": "https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000082/nvidiaannouncesceotransiti.htm"
+    },
+    {
+     "text": "Shares fell about 10% in premarket trading on the news",
+     "source": "AP via Onmanorama, Nov 12, 2026; DatacenterDynamics",
+     "url": "https://www.onmanorama.com/news/business/2026/11/12/nvidia-ceo-and-co-founder-jensen-huang-steps-down.amp.html"
+    },
+    {
+     "text": "Q3 FY27 (ended Oct 25, 2026) revenue $115.8B, up 103% y/y from $57.0B; reported Nov 17, 2026",
+     "source": "NVIDIA Q3 FY27 results release",
+     "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Third-Quarter-Fiscal-2027/default.aspx"
+    },
+    {
+     "text": "Highest quarterly revenue on record: Q3 FY26 $57.0B, Q4 FY26 $68.1B, Q1 FY27 $81.6B, Q2 FY27 $96.2B, Q3 FY27 $115.8B",
+     "source": "NVIDIA Q4 FY26, Q1 FY27 and Q3 FY27 results releases",
+     "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-First-Quarter-Fiscal-2027/default.aspx"
+    },
+    {
+     "text": "Data Center revenue $107.6B, about 93% of total; remainder (Edge Computing: PCs, gaming, automotive, robotics) $8.2B",
+     "source": "NVIDIA Q3 FY27 results release; segment definition per Credence Research summary",
+     "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Third-Quarter-Fiscal-2027/default.aspx"
+    },
+    {
+     "text": "Q4 FY27 outlook $130.0B plus or minus 3%, quarter includes an additional week, no China Data Center compute revenue assumed",
+     "source": "NVIDIA Q3 FY27 results release",
+     "url": "https://investor.nvidia.com/news/press-release-details/2026/NVIDIA-Announces-Financial-Results-for-Third-Quarter-Fiscal-2027/default.aspx"
+    }
+   ],
+   "links": {
+    "youtube": null,
+    "tiktok": null
+   },
+   "strip": "ep-01"
+  }
+ ]
+}
